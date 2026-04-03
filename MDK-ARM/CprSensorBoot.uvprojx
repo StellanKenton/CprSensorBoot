@@ -10,7 +10,7 @@
       <TargetName>CprSensorBoot</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>5060960::V5.06 update 7 (build 960)::.\ARM_Compiler_5.06u7</pCCUsed>
+      <pCCUsed>5060960::V5.06 update 7 (build 960)::.\ACC5</pCCUsed>
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -649,50 +649,20 @@
               <FileType>1</FileType>
               <FilePath>..\User\App\app_system.c</FilePath>
             </File>
-            <File>
-              <FileName>app_memory.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\User\App\app_memory.c</FilePath>
-            </File>
-            <File>
-              <FileName>app_bootloader.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\User\App\app_bootloader.c</FilePath>
-            </File>
-            <File>
-              <FileName>app_wireless.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\User\App\app_wireless.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
           <GroupName>Drv</GroupName>
           <Files>
             <File>
-              <FileName>drv_flash.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\User\Drv\drv_flash.c</FilePath>
-            </File>
-            <File>
               <FileName>drv_wdg.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\Drv\drv_wdg.c</FilePath>
             </File>
             <File>
-              <FileName>drv_mcu_flash.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\User\Drv\drv_mcu_flash.c</FilePath>
-            </File>
-            <File>
               <FileName>drv_delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\Drv\drv_delay.c</FilePath>
-            </File>
-            <File>
-              <FileName>drv_blemodule.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\User\Drv\drv_blemodule.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -706,11 +676,6 @@
               <FileName>lib_comm.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\Lib\lib_comm.c</FilePath>
-            </File>
-            <File>
-              <FileName>lib_ringbuffer.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\User\Lib\lib_ringbuffer.c</FilePath>
             </File>
             <File>
               <FileName>MD5.c</FileName>
@@ -727,11 +692,6 @@
         <Group>
           <GroupName>Log</GroupName>
           <Files>
-            <File>
-              <FileName>log.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\User\SEGGER\log.c</FilePath>
-            </File>
             <File>
               <FileName>bsp_rtt.c</FileName>
               <FileType>1</FileType>

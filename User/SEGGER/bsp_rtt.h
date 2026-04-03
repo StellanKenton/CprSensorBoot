@@ -44,3 +44,4 @@ stRingBuffer *bspRttLogGetInputBuffer(void);
 
 #endif  // BSP_RTT_H
 /**************************End of file********************************/
+

@@ -9,11 +9,7 @@
 #include "log.h"
 #include "cm_backtrace.h"
 #include "iwdg.h"
-#include "app_memory.h"
 #include "drv_wdg.h"
-#include "app_bootloader.h"
-#include "drv_blemodule.h"
-#include "app_wireless.h"
 
 
 static System_Mgr_t s_SystemMgr = {E_SYSTEM_STANDBY_MODE, 0};
@@ -30,14 +26,11 @@ void System_ChangeMode(System_Mode_EnumDef newMode)
 
 void System_Init(void)
 {
-    Log_Init();
     Drv_WatchDogResartCheck();
     cm_backtrace_init(FIRMWARE_NAME, FIRMWARE_VERSION, HARDWARE_VERSION);
     LOG_I("&&&&&&&&&&&&&&&&& BOOT LOADER &&&&&&&&&&&&&&&&&");
     LOG_I("System initialized.");
-    LOG_I("Firmware: %s, Version: %s, Hardware: %s", FIRMWARE_NAME, FIRMWARE_VERSION, HARDWARE_VERSION);    
-    App_Memory_init();     
-    WireLess_Init();     
+    LOG_I("Firmware: %s, Version: %s, Hardware: %s", FIRMWARE_NAME, FIRMWARE_VERSION, HARDWARE_VERSION);      
 }
 
 void SystemManager(void)
@@ -46,10 +39,6 @@ void SystemManager(void)
     {
         case E_SYSTEM_STANDBY_MODE:
             // Handle standby mode
-            App_BootLoader_JumpCheck();
-            if (App_Bootloader_GetNeedUpdate()) {
-                System_ChangeMode(E_SYSTEM_UPDATE_MODE);
-            }
             break;
         case E_SYSTEM_NORMAL_MODE:
             // Handle normal mode
@@ -57,9 +46,6 @@ void SystemManager(void)
             break;
         case E_SYSTEM_UPDATE_MODE:
             // Handle update mode
-            App_Bootloader_Manager();
-            WireLess_Process();
-            Log_Process(1);
             break;
         case E_SYSTEM_MODE_MAX:
         default:
