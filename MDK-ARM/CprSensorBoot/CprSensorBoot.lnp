@@ -51,6 +51,8 @@
 "cprsensorboot\md5.o"
 "cprsensorboot\encryption.o"
 "cprsensorboot\bsp_rtt.o"
+"cprsensorboot\ringbuffer.o"
+"cprsensorboot\log.o"
 "cprsensorboot\segger_rtt.o"
 "cprsensorboot\segger_rtt_printf.o"
 "cprsensorboot\cm_backtrace.o"
