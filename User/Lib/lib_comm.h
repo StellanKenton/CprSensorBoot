@@ -18,7 +18,6 @@ extern "C" {
 #endif
 
 #include "main.h"
-#include "app_memory.h"
 
 typedef struct 
 {

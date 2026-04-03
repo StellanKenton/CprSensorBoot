@@ -50,6 +50,7 @@ typedef struct
     uint32_t sysTick;
 } System_Mgr_t;
 
+void System_ChangeMode(System_Mode_EnumDef newMode);
 void System_Init(void);
 void SystemProcess(void);
 #ifdef __cplusplus
