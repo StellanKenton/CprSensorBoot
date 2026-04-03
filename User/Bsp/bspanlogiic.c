@@ -17,6 +17,10 @@ static const stBspAnlogIicBus gBspAnlogIicBusMap[DRVANLOGIIC_MAX] = {
         .scl = {PCA9535_SCL_GPIO_Port, PCA9535_SCL_Pin},
         .sda = {PCA9535_SDA_GPIO_Port, PCA9535_SDA_Pin},
     },
+    [DRVANLOGIIC_TM] = {
+        .scl = {MCU_LED_CLK_GPIO_Port, MCU_LED_CLK_Pin},
+        .sda = {MCU_LED_SDA_GPIO_Port, MCU_LED_SDA_Pin},
+    },
 };
 
 static const stBspAnlogIicBus *bspAnlogIicGetBus(eDrvAnlogIicPortMap iic);
