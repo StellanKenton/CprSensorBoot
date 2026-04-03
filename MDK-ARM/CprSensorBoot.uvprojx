@@ -733,6 +733,11 @@
               <FilePath>..\User\SEGGER\log.c</FilePath>
             </File>
             <File>
+              <FileName>bsp_rtt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\SEGGER\bsp_rtt.c</FilePath>
+            </File>
+            <File>
               <FileName>SEGGER_RTT.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\SEGGER\SEGGER_RTT.c</FilePath>
