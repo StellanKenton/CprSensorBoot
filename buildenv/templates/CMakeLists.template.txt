@@ -1,0 +1,64 @@
+cmake_minimum_required(VERSION 3.21)
+
+project(__PROJECT_NAME__ LANGUAGES C ASM)
+
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD_REQUIRED ON)
+set(CMAKE_C_EXTENSIONS ON)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+set(TARGET_NAME __PROJECT_NAME__)
+set(LINKER_SCRIPT ${CMAKE_CURRENT_SOURCE_DIR}/__LINKER_SCRIPT__)
+set(MAP_FILE ${CMAKE_BINARY_DIR}/${TARGET_NAME}.map)
+
+set(PROJECT_SOURCES
+__PROJECT_SOURCES__
+)
+
+set(PROJECT_INCLUDES
+__PROJECT_INCLUDES__
+)
+
+add_executable(${TARGET_NAME} ${PROJECT_SOURCES})
+
+target_include_directories(${TARGET_NAME} PRIVATE ${PROJECT_INCLUDES})
+
+target_compile_definitions(${TARGET_NAME} PRIVATE
+__COMPILE_DEFINITIONS__
+)
+
+target_compile_options(${TARGET_NAME} PRIVATE
+    -mcpu=__MCU_CORE__
+    -mthumb
+    -ffunction-sections
+    -fdata-sections
+    -fno-common
+    $<$<COMPILE_LANGUAGE:C>:-fmessage-length=0>
+    $<$<CONFIG:Debug>:-Og -g3>
+    $<$<CONFIG:Release>:-Os -g0>
+)
+
+target_link_options(${TARGET_NAME} PRIVATE
+    -mcpu=__MCU_CORE__
+    -mthumb
+    -specs=nano.specs
+    -specs=nosys.specs
+    -Wl,--gc-sections
+    -Wl,--print-memory-usage
+    -Wl,-Map=${MAP_FILE}
+    -T${LINKER_SCRIPT}
+)
+
+target_link_libraries(${TARGET_NAME} PRIVATE c m nosys)
+
+set(ELF_FILE ${CMAKE_BINARY_DIR}/${TARGET_NAME}.elf)
+set(HEX_FILE ${CMAKE_BINARY_DIR}/${TARGET_NAME}.hex)
+set(BIN_FILE ${CMAKE_BINARY_DIR}/${TARGET_NAME}.bin)
+
+add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
+    COMMAND ${CMAKE_OBJCOPY} -O ihex $<TARGET_FILE:${TARGET_NAME}> ${HEX_FILE}
+    COMMAND ${CMAKE_OBJCOPY} -O binary $<TARGET_FILE:${TARGET_NAME}> ${BIN_FILE}
+    COMMAND ${CMAKE_SIZE} $<TARGET_FILE:${TARGET_NAME}>
+    BYPRODUCTS ${HEX_FILE} ${BIN_FILE}
+    COMMENT "Generating ${TARGET_NAME}.hex and ${TARGET_NAME}.bin"
+)

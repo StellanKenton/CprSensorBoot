@@ -175,7 +175,7 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
 static UART_HandleTypeDef *bspUartGetHandle(eDrvUartPortMap uart)
 {
     switch (uart) {
-        case DRVUART_WIRELESS:
+        case DRVUART_DEBUG:
             return &huart4;
         default:
             return NULL;
@@ -192,7 +192,7 @@ static eDrvUartPortMap bspUartGetPortByHandle(UART_HandleTypeDef *handle, bool *
         if (isMatched != NULL) {
             *isMatched = true;
         }
-        return DRVUART_WIRELESS;
+        return DRVUART_DEBUG;
     }
 
     return DRVUART_MAX;

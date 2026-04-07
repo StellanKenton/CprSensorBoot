@@ -1,0 +1,40 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "J-Link Debug (__PROJECT_NAME__)",
+      "type": "cortex-debug",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "servertype": "jlink",
+      "serverpath": "${config:cpr.tools.jlinkGdbServer}",
+      "device": "${config:cpr.target.device}",
+      "interface": "${config:cpr.target.interface}",
+      "executable": "${workspaceFolder}/build/Debug/__PROJECT_NAME__.elf",
+      "gdbPath": "${config:cpr.tools.armGdbPath}",
+      "armToolchainPath": "${config:cpr.tools.armToolchainBinDir}",
+      "runToEntryPoint": "__RUN_TO_ENTRY_POINT__",
+      "preLaunchTask": "Firmware: Build",
+      "serverArgs": [
+        "-speed",
+        "${config:cpr.target.speed}"
+      ],
+      "postLaunchCommands": [
+        "monitor reset",
+        "monitor halt"
+      ],
+      "rttConfig": {
+        "enabled": true,
+        "address": "auto",
+        "clearSearch": false,
+        "decoders": [
+          {
+            "label": "RTT",
+            "port": 0,
+            "encoding": "utf8"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "cmake.generator": "Ninja",
+  "cmake.configureOnOpen": true,
+  "cmake.buildDirectory": "${workspaceFolder}/build/${buildType}",
+  "cmake.sourceDirectory": "${workspaceFolder}",
+  "cmake.preferredGenerators": [
+    "Ninja"
+  ],
+  "cmake.configureSettings": {
+    "CMAKE_TOOLCHAIN_FILE": "${workspaceFolder}/cmake/toolchains/arm-none-eabi.cmake",
+    "CMAKE_BUILD_TYPE": "Debug",
+    "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+  },
+  "clangd.arguments": [
+    "--compile-commands-dir=${workspaceFolder}/build/Debug"
+  ],
+  "files.associations": {
+    "*.ld": "ld"
+  },
+  "cpr.tools.armToolchainBinDir": "__ARM_GNU_TOOLCHAIN_BIN_DIR__",
+  "cpr.tools.armGdbPath": "__ARM_GNU_TOOLCHAIN_BIN_DIR__/arm-none-eabi-gdb",
+  "cpr.tools.jlinkExe": "JLinkExe",
+  "cpr.tools.jlinkGdbServer": "JLinkGDBServer",
+  "cpr.target.device": "__DEVICE__",
+  "cpr.target.interface": "__INTERFACE__",
+  "cpr.target.speed": "__SPEED__",
+  "cpr.target.gdbPort": "2331",
+  "cpr.target.swoPort": "2332",
+  "cpr.target.telnetPort": "2333",
+  "cpr.target.rttTelnetPort": "19021",
+  "cpr.rttServer.gdbPort": "2341",
+  "cpr.rttServer.swoPort": "2342",
+  "cpr.rttServer.telnetPort": "2343",
+  "cpr.rttServer.rttTelnetPort": "19031",
+  "actionButtons": {
+    "reloadButton": null,
+    "defaultColor": "none",
+    "loadNpmCommands": false,
+    "commands": [
+      {
+        "name": "$(gear) Configure",
+        "tooltip": "Configure the CMake build directory",
+        "useVsCodeApi": true,
+        "command": "workbench.action.tasks.runTask",
+        "args": [
+          "Firmware: Configure"
+        ]
+      },
+      {
+        "name": "$(tools) Build",
+        "tooltip": "Configure and build the firmware",
+        "useVsCodeApi": true,
+        "command": "workbench.action.tasks.runTask",
+        "args": [
+          "Firmware: Build"
+        ]
+      },
+      {
+        "name": "$(debug) Debug",
+        "tooltip": "Start the Cortex-Debug J-Link session",
+        "useVsCodeApi": true,
+        "command": "workbench.action.debug.start"
+      },
+      {
+        "name": "$(arrow-up) Flash",
+        "tooltip": "Program the latest hex file through J-Link",
+        "useVsCodeApi": true,
+        "command": "workbench.action.tasks.runTask",
+        "args": [
+          "J-Link: Flash"
+        ]
+      },
+      {
+        "name": "$(debug-restart) Reset",
+        "tooltip": "Reset and run the target through J-Link",
+        "useVsCodeApi": true,
+        "command": "workbench.action.tasks.runTask",
+        "args": [
+          "J-Link: Reset"
+        ]
+      },
+      {
+        "name": "$(radio-tower) RTT",
+        "tooltip": "Open one interactive RTT terminal for both output and input",
+        "useVsCodeApi": true,
+        "command": "workbench.action.tasks.runTask",
+        "args": [
+          "RTT: Console"
+        ]
+      },
+      {
+        "name": "$(stop-circle) Stop Task",
+        "tooltip": "Stop a running task such as RTT or a helper server",
+        "useVsCodeApi": true,
+        "command": "workbench.action.tasks.terminate"
+      }
+    ]
+  }
+}

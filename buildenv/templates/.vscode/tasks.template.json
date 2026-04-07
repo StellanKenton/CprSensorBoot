@@ -6,7 +6,6 @@
       "type": "shell",
       "command": "cmake",
       "args": [
-        "--fresh",
         "-S",
         "${workspaceFolder}",
         "-B",
@@ -18,15 +17,7 @@
         "-DCMAKE_BUILD_TYPE=Debug",
         "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
       ],
-      "problemMatcher": [],
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared",
-        "clear": true
-      },
-      "options": {
-        "cwd": "${workspaceFolder}"
-      }
+      "problemMatcher": []
     },
     {
       "label": "Firmware: Build",
@@ -43,15 +34,7 @@
         "kind": "build",
         "isDefault": true
       },
-      "problemMatcher": [],
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared",
-        "clear": true
-      },
-      "options": {
-        "cwd": "${workspaceFolder}"
-      }
+      "problemMatcher": []
     },
     {
       "label": "Firmware: Clean",
@@ -63,15 +46,7 @@
         "--target",
         "clean"
       ],
-      "problemMatcher": [],
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared",
-        "clear": true
-      },
-      "options": {
-        "cwd": "${workspaceFolder}"
-      }
+      "problemMatcher": []
     },
     {
       "label": "J-Link: Flash",
@@ -81,20 +56,12 @@
         "${config:cpr.target.device}",
         "${config:cpr.target.interface}",
         "${config:cpr.target.speed}",
-        "${workspaceFolder}/build/Debug/CprSensorBoot.hex",
+        "${workspaceFolder}/build/Debug/__PROJECT_NAME__.hex",
         "${config:cpr.tools.jlinkExe}"
       ],
       "dependsOn": "Firmware: Build",
       "dependsOrder": "sequence",
-      "problemMatcher": [],
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared",
-        "clear": true
-      },
-      "options": {
-        "cwd": "${workspaceFolder}"
-      }
+      "problemMatcher": []
     },
     {
       "label": "J-Link: Reset",
@@ -106,15 +73,7 @@
         "${config:cpr.target.speed}",
         "${config:cpr.tools.jlinkExe}"
       ],
-      "problemMatcher": [],
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared",
-        "clear": true
-      },
-      "options": {
-        "cwd": "${workspaceFolder}"
-      }
+      "problemMatcher": []
     },
     {
       "label": "RTT: Console",
@@ -138,9 +97,6 @@
         "panel": "dedicated",
         "clear": false,
         "showReuseMessage": false
-      },
-      "options": {
-        "cwd": "${workspaceFolder}"
       }
     }
   ]

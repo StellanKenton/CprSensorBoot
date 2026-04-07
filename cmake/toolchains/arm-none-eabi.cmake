@@ -1,0 +1,35 @@
+set(CMAKE_SYSTEM_NAME Generic)
+set(CMAKE_SYSTEM_PROCESSOR cortex-m3)
+
+set(TOOLCHAIN_PREFIX arm-none-eabi-)
+
+set(ARM_GNU_TOOLCHAIN_BIN_DIR "" CACHE PATH "Directory that contains the Arm GNU bare-metal binaries")
+
+if(NOT ARM_GNU_TOOLCHAIN_BIN_DIR)
+	if(EXISTS "/Applications/ArmGNUToolchain/15.2.rel1/arm-none-eabi/bin/arm-none-eabi-gcc")
+		set(ARM_GNU_TOOLCHAIN_BIN_DIR "/Applications/ArmGNUToolchain/15.2.rel1/arm-none-eabi/bin")
+	endif()
+endif()
+
+if(ARM_GNU_TOOLCHAIN_BIN_DIR)
+	set(TOOLCHAIN_COMMAND_PREFIX "${ARM_GNU_TOOLCHAIN_BIN_DIR}/${TOOLCHAIN_PREFIX}")
+else()
+	set(TOOLCHAIN_COMMAND_PREFIX ${TOOLCHAIN_PREFIX})
+endif()
+
+set(CMAKE_C_COMPILER ${TOOLCHAIN_COMMAND_PREFIX}gcc)
+set(CMAKE_ASM_COMPILER ${TOOLCHAIN_COMMAND_PREFIX}gcc)
+set(CMAKE_OBJCOPY ${TOOLCHAIN_COMMAND_PREFIX}objcopy CACHE INTERNAL "objcopy tool")
+set(CMAKE_SIZE ${TOOLCHAIN_COMMAND_PREFIX}size CACHE INTERNAL "size tool")
+
+set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
+
+set(CMAKE_C_FLAGS_INIT "-mcpu=cortex-m3 -mthumb")
+set(CMAKE_ASM_FLAGS_INIT "-mcpu=cortex-m3 -mthumb -x assembler-with-cpp")
+
+set(CMAKE_EXECUTABLE_SUFFIX_C ".elf")
+
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)

@@ -56,4 +56,6 @@ dkms.conf
 *.crf
 *.zip
 *.rar
+*.idx
+*.bin
 

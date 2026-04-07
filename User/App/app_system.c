@@ -13,9 +13,7 @@
 #include "drv_delay.h"
 #include "drv_wdg.h"
 #include "drvspi_debug.h"
-#include "gd25qxxx_debug.h"
-#include "pca9535_debug.h"
-#include "pca9535_port.h"
+#include "w25qxxx_debug.h"
 
 #define APP_SYSTEM_LOG_TAG    "AppSystem"
 #define APP_SYSTEM_WDG_FEED_INTERVAL_MS 1000U
@@ -55,6 +53,7 @@ void System_ChangeMode(System_Mode_EnumDef newMode)
 
 void System_Init(void)
 {
+    (void)systemConsoleEnsureReady();
     Drv_WatchDogResartCheck();
     cm_backtrace_init(FIRMWARE_NAME, FIRMWARE_VERSION, HARDWARE_VERSION);
     LOG_I(APP_SYSTEM_LOG_TAG, "&&&&&&&&&&&&&&&&& BOOT LOADER &&&&&&&&&&&&&&&&&");
@@ -99,26 +98,13 @@ void SystemManager(void)
 void SystemProcess(void)
 {
     SystemManager();
+    logProcessOutput();
     systemWatchdogProcess();
 }
 
 static void systemBoardInit(void)
 {
-    eDrvStatus lStatus;
-
-    lStatus = pca9535PortInit();
-    if (lStatus != DRV_STATUS_OK) {
-        LOG_E(APP_SYSTEM_LOG_TAG, "PCA9535 board init failed, status=%d", (int)lStatus);
-        return;
-    }
-
-    lStatus = pca9535PortLedOff();
-    if (lStatus != DRV_STATUS_OK) {
-        LOG_E(APP_SYSTEM_LOG_TAG, "PCA9535 default state failed, status=%d", (int)lStatus);
-        return;
-    }
-
-    LOG_I(APP_SYSTEM_LOG_TAG, "PCA9535 board mapping initialized");
+    LOG_I(APP_SYSTEM_LOG_TAG, "Board init uses direct STM32 peripherals only");
 }
 
 static void systemWatchdogProcess(void)
@@ -161,13 +147,8 @@ static bool systemConsoleEnsureReady(void)
         return false;
     }
 
-    if (!gd25qxxxDebugConsoleRegister()) {
-        LOG_E(APP_SYSTEM_LOG_TAG, "Register gd25qxxx command failed");
-        return false;
-    }
-
-    if (!pca9535DebugConsoleRegister()) {
-        LOG_E(APP_SYSTEM_LOG_TAG, "Register pca9535 command failed");
+    if (!w25qxxxDebugConsoleRegister()) {
+        LOG_E(APP_SYSTEM_LOG_TAG, "Register w25qxxx command failed");
         return false;
     }
 
