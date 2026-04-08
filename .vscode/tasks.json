@@ -4,18 +4,15 @@
     {
       "label": "Firmware: Configure",
       "type": "shell",
-      "command": "cmake",
+      "command": "${workspaceFolder}/.vscode/scripts/cmake_configure.sh",
       "args": [
-        "-S",
         "${workspaceFolder}",
-        "-B",
         "${workspaceFolder}/build/Debug",
-        "-G",
         "Ninja",
-        "-DCMAKE_TOOLCHAIN_FILE=${workspaceFolder}/cmake/toolchains/arm-none-eabi.cmake",
-        "-DARM_GNU_TOOLCHAIN_BIN_DIR=${config:cpr.tools.armToolchainBinDir}",
-        "-DCMAKE_BUILD_TYPE=Debug",
-        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
+        "${workspaceFolder}/cmake/toolchains/arm-none-eabi.cmake",
+        "${config:cpr.tools.armToolchainBinDir}",
+        "Debug",
+        "ON"
       ],
       "problemMatcher": [],
       "presentation": {

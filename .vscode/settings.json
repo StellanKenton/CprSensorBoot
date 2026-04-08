@@ -1,13 +1,14 @@
 {
   "cmake.generator": "Ninja",
   "cmake.configureOnOpen": true,
-  "cmake.buildDirectory": "${workspaceFolder}/build/${buildType}",
+  "cmake.buildDirectory": "${workspaceFolder}/build/Debug",
   "cmake.sourceDirectory": "${workspaceFolder}",
   "cmake.preferredGenerators": [
     "Ninja"
   ],
   "cmake.configureSettings": {
     "CMAKE_TOOLCHAIN_FILE": "${workspaceFolder}/cmake/toolchains/arm-none-eabi.cmake",
+    "ARM_GNU_TOOLCHAIN_BIN_DIR": "/Applications/ArmGNUToolchain/15.2.rel1/arm-none-eabi/bin",
     "CMAKE_BUILD_TYPE": "Debug",
     "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
   },
@@ -147,7 +148,7 @@
     "commands": [
       {
         "name": "$(gear) Configure",
-        "tooltip": "Configure the CMake build directory",
+        "tooltip": "Configure the CMake build directory.",
         "useVsCodeApi": true,
         "command": "workbench.action.tasks.runTask",
         "args": [
@@ -156,7 +157,7 @@
       },
       {
         "name": "$(tools) Build",
-        "tooltip": "Build the firmware",
+        "tooltip": "Build the firmware.",
         "useVsCodeApi": true,
         "command": "workbench.action.tasks.runTask",
         "args": [
@@ -165,7 +166,7 @@
       },
       {
         "name": "$(trash) Clean",
-        "tooltip": "Clean the current firmware build output",
+        "tooltip": "Clean the current firmware build output.",
         "useVsCodeApi": true,
         "command": "workbench.action.tasks.runTask",
         "args": [
@@ -174,7 +175,7 @@
       },
       {
         "name": "$(refresh) Rebuild",
-        "tooltip": "Clean and rebuild the firmware",
+        "tooltip": "Clean and rebuild the firmware.",
         "useVsCodeApi": true,
         "command": "workbench.action.tasks.runTask",
         "args": [
@@ -183,13 +184,13 @@
       },
       {
         "name": "$(debug) Debug",
-        "tooltip": "Start the Cortex-Debug J-Link session",
+        "tooltip": "Start the Cortex-Debug J-Link session.",
         "useVsCodeApi": true,
         "command": "workbench.action.debug.start"
       },
       {
         "name": "$(arrow-up) Flash",
-        "tooltip": "Program the latest hex file through J-Link",
+        "tooltip": "Program the latest hex file through J-Link.",
         "useVsCodeApi": true,
         "command": "workbench.action.tasks.runTask",
         "args": [
@@ -198,7 +199,7 @@
       },
       {
         "name": "$(debug-restart) Reset",
-        "tooltip": "Reset and run the target through J-Link",
+        "tooltip": "Reset and run the target through J-Link.",
         "useVsCodeApi": true,
         "command": "workbench.action.tasks.runTask",
         "args": [
@@ -207,7 +208,7 @@
       },
       {
         "name": "$(radio-tower) RTT",
-        "tooltip": "Open one interactive RTT terminal for both output and input",
+        "tooltip": "Open one interactive RTT terminal for both output and input.",
         "useVsCodeApi": true,
         "command": "workbench.action.tasks.runTask",
         "args": [
@@ -216,7 +217,7 @@
       },
       {
         "name": "$(stop-circle) Stop Task",
-        "tooltip": "Stop a running task such as RTT or a helper server",
+        "tooltip": "Stop a running task such as RTT or a helper server.",
         "useVsCodeApi": true,
         "command": "workbench.action.tasks.terminate"
       }

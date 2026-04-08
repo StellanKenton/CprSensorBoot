@@ -17,7 +17,13 @@
       "preLaunchTask": "Firmware: Build",
       "serverArgs": [
         "-speed",
-        "${config:cpr.target.speed}"
+        "${config:cpr.target.speed}",
+        "-port",
+        "2331",
+        "-swoport",
+        "2332",
+        "-telnetport",
+        "2333"
       ],
       "postLaunchCommands": [
         "monitor reset",
