@@ -8,7 +8,7 @@
 
 #include <stdint.h>
 
-#include "../rep/ringbuffer/ringbuffer.h"
+#include "../rep/tools/ringbuffer/ringbuffer.h"
 
 #ifdef __cplusplus
 extern "C" {

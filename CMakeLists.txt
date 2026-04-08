@@ -78,7 +78,7 @@ set(PROJECT_SOURCES
     User/rep/console/console.c
     User/rep/console/log.c
     User/rep/console/log_port.c
-    User/rep/ringbuffer/ringbuffer.c
+    User/rep/tools/ringbuffer/ringbuffer.c
     User/rep/drvlayer/drvspi/drvspi.c
     User/rep/drvlayer/drvspi/drvspi_port.c
     User/rep/drvlayer/drvspi/drvspi_debug.c
@@ -110,7 +110,7 @@ set(PROJECT_INCLUDES
     User/SEGGER
     User/rep
     User/rep/console
-    User/rep/ringbuffer
+    User/rep/tools/ringbuffer
     User/rep/drvlayer/drvspi
     User/rep/drvlayer/drvuart
     User/rep/module/w25qxxx

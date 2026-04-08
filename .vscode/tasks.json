@@ -6,7 +6,6 @@
       "type": "shell",
       "command": "cmake",
       "args": [
-        "--fresh",
         "-S",
         "${workspaceFolder}",
         "-B",
@@ -43,6 +42,28 @@
         "kind": "build",
         "isDefault": true
       },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    },
+    {
+      "label": "Firmware: Rebuild",
+      "type": "shell",
+      "command": "cmake",
+      "args": [
+        "--build",
+        "${workspaceFolder}/build/Debug",
+        "--clean-first",
+        "--parallel"
+      ],
+      "dependsOn": "Firmware: Configure",
+      "dependsOrder": "sequence",
       "problemMatcher": [],
       "presentation": {
         "reveal": "always",

@@ -54,7 +54,31 @@
         "text": " Build",
         "name": "CprSensorBoot Build",
         "priority": 399,
-        "tooltip": "Configure and build the firmware."
+        "tooltip": "Build the firmware."
+      }
+    },
+    "CprSensorBoot Clean": {
+      "command": "workbench.action.tasks.runTask",
+      "args": "Firmware: Clean",
+      "icon": "trash",
+      "statusBar": {
+        "alignment": "left",
+        "text": " Clean",
+        "name": "CprSensorBoot Clean",
+        "priority": 398,
+        "tooltip": "Clean the current firmware build output."
+      }
+    },
+    "CprSensorBoot Rebuild": {
+      "command": "workbench.action.tasks.runTask",
+      "args": "Firmware: Rebuild",
+      "icon": "refresh",
+      "statusBar": {
+        "alignment": "left",
+        "text": " Rebuild",
+        "name": "CprSensorBoot Rebuild",
+        "priority": 397,
+        "tooltip": "Clean and rebuild the firmware."
       }
     },
     "CprSensorBoot Debug": {
@@ -64,7 +88,7 @@
         "alignment": "left",
         "text": " Debug",
         "name": "CprSensorBoot Debug",
-        "priority": 398,
+        "priority": 396,
         "tooltip": "Start the Cortex-Debug J-Link session."
       }
     },
@@ -76,7 +100,7 @@
         "alignment": "left",
         "text": " Flash",
         "name": "CprSensorBoot Flash",
-        "priority": 397,
+        "priority": 395,
         "tooltip": "Program the latest hex file through J-Link."
       }
     },
@@ -88,7 +112,7 @@
         "alignment": "left",
         "text": " Reset",
         "name": "CprSensorBoot Reset",
-        "priority": 396,
+        "priority": 394,
         "tooltip": "Reset and run the target through J-Link."
       }
     },
@@ -100,7 +124,7 @@
         "alignment": "left",
         "text": " RTT",
         "name": "CprSensorBoot RTT",
-        "priority": 395,
+        "priority": 393,
         "tooltip": "Open one interactive RTT terminal for both output and input."
       }
     },
@@ -111,7 +135,7 @@
         "alignment": "left",
         "text": " Stop",
         "name": "CprSensorBoot Stop",
-        "priority": 394,
+        "priority": 392,
         "tooltip": "Stop a running task such as RTT or a helper server."
       }
     }
@@ -132,11 +156,29 @@
       },
       {
         "name": "$(tools) Build",
-        "tooltip": "Configure and build the firmware",
+        "tooltip": "Build the firmware",
         "useVsCodeApi": true,
         "command": "workbench.action.tasks.runTask",
         "args": [
           "Firmware: Build"
+        ]
+      },
+      {
+        "name": "$(trash) Clean",
+        "tooltip": "Clean the current firmware build output",
+        "useVsCodeApi": true,
+        "command": "workbench.action.tasks.runTask",
+        "args": [
+          "Firmware: Clean"
+        ]
+      },
+      {
+        "name": "$(refresh) Rebuild",
+        "tooltip": "Clean and rebuild the firmware",
+        "useVsCodeApi": true,
+        "command": "workbench.action.tasks.runTask",
+        "args": [
+          "Firmware: Rebuild"
         ]
       },
       {

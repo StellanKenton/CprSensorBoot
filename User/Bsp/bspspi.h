@@ -9,6 +9,7 @@
 #include <stdint.h>
 
 #include "drvspi.h"
+#include "drvspi_port.h"
 #include "main.h"
 
 #ifdef __cplusplus
