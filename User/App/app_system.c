@@ -13,6 +13,7 @@
 #include "drv_wdg.h"
 #include "drvspi_debug.h"
 #include "gd25qxxx_debug.h"
+#include "../rep/manager/manager.h"
 #include "pca9535_debug.h"
 #include "pca9535_port.h"
 #include "tm1651_debug.h"
@@ -70,6 +71,9 @@ void System_Init(void)
     LOG_I(APP_SYSTEM_LOG_TAG, "System initialized.");
     LOG_I(APP_SYSTEM_LOG_TAG, "Firmware: %s, Version: %s, Hardware: %s", FIRMWARE_NAME, FIRMWARE_VERSION, HARDWARE_VERSION);
     systemBoardInit();
+    if (!managerInit()) {
+        LOG_E(APP_SYSTEM_LOG_TAG, "Manager init failed");
+    }
     if (Drv_WatchDog_Init(0U) == 0U) {
         s_SystemMgr.sysTick = Drv_GetTick();
         LOG_I(APP_SYSTEM_LOG_TAG, "IWDG started. Feed interval: %lu ms", (unsigned long)APP_SYSTEM_WDG_FEED_INTERVAL_MS);
@@ -92,6 +96,7 @@ void SystemManager(void)
             if (systemConsoleEnsureReady()) {
                 consoleProcess();
             }
+            managerBleProcess();
             break;
         case E_SYSTEM_MODE_MAX:
         default:

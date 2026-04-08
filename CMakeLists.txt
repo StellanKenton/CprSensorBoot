@@ -79,6 +79,9 @@ set(PROJECT_SOURCES
     User/rep/console/console.c
     User/rep/console/log.c
     User/rep/console/log_port.c
+    User/rep/comm/flowparser/flowparser_tokenizer.c
+    User/rep/comm/flowparser/flowparser_stream.c
+    User/rep/comm/flowparser/flowparser_stream_port.c
     User/rep/tools/ringbuffer/ringbuffer.c
     User/rep/drvlayer/drvanlogiic/drvanlogiic.c
     User/rep/drvlayer/drvanlogiic/drvanlogiic_port.c
@@ -96,6 +99,18 @@ set(PROJECT_SOURCES
     User/rep/module/tm1651/tm1651.c
     User/rep/module/tm1651/tm1651_port.c
     User/rep/module/tm1651/tm1651_debug.c
+    User/rep/module/fc41d/fc41d.c
+    User/rep/module/fc41d/fc41d_at.c
+    User/rep/module/fc41d/fc41d_ble.c
+    User/rep/module/fc41d/fc41d_wifi.c
+    User/rep/module/fc41d/fc41d_mode.c
+    User/rep/module/fc41d/fc41d_port.c
+    User/rep/manager/service_lifecycle.c
+    User/rep/manager/manager.c
+    User/rep/manager/power/power.c
+    User/rep/manager/selfcheck/selfcheck.c
+    User/rep/manager/update/update.c
+    User/rep/manager/blemgr/blemgr.c
 
     Drivers/CMSIS/Device/ST/STM32F1xx/Source/Templates/gcc/startup_stm32f103xe.s
 )
@@ -119,6 +134,7 @@ set(PROJECT_INCLUDES
     User/SEGGER
     User/rep
     User/rep/console
+    User/rep/comm/flowparser
     User/rep/tools/ringbuffer
     User/rep/drvlayer/drvanlogiic
     User/rep/drvlayer/drvspi
@@ -126,6 +142,8 @@ set(PROJECT_INCLUDES
     User/rep/module/gd25qxxx
     User/rep/module/pca9535
     User/rep/module/tm1651
+    User/rep/module/fc41d
+    User/rep/manager
 )
 
 add_executable(${TARGET_NAME} ${PROJECT_SOURCES})

@@ -443,6 +443,25 @@ class BLEDeviceManager:
         self.handshake_completed = False
         self.tcp_client = None  # TCP客户端套接字
 
+    def get_handshake_seed(self):
+        if not self.connected_device:
+            return None
+
+        address_hex = self.connected_device.address.replace(':', '').replace('-', '')
+        if len(address_hex) == 12:
+            return bytes.fromhex(address_hex)
+
+        device_name = self.connected_device.name or ""
+        if device_name.startswith("PRIMEDIC-CPRSensor-"):
+            suffix = device_name.rsplit('-', 1)[-1]
+            if len(suffix) == 6:
+                try:
+                    return bytes.fromhex(suffix)
+                except ValueError:
+                    return None
+
+        return None
+
     def create_time_sync_packet(self):
         """创建时间同步包"""
         try:
@@ -563,20 +582,14 @@ class BLEDeviceManager:
             return None
         
         try:
-            # 1. 获取MAC地址并转换为字节
-            mac_str = self.connected_device.address.replace(':', '')   
-            #mac_str = "FD59B938B874"  
-            mac_bytes = bytes.fromhex(mac_str)
-            
-            # 2. AES加密
-            data = bytes.fromhex(mac_str)
-            md5_hash = hashlib.md5(data).digest() 
-            hex_result = md5_hash.hex()
-            self.aes_key = bytes.fromhex(hex_result)
+            seed = self.get_handshake_seed()
+            if seed is None:
+                self.update_callback("无法从设备地址或名称推导握手种子")
+                return None
+
+            self.aes_key = hashlib.md5(seed).digest()
             cipher = AES.new(self.aes_key, AES.MODE_ECB)
-            # 对MAC地址进行填充以满足AES块大小
-            padded_mac = mac_bytes.ljust(16, b'\x00')
-            encrypted_mac = cipher.encrypt(padded_mac)
+            encrypted_mac = cipher.encrypt(seed.ljust(16, b'\x00'))
             
             # 3. 构建数据包
             # 包头
