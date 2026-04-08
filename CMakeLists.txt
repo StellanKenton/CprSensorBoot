@@ -66,6 +66,7 @@ set(PROJECT_SOURCES
     User/Lib/lib_comm.c
     User/Lib/MD5.c
     User/Lib/encryption.c
+    User/Bsp/bspanlogiic.c
     User/Bsp/bspspi.c
     User/Bsp/bsp_uart.c
     User/SEGGER/bsp_rtt.c
@@ -79,14 +80,22 @@ set(PROJECT_SOURCES
     User/rep/console/log.c
     User/rep/console/log_port.c
     User/rep/tools/ringbuffer/ringbuffer.c
+    User/rep/drvlayer/drvanlogiic/drvanlogiic.c
+    User/rep/drvlayer/drvanlogiic/drvanlogiic_port.c
     User/rep/drvlayer/drvspi/drvspi.c
     User/rep/drvlayer/drvspi/drvspi_port.c
     User/rep/drvlayer/drvspi/drvspi_debug.c
     User/rep/drvlayer/drvuart/drvuart.c
     User/rep/drvlayer/drvuart/drvuart_port.c
-    User/rep/module/w25qxxx/w25qxxx.c
-    User/rep/module/w25qxxx/w25qxxx_port.c
-    User/rep/module/w25qxxx/w25qxxx_debug.c
+    User/rep/module/gd25qxxx/gd25qxxx.c
+    User/rep/module/gd25qxxx/gd25qxxx_port.c
+    User/rep/module/gd25qxxx/gd25qxxx_debug.c
+    User/rep/module/pca9535/pca9535.c
+    User/rep/module/pca9535/pca9535_port.c
+    User/rep/module/pca9535/pca9535_debug.c
+    User/rep/module/tm1651/tm1651.c
+    User/rep/module/tm1651/tm1651_port.c
+    User/rep/module/tm1651/tm1651_debug.c
 
     Drivers/CMSIS/Device/ST/STM32F1xx/Source/Templates/gcc/startup_stm32f103xe.s
 )
@@ -111,9 +120,12 @@ set(PROJECT_INCLUDES
     User/rep
     User/rep/console
     User/rep/tools/ringbuffer
+    User/rep/drvlayer/drvanlogiic
     User/rep/drvlayer/drvspi
     User/rep/drvlayer/drvuart
-    User/rep/module/w25qxxx
+    User/rep/module/gd25qxxx
+    User/rep/module/pca9535
+    User/rep/module/tm1651
 )
 
 add_executable(${TARGET_NAME} ${PROJECT_SOURCES})

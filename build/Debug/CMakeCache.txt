@@ -24,7 +24,7 @@ CMAKE_ADDR2LINE:FILEPATH=/Applications/ArmGNUToolchain/15.2.rel1/arm-none-eabi/b
 CMAKE_AR:FILEPATH=/Applications/ArmGNUToolchain/15.2.rel1/arm-none-eabi/bin/arm-none-eabi-ar
 
 //ASM compiler
-CMAKE_ASM_COMPILER:STRING=/Applications/ArmGNUToolchain/15.2.rel1/arm-none-eabi/bin/arm-none-eabi-gcc
+CMAKE_ASM_COMPILER:FILEPATH=/Applications/ArmGNUToolchain/15.2.rel1/arm-none-eabi/bin/arm-none-eabi-gcc
 
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
@@ -53,8 +53,11 @@ CMAKE_ASM_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
 // MinSizeRel ...
 CMAKE_BUILD_TYPE:STRING=Debug
 
+//No help, variable specified on the command line.
+CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/clang++
+
 //C compiler
-CMAKE_C_COMPILER:STRING=/Applications/ArmGNUToolchain/15.2.rel1/arm-none-eabi/bin/arm-none-eabi-gcc
+CMAKE_C_COMPILER:FILEPATH=/Applications/ArmGNUToolchain/15.2.rel1/arm-none-eabi/bin/arm-none-eabi-gcc
 
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
@@ -221,8 +224,8 @@ CMAKE_STRIP:FILEPATH=/Applications/ArmGNUToolchain/15.2.rel1/arm-none-eabi/bin/a
 //Path to a program.
 CMAKE_TAPI:FILEPATH=CMAKE_TAPI-NOTFOUND
 
-//The CMake toolchain file
-CMAKE_TOOLCHAIN_FILE:FILEPATH=/Users/rumi/Space/code/CprSensorBoot/cmake/toolchains/arm-none-eabi.cmake
+//No help, variable specified on the command line.
+CMAKE_TOOLCHAIN_FILE:UNINITIALIZED=/Users/rumi/Space/code/CprSensorBoot/cmake/toolchains/arm-none-eabi.cmake
 
 //If this value is on, makefiles will be generated without the
 // .SILENT directive, and all commands will be echoed to the console

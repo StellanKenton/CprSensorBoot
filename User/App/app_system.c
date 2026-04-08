@@ -9,11 +9,14 @@
 #include "log.h"
 #include "console.h"
 #include "cm_backtrace.h"
-#include "iwdg.h"
 #include "drv_delay.h"
 #include "drv_wdg.h"
 #include "drvspi_debug.h"
-#include "w25qxxx_debug.h"
+#include "gd25qxxx_debug.h"
+#include "pca9535_debug.h"
+#include "pca9535_port.h"
+#include "tm1651_debug.h"
+#include "tm1651_port.h"
 
 #define APP_SYSTEM_LOG_TAG    "AppSystem"
 #define APP_SYSTEM_WDG_FEED_INTERVAL_MS 1000U
@@ -24,6 +27,7 @@ static void systemBoardInit(void);
 static void systemWatchdogProcess(void);
 static eConsoleCommandResult systemConsoleVersionHandler(uint32_t transport, int argc, char *argv[]);
 static eConsoleCommandResult systemConsoleStatusHandler(uint32_t transport, int argc, char *argv[]);
+static eConsoleCommandResult systemConsoleRebootHandler(uint32_t transport, int argc, char *argv[]);
 
 static const stConsoleCommand gSystemVersionConsoleCommand = {
     .commandName = "ver",
@@ -37,6 +41,13 @@ static const stConsoleCommand gSystemStatusConsoleCommand = {
     .helpText = "sys - show boot system status",
     .ownerTag = "system",
     .handler = systemConsoleStatusHandler,
+};
+
+static const stConsoleCommand gSystemRebootConsoleCommand = {
+    .commandName = "reboot",
+    .helpText = "reboot - reboot device immediately",
+    .ownerTag = "system",
+    .handler = systemConsoleRebootHandler,
 };
 
 static System_Mgr_t s_SystemMgr = {E_SYSTEM_STANDBY_MODE, 0};
@@ -53,7 +64,6 @@ void System_ChangeMode(System_Mode_EnumDef newMode)
 
 void System_Init(void)
 {
-    (void)systemConsoleEnsureReady();
     Drv_WatchDogResartCheck();
     cm_backtrace_init(FIRMWARE_NAME, FIRMWARE_VERSION, HARDWARE_VERSION);
     LOG_I(APP_SYSTEM_LOG_TAG, "&&&&&&&&&&&&&&&&& BOOT LOADER &&&&&&&&&&&&&&&&&");
@@ -98,13 +108,38 @@ void SystemManager(void)
 void SystemProcess(void)
 {
     SystemManager();
-    logProcessOutput();
     systemWatchdogProcess();
 }
 
 static void systemBoardInit(void)
 {
-    LOG_I(APP_SYSTEM_LOG_TAG, "Board init uses direct STM32 peripherals only");
+    eDrvStatus lStatus;
+
+    lStatus = tm1651PortInit();
+    if (lStatus != DRV_STATUS_OK) {
+        LOG_E(APP_SYSTEM_LOG_TAG, "TM1651 board init failed, status=%d", (int)lStatus);
+        return;
+    }
+
+    lStatus = tm1651PortClearDisplay();
+    if (lStatus != DRV_STATUS_OK) {
+        LOG_E(APP_SYSTEM_LOG_TAG, "TM1651 default state failed, status=%d", (int)lStatus);
+        return;
+    }
+
+    lStatus = pca9535PortInit();
+    if (lStatus != DRV_STATUS_OK) {
+        LOG_E(APP_SYSTEM_LOG_TAG, "PCA9535 board init failed, status=%d", (int)lStatus);
+        return;
+    }
+
+    lStatus = pca9535PortLedOff();
+    if (lStatus != DRV_STATUS_OK) {
+        LOG_E(APP_SYSTEM_LOG_TAG, "PCA9535 default state failed, status=%d", (int)lStatus);
+        return;
+    }
+
+    LOG_I(APP_SYSTEM_LOG_TAG, "TM1651 and PCA9535 board mapping initialized");
 }
 
 static void systemWatchdogProcess(void)
@@ -142,13 +177,28 @@ static bool systemConsoleEnsureReady(void)
         return false;
     }
 
+    if (!consoleRegisterCommand(&gSystemRebootConsoleCommand)) {
+        LOG_E(APP_SYSTEM_LOG_TAG, "Register reboot command failed");
+        return false;
+    }
+
     if (!drvSpiDebugConsoleRegister()) {
         LOG_E(APP_SYSTEM_LOG_TAG, "Register spi command failed");
         return false;
     }
 
-    if (!w25qxxxDebugConsoleRegister()) {
-        LOG_E(APP_SYSTEM_LOG_TAG, "Register w25qxxx command failed");
+    if (!gd25qxxxDebugConsoleRegister()) {
+        LOG_E(APP_SYSTEM_LOG_TAG, "Register gd25qxxx command failed");
+        return false;
+    }
+
+    if (!pca9535DebugConsoleRegister()) {
+        LOG_E(APP_SYSTEM_LOG_TAG, "Register pca9535 command failed");
+        return false;
+    }
+
+    if (!tm1651DebugConsoleRegister()) {
+        LOG_E(APP_SYSTEM_LOG_TAG, "Register tm1651 command failed");
         return false;
     }
 
@@ -204,6 +254,28 @@ static eConsoleCommandResult systemConsoleStatusHandler(uint32_t transport, int 
         return CONSOLE_COMMAND_RESULT_ERROR;
     }
 
+    return CONSOLE_COMMAND_RESULT_OK;
+}
+
+static eConsoleCommandResult systemConsoleRebootHandler(uint32_t transport, int argc, char *argv[])
+{
+    uint32_t lFlushCount = 0U;
+
+    (void)argv;
+
+    if (argc != 1) {
+        return CONSOLE_COMMAND_RESULT_INVALID_ARGUMENT;
+    }
+
+    if (consoleReply(transport, "Rebooting device...") <= 0) {
+        return CONSOLE_COMMAND_RESULT_ERROR;
+    }
+
+    for (lFlushCount = 0U; lFlushCount < 4U; lFlushCount++) {
+        logProcessOutput();
+    }
+
+    NVIC_SystemReset();
     return CONSOLE_COMMAND_RESULT_OK;
 }
 /**************************End of file********************************/
