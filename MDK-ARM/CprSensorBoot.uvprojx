@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F103xE</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../USB_DEVICE/App;../USB_DEVICE/Target;../Drivers/STM32F1xx_HAL_Driver/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;../Middlewares/ST/STM32_USB_Device_Library/Core/Inc;../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc;../Drivers/CMSIS/Device/ST/STM32F1xx/Include;../Drivers/CMSIS/Include;..\User;..\User\App;..\User\BackTrace;..\User\Bsp;..\User\Drv;..\User\Lib;..\User\SEGGER;..\User\rep;..\User\rep\console;..\User\rep\ringbuffer;..\User\rep\system;..\User\rep\drvlayer\drvuart;..\User\rep\drvlayer\drvgpio;..\User\rep\drvlayer\drviic;..\User\rep\drvlayer\drvanlogiic;..\User\rep\drvlayer\drvspi;..\User\rep\module\mpu6050;..\User\rep\module\w25qxxx;..\User\rep\module\gd25qxxx;..\User\rep\module\pca9535;..\User\rep\module\tm1651;..\User\rep\comm\appcomm;..\User\rep\comm\frameprocess;..\User\rep\comm\frameparser;..\User\rep\comm\flowparser</IncludePath>
+              <IncludePath>../Core/Inc;../USB_DEVICE/App;../USB_DEVICE/Target;../Drivers/STM32F1xx_HAL_Driver/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;../Middlewares/ST/STM32_USB_Device_Library/Core/Inc;../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc;../Drivers/CMSIS/Device/ST/STM32F1xx/Include;../Drivers/CMSIS/Include;..\User;..\User\App;..\User\BackTrace;..\User\Bsp;..\User\Drv;..\User\Lib;..\User\Port;..\User\SEGGER;..\User\rep;..\User\rep\service\console;..\User\rep\service\rtos;..\User\rep\tools\ringbuffer;..\User\rep\driver\drvadc;..\User\rep\driver\drvuart;..\User\rep\driver\drvgpio;..\User\rep\driver\drviic;..\User\rep\driver\drvanlogiic;..\User\rep\driver\drvspi;..\User\rep\driver\drvusb;..\User\rep\module\mpu6050;..\User\rep\module\w25qxxx;..\User\rep\module\gd25qxxx;..\User\rep\module\pca9535;..\User\rep\module\tm1651;..\User\rep\comm\frameparser;..\User\rep\comm\flowparser</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -727,22 +727,32 @@
             <File>
               <FileName>log.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\rep\console\log.c</FilePath>
+              <FilePath>..\User\rep\service\console\log.c</FilePath>
             </File>
             <File>
               <FileName>log_port.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\rep\console\log_port.c</FilePath>
+              <FilePath>..\User\Port\log_port.c</FilePath>
             </File>
             <File>
               <FileName>console.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\rep\console\console.c</FilePath>
+              <FilePath>..\User\rep\service\console\console.c</FilePath>
+            </File>
+            <File>
+              <FileName>rtos.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\rep\service\rtos\rtos.c</FilePath>
+            </File>
+            <File>
+              <FileName>rtos_port.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\Port\rtos_port.c</FilePath>
             </File>
             <File>
               <FileName>ringbuffer.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\rep\ringbuffer\ringbuffer.c</FilePath>
+              <FilePath>..\User\rep\tools\ringbuffer\ringbuffer.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -752,32 +762,32 @@
             <File>
               <FileName>drvanlogiic.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\rep\drvlayer\drvanlogiic\drvanlogiic.c</FilePath>
+              <FilePath>..\User\rep\driver\drvanlogiic\drvanlogiic.c</FilePath>
             </File>
             <File>
               <FileName>drvanlogiic_port.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\rep\drvlayer\drvanlogiic\drvanlogiic_port.c</FilePath>
+              <FilePath>..\User\Port\drvanlogiic_port.c</FilePath>
             </File>
             <File>
               <FileName>drvanlogiic_debug.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\rep\drvlayer\drvanlogiic\drvanlogiic_debug.c</FilePath>
+              <FilePath>..\User\rep\driver\drvanlogiic\drvanlogiic_debug.c</FilePath>
             </File>
             <File>
               <FileName>drvspi.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\rep\drvlayer\drvspi\drvspi.c</FilePath>
+              <FilePath>..\User\rep\driver\drvspi\drvspi.c</FilePath>
             </File>
             <File>
               <FileName>drvspi_port.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\rep\drvlayer\drvspi\drvspi_port.c</FilePath>
+              <FilePath>..\User\Port\drvspi_port.c</FilePath>
             </File>
             <File>
               <FileName>drvspi_debug.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\rep\drvlayer\drvspi\drvspi_debug.c</FilePath>
+              <FilePath>..\User\rep\driver\drvspi\drvspi_debug.c</FilePath>
             </File>
             <File>
               <FileName>gd25qxxx.c</FileName>
@@ -787,7 +797,7 @@
             <File>
               <FileName>gd25qxxx_port.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\rep\module\gd25qxxx\gd25qxxx_port.c</FilePath>
+              <FilePath>..\User\Port\gd25qxxx_port.c</FilePath>
             </File>
             <File>
               <FileName>gd25qxxx_debug.c</FileName>
@@ -802,7 +812,7 @@
             <File>
               <FileName>pca9535_port.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\rep\module\pca9535\pca9535_port.c</FilePath>
+              <FilePath>..\User\Port\pca9535_port.c</FilePath>
             </File>
             <File>
               <FileName>pca9535_debug.c</FileName>
@@ -815,9 +825,14 @@
               <FilePath>..\User\rep\module\tm1651\tm1651.c</FilePath>
             </File>
             <File>
+              <FileName>tm1651_debug.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\rep\module\tm1651\tm1651_debug.c</FilePath>
+            </File>
+            <File>
               <FileName>tm1651_port.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\rep\module\tm1651\tm1651_port.c</FilePath>
+              <FilePath>..\User\Port\tm1651_port.c</FilePath>
             </File>
           </Files>
         </Group>

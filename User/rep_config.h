@@ -1,0 +1,57 @@
+#ifndef REP_CONFIG_H
+#define REP_CONFIG_H
+
+#include <stddef.h>
+#include <stdint.h>
+
+#define REP_MCU_PLATFORM_GD32 1U
+#define REP_MCU_PLATFORM_STM32 2U
+#define REP_MCU_PLATFORM_ESP32 3U
+
+#define REP_RTOS_NONE 0U
+#define REP_RTOS_FREERTOS 1U
+#define REP_RTOS_CUBEMX_FREERTOS 2U
+#define REP_RTOS_UCOSII 3U
+#define REP_RTOS_UCOSIII 4U
+
+#ifndef REP_MCU_PLATFORM
+#define REP_MCU_PLATFORM REP_MCU_PLATFORM_STM32
+#endif
+
+#ifndef REP_RTOS_SYSTEM
+#define REP_RTOS_SYSTEM REP_RTOS_NONE
+#endif
+
+#ifndef REP_LOG_LEVEL
+#define REP_LOG_LEVEL 4U
+#endif
+
+#ifndef REP_LOG_OUTPUT_PORT
+#define REP_LOG_OUTPUT_PORT 1U
+#endif
+
+#ifndef DRVADC_MAX
+#define DRVADC_MAX 5U
+#endif
+
+#ifndef DRVUART_MAX
+#define DRVUART_MAX 2U
+#endif
+
+#ifndef DRVANLOGIIC_MAX
+#define DRVANLOGIIC_MAX 2U
+#endif
+
+typedef enum eDrvStatus {
+	DRV_STATUS_OK = 0,
+	DRV_STATUS_INVALID_PARAM,
+	DRV_STATUS_NOT_READY,
+	DRV_STATUS_BUSY,
+	DRV_STATUS_TIMEOUT,
+	DRV_STATUS_NACK,
+	DRV_STATUS_UNSUPPORTED,
+	DRV_STATUS_ID_NOTMATCH,
+	DRV_STATUS_ERROR,
+} eDrvStatus;
+
+#endif

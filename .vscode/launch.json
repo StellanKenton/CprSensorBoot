@@ -10,20 +10,19 @@
       "serverpath": "${config:cpr.tools.jlinkGdbServer}",
       "device": "${config:cpr.target.device}",
       "interface": "${config:cpr.target.interface}",
-      "executable": "${workspaceFolder}/build/Debug/CprSensorBoot.elf",
+      "executable": "${workspaceFolder}/MDK-ARM/CprSensorBoot/CprSensorBoot.axf",
       "gdbPath": "${config:cpr.tools.armGdbPath}",
-      "armToolchainPath": "${config:cpr.tools.armToolchainBinDir}",
       "runToEntryPoint": "main",
-      "preLaunchTask": "Firmware: Build",
+      "preLaunchTask": "Keil: Build",
       "serverArgs": [
         "-speed",
         "${config:cpr.target.speed}",
         "-port",
-        "2331",
+        "${config:cpr.target.gdbPort}",
         "-swoport",
-        "2332",
+        "${config:cpr.target.swoPort}",
         "-telnetport",
-        "2333"
+        "${config:cpr.target.telnetPort}"
       ],
       "postLaunchCommands": [
         "monitor reset",

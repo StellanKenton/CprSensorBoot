@@ -195,7 +195,7 @@ static eDrvUartPortMap bspUartGetPortByHandle(UART_HandleTypeDef *handle, bool *
         return DRVUART_DEBUG;
     }
 
-    return DRVUART_MAX;
+    return DRVUART_PORT_MAX;
 }
 
 static eDrvStatus bspUartMapHalStatus(HAL_StatusTypeDef status)

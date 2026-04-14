@@ -1,108 +1,74 @@
 {
-  "cmake.generator": "Ninja",
-  "cmake.configureOnOpen": true,
-  "cmake.buildDirectory": "${workspaceFolder}/build/Debug",
-  "cmake.sourceDirectory": "${workspaceFolder}",
-  "cmake.preferredGenerators": [
-    "Ninja"
-  ],
-  "cmake.configureSettings": {
-    "CMAKE_TOOLCHAIN_FILE": "${workspaceFolder}/cmake/toolchains/arm-none-eabi.cmake",
-    "ARM_GNU_TOOLCHAIN_BIN_DIR": "/Applications/ArmGNUToolchain/15.2.rel1/arm-none-eabi/bin",
-    "CMAKE_BUILD_TYPE": "Debug",
-    "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
-  },
-  "clangd.arguments": [
-    "--compile-commands-dir=${workspaceFolder}/build/Debug"
-  ],
+  "files.encoding": "utf8",
+  "files.autoGuessEncoding": false,
   "files.associations": {
     "*.ld": "ld"
   },
-  "cpr.tools.armToolchainBinDir": "/Applications/ArmGNUToolchain/15.2.rel1/arm-none-eabi/bin",
-  "cpr.tools.armGdbPath": "/Applications/ArmGNUToolchain/15.2.rel1/arm-none-eabi/bin/arm-none-eabi-gdb",
-  "cpr.tools.jlinkExe": "JLinkExe",
-  "cpr.tools.jlinkGdbServer": "JLinkGDBServer",
+  "cpr.tools.armGdbPath": "arm-none-eabi-gdb.exe",
+  "cpr.tools.jlinkGdbServer": "JLinkGDBServerCL.exe",
   "cpr.target.device": "STM32F103RE",
   "cpr.target.interface": "swd",
   "cpr.target.speed": "4000",
-  "cpr.target.gdbPort": "2331",
-  "cpr.target.swoPort": "2332",
-  "cpr.target.telnetPort": "2333",
+  "cpr.target.gdbPort": "3331",
+  "cpr.target.swoPort": "3332",
+  "cpr.target.telnetPort": "3333",
   "cpr.target.rttTelnetPort": "19021",
-  "cpr.rttServer.gdbPort": "2341",
-  "cpr.rttServer.swoPort": "2342",
-  "cpr.rttServer.telnetPort": "2343",
-  "cpr.rttServer.rttTelnetPort": "19031",
   "commands.workspaceCommands": {
-    "CprSensorBoot Configure": {
-      "command": "workbench.action.tasks.runTask",
-      "args": "Firmware: Configure",
-      "icon": "gear",
-      "statusBar": {
-        "alignment": "left",
-        "text": " Configure",
-        "name": "CprSensorBoot Configure",
-        "priority": 400,
-        "tooltip": "Configure the CMake build directory."
-      }
-    },
     "CprSensorBoot Build": {
       "command": "workbench.action.tasks.runTask",
-      "args": "Firmware: Build",
+      "args": "Keil: Build",
       "icon": "tools",
       "statusBar": {
         "alignment": "left",
         "text": " Build",
         "name": "CprSensorBoot Build",
-        "priority": 399,
-        "tooltip": "Build the firmware."
+        "priority": 400,
+        "tooltip": "Run the Keil build task in the integrated terminal."
       }
     },
-    "CprSensorBoot Clean": {
+    "CprSensorBoot Flash": {
       "command": "workbench.action.tasks.runTask",
-      "args": "Firmware: Clean",
-      "icon": "trash",
+      "args": "J-Link: Flash",
+      "icon": "plug",
       "statusBar": {
         "alignment": "left",
-        "text": " Clean",
-        "name": "CprSensorBoot Clean",
+        "text": " Flash",
+        "name": "CprSensorBoot Flash",
+        "priority": 399,
+        "tooltip": "Build and flash the target with the J-Link task."
+      }
+    },
+    "CprSensorBoot RTT IO": {
+      "icon": "terminal",
+      "sequence": [
+        {
+          "command": "workbench.action.tasks.runTask",
+          "args": "J-Link: RTT Server"
+        },
+        {
+          "command": "workbench.action.tasks.runTask",
+          "args": "J-Link: RTT Terminal",
+          "delay": 800
+        }
+      ],
+      "statusBar": {
+        "alignment": "left",
+        "text": " RTT",
+        "name": "CprSensorBoot RTT IO",
         "priority": 398,
-        "tooltip": "Clean the current firmware build output."
+        "tooltip": "Start the J-Link RTT server, then open the RTT terminal for read and write I/O."
       }
     },
     "CprSensorBoot Rebuild": {
       "command": "workbench.action.tasks.runTask",
-      "args": "Firmware: Rebuild",
+      "args": "Keil: Rebuild",
       "icon": "refresh",
       "statusBar": {
         "alignment": "left",
         "text": " Rebuild",
         "name": "CprSensorBoot Rebuild",
         "priority": 397,
-        "tooltip": "Clean and rebuild the firmware."
-      }
-    },
-    "CprSensorBoot Debug": {
-      "command": "workbench.action.debug.start",
-      "icon": "debug",
-      "statusBar": {
-        "alignment": "left",
-        "text": " Debug",
-        "name": "CprSensorBoot Debug",
-        "priority": 396,
-        "tooltip": "Start the Cortex-Debug J-Link session."
-      }
-    },
-    "CprSensorBoot Flash": {
-      "command": "workbench.action.tasks.runTask",
-      "args": "J-Link: Flash",
-      "icon": "arrow-up",
-      "statusBar": {
-        "alignment": "left",
-        "text": " Flash",
-        "name": "CprSensorBoot Flash",
-        "priority": 395,
-        "tooltip": "Program the latest hex file through J-Link."
+        "tooltip": "Run the Keil rebuild task in the integrated terminal."
       }
     },
     "CprSensorBoot Reset": {
@@ -113,31 +79,31 @@
         "alignment": "left",
         "text": " Reset",
         "name": "CprSensorBoot Reset",
-        "priority": 394,
-        "tooltip": "Reset and run the target through J-Link."
+        "priority": 396,
+        "tooltip": "Reset the target with J-Link."
       }
     },
-    "CprSensorBoot RTT": {
+    "CprSensorBoot Serial Monitor": {
       "command": "workbench.action.tasks.runTask",
-      "args": "RTT: Console",
-      "icon": "radio-tower",
+      "args": "Serial: Monitor",
+      "icon": "device-mobile",
       "statusBar": {
         "alignment": "left",
-        "text": " RTT",
-        "name": "CprSensorBoot RTT",
-        "priority": 393,
-        "tooltip": "Open one interactive RTT terminal for both output and input."
+        "text": " Serial",
+        "name": "CprSensorBoot Serial Monitor",
+        "priority": 395,
+        "tooltip": "Open the UART serial monitor. If needed, VS Code will prompt for the COM port."
       }
     },
-    "CprSensorBoot Stop": {
-      "command": "workbench.action.tasks.terminate",
-      "icon": "stop-circle",
+    "CprSensorBoot Debug": {
+      "command": "workbench.action.debug.start",
+      "icon": "debug",
       "statusBar": {
         "alignment": "left",
-        "text": " Stop",
-        "name": "CprSensorBoot Stop",
-        "priority": 392,
-        "tooltip": "Stop a running task such as RTT or a helper server."
+        "text": " Debug",
+        "name": "CprSensorBoot Debug",
+        "priority": 394,
+        "tooltip": "Start the Cortex-Debug J-Link session."
       }
     }
   },
@@ -147,39 +113,21 @@
     "loadNpmCommands": false,
     "commands": [
       {
-        "name": "$(gear) Configure",
-        "tooltip": "Configure the CMake build directory.",
-        "useVsCodeApi": true,
-        "command": "workbench.action.tasks.runTask",
-        "args": [
-          "Firmware: Configure"
-        ]
-      },
-      {
         "name": "$(tools) Build",
-        "tooltip": "Build the firmware.",
+        "tooltip": "Run the Keil build task in the integrated terminal.",
         "useVsCodeApi": true,
         "command": "workbench.action.tasks.runTask",
         "args": [
-          "Firmware: Build"
-        ]
-      },
-      {
-        "name": "$(trash) Clean",
-        "tooltip": "Clean the current firmware build output.",
-        "useVsCodeApi": true,
-        "command": "workbench.action.tasks.runTask",
-        "args": [
-          "Firmware: Clean"
+          "Keil: Build"
         ]
       },
       {
         "name": "$(refresh) Rebuild",
-        "tooltip": "Clean and rebuild the firmware.",
+        "tooltip": "Run the Keil rebuild task in the integrated terminal.",
         "useVsCodeApi": true,
         "command": "workbench.action.tasks.runTask",
         "args": [
-          "Firmware: Rebuild"
+          "Keil: Rebuild"
         ]
       },
       {
@@ -189,8 +137,8 @@
         "command": "workbench.action.debug.start"
       },
       {
-        "name": "$(arrow-up) Flash",
-        "tooltip": "Program the latest hex file through J-Link.",
+        "name": "$(plug) Flash",
+        "tooltip": "Build and flash the target with the J-Link task.",
         "useVsCodeApi": true,
         "command": "workbench.action.tasks.runTask",
         "args": [
@@ -199,7 +147,7 @@
       },
       {
         "name": "$(debug-restart) Reset",
-        "tooltip": "Reset and run the target through J-Link.",
+        "tooltip": "Reset the target with J-Link.",
         "useVsCodeApi": true,
         "command": "workbench.action.tasks.runTask",
         "args": [
@@ -207,19 +155,22 @@
         ]
       },
       {
-        "name": "$(radio-tower) RTT",
-        "tooltip": "Open one interactive RTT terminal for both output and input.",
+        "name": "$(terminal) RTT",
+        "tooltip": "Start the J-Link RTT server, then open the RTT terminal for read and write I/O.",
         "useVsCodeApi": true,
         "command": "workbench.action.tasks.runTask",
         "args": [
-          "RTT: Console"
+          "J-Link: RTT Open"
         ]
       },
       {
-        "name": "$(stop-circle) Stop Task",
-        "tooltip": "Stop a running task such as RTT or a helper server.",
+        "name": "$(device-mobile) Serial",
+        "tooltip": "Open the UART serial monitor. If needed, VS Code will prompt for the COM port.",
         "useVsCodeApi": true,
-        "command": "workbench.action.tasks.terminate"
+        "command": "workbench.action.tasks.runTask",
+        "args": [
+          "Serial: Monitor"
+        ]
       }
     ]
   }

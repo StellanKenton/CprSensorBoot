@@ -2,44 +2,25 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Firmware: Configure",
+      "label": "Keil: Build",
       "type": "shell",
-      "command": "${workspaceFolder}/.vscode/scripts/cmake_configure.sh",
+      "command": "powershell",
       "args": [
-        "${workspaceFolder}",
-        "${workspaceFolder}/build/Debug",
-        "Ninja",
-        "${workspaceFolder}/cmake/toolchains/arm-none-eabi.cmake",
-        "${config:cpr.tools.armToolchainBinDir}",
-        "Debug",
-        "ON"
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/scripts/vscode/keil-build.ps1",
+        "-Mode",
+        "Build"
       ],
-      "problemMatcher": [],
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared",
-        "clear": true
-      },
-      "options": {
-        "cwd": "${workspaceFolder}"
-      }
-    },
-    {
-      "label": "Firmware: Build",
-      "type": "shell",
-      "command": "cmake",
-      "args": [
-        "--build",
-        "${workspaceFolder}/build/Debug",
-        "--parallel"
-      ],
-      "dependsOn": "Firmware: Configure",
-      "dependsOrder": "sequence",
       "group": {
         "kind": "build",
         "isDefault": true
       },
-      "problemMatcher": [],
+      "problemMatcher": [
+        "$keil-armcc"
+      ],
       "presentation": {
         "reveal": "always",
         "panel": "shared",
@@ -50,38 +31,21 @@
       }
     },
     {
-      "label": "Firmware: Rebuild",
+      "label": "Keil: Rebuild",
       "type": "shell",
-      "command": "cmake",
+      "command": "powershell",
       "args": [
-        "--build",
-        "${workspaceFolder}/build/Debug",
-        "--clean-first",
-        "--parallel"
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/scripts/vscode/keil-build.ps1",
+        "-Mode",
+        "Rebuild"
       ],
-      "dependsOn": "Firmware: Configure",
-      "dependsOrder": "sequence",
-      "problemMatcher": [],
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared",
-        "clear": true
-      },
-      "options": {
-        "cwd": "${workspaceFolder}"
-      }
-    },
-    {
-      "label": "Firmware: Clean",
-      "type": "shell",
-      "command": "cmake",
-      "args": [
-        "--build",
-        "${workspaceFolder}/build/Debug",
-        "--target",
-        "clean"
+      "problemMatcher": [
+        "$keil-armcc"
       ],
-      "problemMatcher": [],
       "presentation": {
         "reveal": "always",
         "panel": "shared",
@@ -94,17 +58,19 @@
     {
       "label": "J-Link: Flash",
       "type": "shell",
-      "command": "${workspaceFolder}/.vscode/scripts/jlink_flash.sh",
+      "command": "powershell",
       "args": [
-        "${config:cpr.target.device}",
-        "${config:cpr.target.interface}",
-        "${config:cpr.target.speed}",
-        "${workspaceFolder}/build/Debug/CprSensorBoot.hex",
-        "${config:cpr.tools.jlinkExe}"
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/scripts/vscode/jlink.ps1",
+        "-Action",
+        "Flash"
       ],
-      "dependsOn": "Firmware: Build",
-      "dependsOrder": "sequence",
-      "problemMatcher": [],
+      "dependsOn": [
+        "Keil: Build"
+      ],
       "presentation": {
         "reveal": "always",
         "panel": "shared",
@@ -117,14 +83,16 @@
     {
       "label": "J-Link: Reset",
       "type": "shell",
-      "command": "${workspaceFolder}/.vscode/scripts/jlink_reset.sh",
+      "command": "powershell",
       "args": [
-        "${config:cpr.target.device}",
-        "${config:cpr.target.interface}",
-        "${config:cpr.target.speed}",
-        "${config:cpr.tools.jlinkExe}"
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/scripts/vscode/jlink.ps1",
+        "-Action",
+        "Reset"
       ],
-      "problemMatcher": [],
       "presentation": {
         "reveal": "always",
         "panel": "shared",
@@ -135,30 +103,133 @@
       }
     },
     {
-      "label": "RTT: Console",
+      "label": "J-Link: RTT Server",
       "type": "shell",
-      "command": "${workspaceFolder}/.vscode/scripts/jlink_rtt_console.sh",
+      "command": "powershell",
       "args": [
-        "${config:cpr.target.device}",
-        "${config:cpr.target.interface}",
-        "${config:cpr.target.speed}",
-        "${config:cpr.rttServer.gdbPort}",
-        "${config:cpr.rttServer.swoPort}",
-        "${config:cpr.rttServer.telnetPort}",
-        "${config:cpr.rttServer.rttTelnetPort}",
-        "${config:cpr.tools.jlinkGdbServer}"
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/scripts/vscode/jlink.ps1",
+        "-Action",
+        "RttServer"
       ],
-      "problemMatcher": [],
+      "isBackground": true,
+      "problemMatcher": [
+        "$jlink-rtt-server"
+      ],
       "presentation": {
-        "echo": true,
         "reveal": "always",
-        "focus": true,
         "panel": "dedicated",
-        "clear": false,
-        "showReuseMessage": false
+        "clear": true
       },
       "options": {
         "cwd": "${workspaceFolder}"
+      }
+    },
+    {
+      "label": "J-Link: RTT Terminal",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/scripts/vscode/jlink.ps1",
+        "-Action",
+        "RttClient"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "focus": true,
+        "panel": "dedicated",
+        "clear": true
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    },
+    {
+      "label": "J-Link: RTT Open",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "J-Link: RTT Server",
+        "J-Link: RTT Terminal"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Serial: Monitor",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/scripts/vscode/serial-monitor.ps1",
+        "-PortName",
+        "${input:serialPortName}"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "focus": true,
+        "panel": "dedicated",
+        "clear": true
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "serialPortName",
+      "type": "promptString",
+      "description": "Optional COM port for Serial: Monitor. Leave blank to use SERIAL_PORT, config, or auto-detect when only one port exists.",
+      "default": ""
+    }
+  ],
+  "problemMatchers": [
+    {
+      "name": "keil-armcc",
+      "owner": "cpp",
+      "fileLocation": [
+        "relative",
+        "${workspaceFolder}/MDK-ARM"
+      ],
+      "pattern": [
+        {
+          "regexp": "^(.*)\\((\\d+)\\):\\s+(warning|error):\\s+(.*)$",
+          "file": 1,
+          "line": 2,
+          "severity": 3,
+          "message": 4
+        },
+        {
+          "regexp": "^(.*)\\((\\d+)\\):\\s+(warning|error):\\s+#\\d+:\\s+(.*)$",
+          "file": 1,
+          "line": 2,
+          "severity": 3,
+          "message": 4
+        }
+      ]
+    },
+    {
+      "name": "jlink-rtt-server",
+      "owner": "external",
+      "pattern": {
+        "regexp": "^(ERROR|Exception):\\s+(.*)$",
+        "severity": 1,
+        "message": 2
+      },
+      "background": {
+        "activeOnStart": true,
+        "beginsPattern": "^Starting J-Link RTT server$",
+        "endsPattern": "^RTT server ready on localhost:"
       }
     }
   ]
