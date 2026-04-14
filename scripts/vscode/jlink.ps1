@@ -439,21 +439,81 @@ function Start-RttServer {
 }
 
 function Start-RttClient {
-    if ($RttTelnetPort -ne 19021) {
-        throw "This integration expects the default J-Link RTT port 19021 for JLinkRTTClient.exe."
-    }
-
     if (-not (Test-TcpPort -Port $RttTelnetPort)) {
         throw "RTT server is not ready on localhost:$RttTelnetPort. Start the J-Link: RTT Server task first."
     }
 
-    $rttClientExe = Get-JLinkExecutable -Name "JLinkRTTClient.exe"
+    $tcpClient = [System.Net.Sockets.TcpClient]::new()
+    $stream = $null
+    $encoding = [System.Text.Encoding]::ASCII
+    $lineBuffer = New-Object System.Collections.Generic.List[char]
+    $receiveBuffer = New-Object byte[] 1024
 
     Write-Host "Opening RTT terminal on localhost:$RttTelnetPort"
     Write-Host "Press Ctrl+C to stop the client"
+    Write-Host "Press Enter to send a command line to the RTT console"
 
-    & $rttClientExe
-    exit $LASTEXITCODE
+    try {
+        $tcpClient.Connect("127.0.0.1", $RttTelnetPort)
+        $stream = $tcpClient.GetStream()
+
+        while ($true) {
+            while ($stream.DataAvailable) {
+                $receivedLength = $stream.Read($receiveBuffer, 0, $receiveBuffer.Length)
+                if ($receivedLength -le 0) {
+                    throw "RTT server closed the connection."
+                }
+
+                [Console]::Write($encoding.GetString($receiveBuffer, 0, $receivedLength))
+            }
+
+            while ([Console]::KeyAvailable) {
+                $key = [Console]::ReadKey($true)
+
+                if ($key.Key -eq [ConsoleKey]::Enter) {
+                    [Console]::WriteLine()
+                    if ($lineBuffer.Count -gt 0) {
+                        $payloadText = -join $lineBuffer.ToArray()
+                        $payload = $encoding.GetBytes($payloadText + "`r`n")
+                        $stream.Write($payload, 0, $payload.Length)
+                        $stream.Flush()
+                        $lineBuffer.Clear()
+                    } else {
+                        $payload = $encoding.GetBytes("`r`n")
+                        $stream.Write($payload, 0, $payload.Length)
+                        $stream.Flush()
+                    }
+
+                    continue
+                }
+
+                if ($key.Key -eq [ConsoleKey]::Backspace) {
+                    if ($lineBuffer.Count -gt 0) {
+                        $lineBuffer.RemoveAt($lineBuffer.Count - 1)
+                        [Console]::Write("`b `b")
+                    }
+
+                    continue
+                }
+
+                if ([char]::IsControl($key.KeyChar)) {
+                    continue
+                }
+
+                $lineBuffer.Add($key.KeyChar)
+                [Console]::Write($key.KeyChar)
+            }
+
+            Start-Sleep -Milliseconds 20
+        }
+    }
+    finally {
+        if ($stream -ne $null) {
+            $stream.Dispose()
+        }
+
+        $tcpClient.Close()
+    }
 }
 
 try {

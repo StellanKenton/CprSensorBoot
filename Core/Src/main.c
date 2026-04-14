@@ -31,7 +31,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "app_system.h"
+#include "sysmgr.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -92,19 +92,7 @@ int main(void)
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
-  MX_GPIO_Init();
-  MX_DMA_Init();
-  MX_ADC1_Init();
-  MX_TIM3_Init();
-  MX_TIM4_Init();
-  MX_SPI1_Init();
-  MX_TIM7_Init();
-  MX_RTC_Init();
-  //MX_IWDG_Init();
-  MX_USB_DEVICE_Init();
-  MX_UART4_Init();
-  /* USER CODE BEGIN 2 */
-  System_Init();
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -112,7 +100,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-    SystemProcess();
+    systemManagerProcess();
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */

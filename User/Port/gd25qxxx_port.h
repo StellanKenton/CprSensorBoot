@@ -9,7 +9,7 @@
 
 #include <stdbool.h>
 
-#include "../rep/module/gd25qxxx/gd25qxxx.h"
+#include "../../rep/module/gd25qxxx/gd25qxxx.h"
 
 #ifdef __cplusplus
 extern "C" {

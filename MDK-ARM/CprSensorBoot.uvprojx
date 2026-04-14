@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F103xE</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../USB_DEVICE/App;../USB_DEVICE/Target;../Drivers/STM32F1xx_HAL_Driver/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;../Middlewares/ST/STM32_USB_Device_Library/Core/Inc;../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc;../Drivers/CMSIS/Device/ST/STM32F1xx/Include;../Drivers/CMSIS/Include;..\User;..\User\App;..\User\BackTrace;..\User\Bsp;..\User\Drv;..\User\Lib;..\User\Port;..\User\SEGGER;..\User\rep;..\User\rep\service\console;..\User\rep\service\rtos;..\User\rep\tools\ringbuffer;..\User\rep\driver\drvadc;..\User\rep\driver\drvuart;..\User\rep\driver\drvgpio;..\User\rep\driver\drviic;..\User\rep\driver\drvanlogiic;..\User\rep\driver\drvspi;..\User\rep\driver\drvusb;..\User\rep\module\mpu6050;..\User\rep\module\w25qxxx;..\User\rep\module\gd25qxxx;..\User\rep\module\pca9535;..\User\rep\module\tm1651;..\User\rep\comm\frameparser;..\User\rep\comm\flowparser</IncludePath>
+              <IncludePath>../Core/Inc;../USB_DEVICE/App;../USB_DEVICE/Target;../Drivers/STM32F1xx_HAL_Driver/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;../Middlewares/ST/STM32_USB_Device_Library/Core/Inc;../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc;../Drivers/CMSIS/Device/ST/STM32F1xx/Include;../Drivers/CMSIS/Include;..\User;..\User\App;..\User\BackTrace;..\User\Bsp;..\User\Drv;..\User\Lib;..\User\Port;..\User\SEGGER;..\User\manager\system;..\User\manager\display;..\User\manager\flash;..\User\manager\update;..\rep;..\rep\service\console;..\rep\service\rtos;..\rep\tools\ringbuffer;..\rep\driver\drvadc;..\rep\driver\drvuart;..\rep\driver\drvgpio;..\rep\driver\drviic;..\rep\driver\drvanlogiic;..\rep\driver\drvspi;..\rep\driver\drvusb;..\rep\module\mpu6050;..\rep\module\w25qxxx;..\rep\module\gd25qxxx;..\rep\module\pca9535;..\rep\module\tm1651;..\rep\comm\frameparser;..\rep\comm\flowparser</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -645,9 +645,39 @@
           <GroupName>App</GroupName>
           <Files>
             <File>
-              <FileName>app_system.c</FileName>
+              <FileName>system.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\App\app_system.c</FilePath>
+              <FilePath>..\User\manager\system\system.c</FilePath>
+            </File>
+            <File>
+              <FileName>sysmgr.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\manager\system\sysmgr.c</FilePath>
+            </File>
+            <File>
+              <FileName>system_debug.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\manager\system\system_debug.c</FilePath>
+            </File>
+            <File>
+              <FileName>systask.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\manager\system\systask.c</FilePath>
+            </File>
+            <File>
+              <FileName>display.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\manager\display\display.c</FilePath>
+            </File>
+            <File>
+              <FileName>flash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\manager\flash\flash.c</FilePath>
+            </File>
+            <File>
+              <FileName>update.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\manager\update\update.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -657,12 +687,12 @@
             <File>
               <FileName>drv_wdg.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\Drv\drv_wdg.c</FilePath>
+              <FilePath>..\User\bsp\drv_wdg.c</FilePath>
             </File>
             <File>
               <FileName>drv_delay.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\Drv\drv_delay.c</FilePath>
+              <FilePath>..\User\bsp\drv_delay.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -710,9 +740,9 @@
           <GroupName>Log</GroupName>
           <Files>
             <File>
-              <FileName>bsp_rtt.c</FileName>
+              <FileName>bsprtt.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\SEGGER\bsp_rtt.c</FilePath>
+              <FilePath>..\User\Bsp\bsprtt.c</FilePath>
             </File>
             <File>
               <FileName>SEGGER_RTT.c</FileName>
@@ -727,7 +757,7 @@
             <File>
               <FileName>log.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\rep\service\console\log.c</FilePath>
+              <FilePath>..\rep\service\console\log.c</FilePath>
             </File>
             <File>
               <FileName>log_port.c</FileName>
@@ -737,12 +767,12 @@
             <File>
               <FileName>console.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\rep\service\console\console.c</FilePath>
+              <FilePath>..\rep\service\console\console.c</FilePath>
             </File>
             <File>
               <FileName>rtos.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\rep\service\rtos\rtos.c</FilePath>
+              <FilePath>..\rep\service\rtos\rtos.c</FilePath>
             </File>
             <File>
               <FileName>rtos_port.c</FileName>
@@ -752,7 +782,7 @@
             <File>
               <FileName>ringbuffer.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\rep\tools\ringbuffer\ringbuffer.c</FilePath>
+              <FilePath>..\rep\tools\ringbuffer\ringbuffer.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -762,7 +792,7 @@
             <File>
               <FileName>drvanlogiic.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\rep\driver\drvanlogiic\drvanlogiic.c</FilePath>
+              <FilePath>..\rep\driver\drvanlogiic\drvanlogiic.c</FilePath>
             </File>
             <File>
               <FileName>drvanlogiic_port.c</FileName>
@@ -772,12 +802,12 @@
             <File>
               <FileName>drvanlogiic_debug.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\rep\driver\drvanlogiic\drvanlogiic_debug.c</FilePath>
+              <FilePath>..\rep\driver\drvanlogiic\drvanlogiic_debug.c</FilePath>
             </File>
             <File>
               <FileName>drvspi.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\rep\driver\drvspi\drvspi.c</FilePath>
+              <FilePath>..\rep\driver\drvspi\drvspi.c</FilePath>
             </File>
             <File>
               <FileName>drvspi_port.c</FileName>
@@ -787,12 +817,12 @@
             <File>
               <FileName>drvspi_debug.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\rep\driver\drvspi\drvspi_debug.c</FilePath>
+              <FilePath>..\rep\driver\drvspi\drvspi_debug.c</FilePath>
             </File>
             <File>
               <FileName>gd25qxxx.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\rep\module\gd25qxxx\gd25qxxx.c</FilePath>
+              <FilePath>..\rep\module\gd25qxxx\gd25qxxx.c</FilePath>
             </File>
             <File>
               <FileName>gd25qxxx_port.c</FileName>
@@ -802,12 +832,12 @@
             <File>
               <FileName>gd25qxxx_debug.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\rep\module\gd25qxxx\gd25qxxx_debug.c</FilePath>
+              <FilePath>..\rep\module\gd25qxxx\gd25qxxx_debug.c</FilePath>
             </File>
             <File>
               <FileName>pca9535.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\rep\module\pca9535\pca9535.c</FilePath>
+              <FilePath>..\rep\module\pca9535\pca9535.c</FilePath>
             </File>
             <File>
               <FileName>pca9535_port.c</FileName>
@@ -817,17 +847,17 @@
             <File>
               <FileName>pca9535_debug.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\rep\module\pca9535\pca9535_debug.c</FilePath>
+              <FilePath>..\rep\module\pca9535\pca9535_debug.c</FilePath>
             </File>
             <File>
               <FileName>tm1651.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\rep\module\tm1651\tm1651.c</FilePath>
+              <FilePath>..\rep\module\tm1651\tm1651.c</FilePath>
             </File>
             <File>
               <FileName>tm1651_debug.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\rep\module\tm1651\tm1651_debug.c</FilePath>
+              <FilePath>..\rep\module\tm1651\tm1651_debug.c</FilePath>
             </File>
             <File>
               <FileName>tm1651_port.c</FileName>

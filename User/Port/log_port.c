@@ -7,9 +7,9 @@
 * @version  : 
 * @copyright: Copyright (c) 2050
 **********************************************************************************/
-#include "../rep/service/console/log.h"
+#include "../../rep/service/console/log.h"
 
-#include "../SEGGER/bsp_rtt.h"
+#include "../bsp/bsprtt.h"
 
 static const stLogInterface gLogInterfaces[] = {
     {

@@ -4,19 +4,15 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#define REP_MCU_PLATFORM_GD32 1U
-#define REP_MCU_PLATFORM_STM32 2U
-#define REP_MCU_PLATFORM_ESP32 3U
+#include "../rep/rep.h"
 
-#define REP_RTOS_NONE 0U
-#define REP_RTOS_FREERTOS 1U
-#define REP_RTOS_CUBEMX_FREERTOS 2U
-#define REP_RTOS_UCOSII 3U
-#define REP_RTOS_UCOSIII 4U
+/* Compatibility macros for modules that still use these names in #if branches. */
 
 #ifndef REP_MCU_PLATFORM
 #define REP_MCU_PLATFORM REP_MCU_PLATFORM_STM32
 #endif
+
+#define REP_STM32_MCU_SERIES REP_STM32_F1
 
 #ifndef REP_RTOS_SYSTEM
 #define REP_RTOS_SYSTEM REP_RTOS_NONE
@@ -42,16 +38,12 @@
 #define DRVANLOGIIC_MAX 2U
 #endif
 
-typedef enum eDrvStatus {
-	DRV_STATUS_OK = 0,
-	DRV_STATUS_INVALID_PARAM,
-	DRV_STATUS_NOT_READY,
-	DRV_STATUS_BUSY,
-	DRV_STATUS_TIMEOUT,
-	DRV_STATUS_NACK,
-	DRV_STATUS_UNSUPPORTED,
-	DRV_STATUS_ID_NOTMATCH,
-	DRV_STATUS_ERROR,
-} eDrvStatus;
+#ifndef TM1651_CONSOLE_SUPPORT
+#define TM1651_CONSOLE_SUPPORT 0
+#endif
+
+#ifndef PCA9535_CONSOLE_SUPPORT
+#define PCA9535_CONSOLE_SUPPORT 0
+#endif
 
 #endif

@@ -11,7 +11,7 @@
 #ifndef DRVANLOGIIC_PORT_H
 #define DRVANLOGIIC_PORT_H
 
-#include "../rep/driver/drvanlogiic/drvanlogiic.h"
+#include "../../rep/driver/drvanlogiic/drvanlogiic.h"
 
 #ifdef __cplusplus
 extern "C" {
