@@ -25,6 +25,7 @@
 #include "log.h"
 #include "systask.h"
 #include "system_debug.h"
+#include "update.h"
 
 static stSystemManagerState gSystemManagerState;
 
@@ -61,6 +62,7 @@ bool systemManagerInit(void)
     }
 
     (void)systemTaskSchedulerInit();
+    (void)updateInit();
     systemLogPump();
 
     gSystemManagerState.isInitialized = true;
@@ -93,6 +95,15 @@ void systemCheckModeRun(void)
 
 void systemUpdateModeRun(void)
 {
+    const stUpdateStatus *lUpdateStatus = updateGetStatus();
+
+    updateProcess(Drv_GetTick());
+
+    lUpdateStatus = updateGetStatus();
+    if ((lUpdateStatus != NULL) && lUpdateStatus->isUpdateRequested) {
+        return;
+    }
+
     systemTaskSchedulerProcess();
 }
 
