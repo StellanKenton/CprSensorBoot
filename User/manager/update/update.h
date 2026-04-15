@@ -48,8 +48,8 @@ extern "C" {
 #define UPDATE_BOOT_RECORD_MAGIC            0x4254464CUL
 #define UPDATE_HEADER_VERSION               0x00000001UL
 
-#define UPDATE_MCU_APP_START_ADDR           0x08018000UL
-#define UPDATE_MCU_APP_SIZE                 0x00068000UL
+#define UPDATE_MCU_APP_START_ADDR           0x08020000UL
+#define UPDATE_MCU_APP_SIZE                 0x00060000UL
 
 #define UPDATE_CRC32_INIT_VALUE             0xFFFFFFFFUL
 

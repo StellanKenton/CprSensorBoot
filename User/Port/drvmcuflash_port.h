@@ -22,8 +22,8 @@ typedef enum eDrvMcuFlashAreaMap {
     DRVMCUFLASH_AREA_MAX,
 } eDrvMcuFlashAreaMap;
 
-#define DRVMCUFLASH_APP_START_ADDR         0x08018000UL
-#define DRVMCUFLASH_APP_SIZE               0x00068000UL
+#define DRVMCUFLASH_APP_START_ADDR         0x08020000UL
+#define DRVMCUFLASH_APP_SIZE               0x00060000UL
 
 const stDrvMcuFlashBspInterface *drvMcuFlashGetPlatformBspInterface(void);
 eDrvStatus drvMcuFlashGetPlatformAreaInfo(uint8_t area, stDrvMcuFlashAreaInfo *info);
