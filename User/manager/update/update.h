@@ -106,6 +106,8 @@ typedef enum eUpdateError {
     E_UPDATE_ERROR_MCU_FLASH_ACCESS_FAILED = 12,
 } eUpdateError;
 
+#define UPDATE_TEST_FORCE_APP_REQUEST_ENABLE    0U
+
 #pragma pack(push, 1)
 typedef struct stUpdateImageHeader {
     uint32_t magic;
@@ -147,6 +149,8 @@ bool updateInit(void);
 void updateProcess(uint32_t nowTick);
 const stUpdateStatus *updateGetStatus(void);
 bool updateGetBootRecord(stUpdateBootRecord *record);
+bool updateHasNormalAppBootFlag(void);
+bool updateJumpToAppIfValid(void);
 
 #ifdef __cplusplus
 }

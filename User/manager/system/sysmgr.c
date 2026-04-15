@@ -31,12 +31,14 @@ static stSystemManagerState gSystemManagerState;
 
 static bool systemConsoleEnsureReady(void);
 static void systemLogPump(void);
+static void systemEnsureWatchdogForUpdate(const stUpdateStatus *updateStatus);
 static void systemWatchdogProcess(void);
 
 bool systemManagerInit(void)
 {
     gSystemManagerState.isInitialized = false;
     gSystemManagerState.isConsoleReady = false;
+    gSystemManagerState.isWatchdogActive = false;
     gSystemManagerState.watchdogTick = 0U;
 
     (void)systemConsoleEnsureReady();
@@ -52,17 +54,9 @@ bool systemManagerInit(void)
           systemGetHardwareVersion());
     systemLogPump();
 
-    if (Drv_WatchDog_Init(0U) == 0U) {
-        gSystemManagerState.watchdogTick = Drv_GetTick();
-        LOG_I(SYSTEM_MANAGER_LOG_TAG,
-              "IWDG started, feed interval=%lu ms",
-              (unsigned long)SYSTEM_WDG_FEED_INTERVAL_MS);
-    } else {
-        LOG_W(SYSTEM_MANAGER_LOG_TAG, "IWDG start failed");
-    }
-
     (void)systemTaskSchedulerInit();
     (void)updateInit();
+    LOG_I(SYSTEM_MANAGER_LOG_TAG, "IWDG deferred until update request is confirmed");
     systemLogPump();
 
     gSystemManagerState.isInitialized = true;
@@ -90,6 +84,10 @@ void systemInitModeRun(void)
 
 void systemCheckModeRun(void)
 {
+    if (updateHasNormalAppBootFlag()) {
+        (void)updateJumpToAppIfValid();
+    }
+
     systemSetMode(E_SYSTEM_UPDATE_MODE);
 }
 
@@ -100,6 +98,7 @@ void systemUpdateModeRun(void)
     updateProcess(Drv_GetTick());
 
     lUpdateStatus = updateGetStatus();
+    systemEnsureWatchdogForUpdate(lUpdateStatus);
     if ((lUpdateStatus != NULL) && lUpdateStatus->isUpdateRequested) {
         return;
     }
@@ -170,9 +169,35 @@ static void systemLogPump(void)
     logProcessOutput();
 }
 
+static void systemEnsureWatchdogForUpdate(const stUpdateStatus *updateStatus)
+{
+    if (gSystemManagerState.isWatchdogActive) {
+        return;
+    }
+
+    if ((updateStatus == NULL) || !updateStatus->isUpdateRequested) {
+        return;
+    }
+
+    if (Drv_WatchDog_Init(0U) == 0U) {
+        gSystemManagerState.isWatchdogActive = true;
+        gSystemManagerState.watchdogTick = Drv_GetTick();
+        LOG_I(SYSTEM_MANAGER_LOG_TAG,
+              "IWDG started for update flow, feed interval=%lu ms",
+              (unsigned long)SYSTEM_WDG_FEED_INTERVAL_MS);
+        return;
+    }
+
+    LOG_W(SYSTEM_MANAGER_LOG_TAG, "IWDG start failed");
+}
+
 static void systemWatchdogProcess(void)
 {
     uint32_t lNowTick = Drv_GetTick();
+
+    if (!gSystemManagerState.isWatchdogActive) {
+        return;
+    }
 
     if ((lNowTick - gSystemManagerState.watchdogTick) < SYSTEM_WDG_FEED_INTERVAL_MS) {
         return;

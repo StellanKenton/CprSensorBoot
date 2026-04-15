@@ -26,6 +26,8 @@
 
 #define UPDATE_APP_VECTOR_STACK_MASK     0x2FFE0000UL
 #define UPDATE_APP_VECTOR_STACK_BASE     0x20000000UL
+#define UPDATE_APP_VECTOR_ENTRY_MASK     0xFFFFFFFEUL
+#define UPDATE_NVIC_REGISTER_COUNT       8U
 
 typedef void (*updateAppEntryFunc)(void);
 
@@ -56,12 +58,16 @@ static bool updateEraseExternalRange(uint32_t baseAddress, uint32_t imageSize);
 static bool updateReadImageHeader(uint32_t baseAddress, stUpdateImageHeader *header);
 static bool updateWriteImageHeader(uint32_t baseAddress, const stUpdateImageHeader *header);
 static bool updateWriteBootRecordInternal(const stUpdateBootRecord *record);
+static void updateApplyTestBootRecordOverride(void);
 static bool updateIsValidBootFlag(uint32_t requestFlag);
 static bool updateIsValidImageHeader(const stUpdateImageHeader *header, uint32_t maxSize, bool requireReady);
 static bool updateReadMcuApp(uint32_t offset, uint8_t *buffer, uint32_t length);
 static bool updateWriteMcuApp(uint32_t offset, const uint8_t *buffer, uint32_t length);
 static bool updateEraseMcuAppRange(uint32_t offset, uint32_t length);
+static bool updateIsNormalAppBootFlagValue(uint32_t requestFlag);
 static bool updateHasValidAppVector(void);
+static void updatePrepareAppJump(uint32_t vectorBase);
+static __asm void updateLaunchApp(uint32_t stackPointer, uint32_t resetHandler);
 static void updateJumpToApp(void);
 static bool updateShouldRollback(void);
 static void updateHandleFailure(eUpdateError error);
@@ -283,9 +289,36 @@ static bool updateWriteBootRecordInternal(const stUpdateBootRecord *record)
     return updateWriteExternal(APP_FLASH_BOOT_FLAG_ADDR, (const uint8_t *)record, sizeof(stUpdateBootRecord));
 }
 
+static void updateApplyTestBootRecordOverride(void)
+{
+#if (UPDATE_TEST_FORCE_APP_REQUEST_ENABLE == 1U)
+    if ((gUpdateContext.bootRecord.magic != UPDATE_BOOT_RECORD_MAGIC) ||
+        (gUpdateContext.bootRecord.requestFlag != (uint32_t)E_UPDATE_BOOT_FLAG_IDLE)) {
+        return;
+    }
+
+    gUpdateContext.bootRecord.requestFlag = (uint32_t)E_UPDATE_BOOT_FLAG_APP_REQUEST;
+    gUpdateContext.bootRecord.lastError = (uint32_t)E_UPDATE_ERROR_NONE;
+
+    if (!updateWriteBootRecordInternal(&gUpdateContext.bootRecord)) {
+        LOG_E(UPDATE_LOG_TAG, "test override boot record failed");
+        return;
+    }
+
+    LOG_W(UPDATE_LOG_TAG, "test override boot flag: IDLE -> APP_REQUEST");
+#endif
+}
+
 static bool updateIsValidBootFlag(uint32_t requestFlag)
 {
     return (requestFlag <= (uint32_t)E_UPDATE_BOOT_FLAG_FAILED);
+}
+
+static bool updateIsNormalAppBootFlagValue(uint32_t requestFlag)
+{
+    return (requestFlag == (uint32_t)E_UPDATE_BOOT_FLAG_IDLE) ||
+           (requestFlag == (uint32_t)E_UPDATE_BOOT_FLAG_SUCCESS) ||
+           (requestFlag == (uint32_t)E_UPDATE_BOOT_FLAG_FAILED);
 }
 
 static bool updateIsValidImageHeader(const stUpdateImageHeader *header, uint32_t maxSize, bool requireReady)
@@ -330,6 +363,7 @@ static bool updateEraseMcuAppRange(uint32_t offset, uint32_t length)
 static bool updateHasValidAppVector(void)
 {
     uint32_t lVector[2] = {0U, 0U};
+    uint32_t lResetHandler;
 
     if (drvMcuFlashRead(DRVMCUFLASH_AREA_APP, 0U, (uint8_t *)lVector, sizeof(lVector)) != DRV_STATUS_OK) {
         return false;
@@ -339,15 +373,61 @@ static bool updateHasValidAppVector(void)
         return false;
     }
 
-    return (lVector[1] >= UPDATE_MCU_APP_START_ADDR) &&
-           (lVector[1] < (UPDATE_MCU_APP_START_ADDR + UPDATE_MCU_APP_SIZE));
+    if ((lVector[1] & 0x1U) == 0U) {
+        return false;
+    }
+
+    lResetHandler = lVector[1] & UPDATE_APP_VECTOR_ENTRY_MASK;
+    return (lResetHandler >= UPDATE_MCU_APP_START_ADDR) &&
+           (lResetHandler < (UPDATE_MCU_APP_START_ADDR + UPDATE_MCU_APP_SIZE));
+}
+
+static void updatePrepareAppJump(uint32_t vectorBase)
+{
+    uint32_t lIndex;
+
+    __disable_irq();
+    HAL_DeInit();
+    HAL_RCC_DeInit();
+    __disable_irq();
+
+    SysTick->CTRL = 0U;
+    SysTick->LOAD = 0U;
+    SysTick->VAL = 0U;
+
+    for (lIndex = 0U; lIndex < UPDATE_NVIC_REGISTER_COUNT; lIndex++) {
+        NVIC->ICER[lIndex] = 0xFFFFFFFFUL;
+        NVIC->ICPR[lIndex] = 0xFFFFFFFFUL;
+    }
+
+    SCB->ICSR = SCB_ICSR_PENDSVCLR_Msk | SCB_ICSR_PENDSTCLR_Msk;
+    SCB->SHCSR &= ~(SCB_SHCSR_USGFAULTENA_Msk | SCB_SHCSR_BUSFAULTENA_Msk | SCB_SHCSR_MEMFAULTENA_Msk);
+    SCB->CFSR = 0xFFFFFFFFUL;
+    SCB->HFSR = 0xFFFFFFFFUL;
+    SCB->DFSR = 0xFFFFFFFFUL;
+    SCB->AFSR = 0xFFFFFFFFUL;
+
+    __set_CONTROL(0U);
+    __set_PSP(0U);
+    __set_BASEPRI(0U);
+    __set_FAULTMASK(0U);
+    SCB->VTOR = vectorBase;
+
+    __DSB();
+    __ISB();
+}
+
+static __asm void updateLaunchApp(uint32_t stackPointer, uint32_t resetHandler)
+{
+    MSR MSP, r0
+    DSB
+    ISB
+    BX  r1
 }
 
 static void updateJumpToApp(void)
 {
     uint32_t lVector[2] = {0U, 0U};
-    updateAppEntryFunc lAppEntry;
-    uint32_t lIndex;
 
     if (drvMcuFlashRead(DRVMCUFLASH_AREA_APP, 0U, (uint8_t *)lVector, sizeof(lVector)) != DRV_STATUS_OK) {
         gUpdateStatus.lastError = E_UPDATE_ERROR_APP_VECTOR_INVALID;
@@ -363,23 +443,8 @@ static void updateJumpToApp(void)
     }
 
     LOG_I(UPDATE_LOG_TAG, "jump to app: sp=0x%08lX, reset=0x%08lX", (unsigned long)lVector[0], (unsigned long)lVector[1]);
-    HAL_DeInit();
-    __disable_irq();
-
-    SysTick->CTRL = 0U;
-    SysTick->LOAD = 0U;
-    SysTick->VAL = 0U;
-
-    for (lIndex = 0U; lIndex < 8U; lIndex++) {
-        NVIC->ICER[lIndex] = 0xFFFFFFFFUL;
-        NVIC->ICPR[lIndex] = 0xFFFFFFFFUL;
-    }
-
-    SCB->VTOR = UPDATE_MCU_APP_START_ADDR;
-    __set_MSP(lVector[0]);
-
-    lAppEntry = (updateAppEntryFunc)lVector[1];
-    lAppEntry();
+    updatePrepareAppJump(UPDATE_MCU_APP_START_ADDR);
+    updateLaunchApp(lVector[0], lVector[1]);
 
     gUpdateStatus.lastError = E_UPDATE_ERROR_APP_VECTOR_INVALID;
     gUpdateStatus.state = E_UPDATE_STATE_ERROR;
@@ -450,6 +515,8 @@ static void updateHandleCheckRequest(void)
         }
         return;
     }
+
+    updateApplyTestBootRecordOverride();
 
     if ((gUpdateContext.bootRecord.magic != UPDATE_BOOT_RECORD_MAGIC) ||
         !updateIsValidBootFlag(gUpdateContext.bootRecord.requestFlag) ||
@@ -969,5 +1036,30 @@ bool updateGetBootRecord(stUpdateBootRecord *record)
     }
 
     return updateReadExternal(APP_FLASH_BOOT_FLAG_ADDR, (uint8_t *)record, sizeof(stUpdateBootRecord));
+}
+
+bool updateHasNormalAppBootFlag(void)
+{
+    stUpdateBootRecord lBootRecord;
+
+    if (!updateGetBootRecord(&lBootRecord)) {
+        return false;
+    }
+
+    if (lBootRecord.magic != UPDATE_BOOT_RECORD_MAGIC) {
+        return false;
+    }
+
+    return updateIsNormalAppBootFlagValue(lBootRecord.requestFlag);
+}
+
+bool updateJumpToAppIfValid(void)
+{
+    if (!updateHasValidAppVector()) {
+        return false;
+    }
+
+    updateJumpToApp();
+    return false;
 }
 /**************************End of file********************************/

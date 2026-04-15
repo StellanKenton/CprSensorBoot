@@ -26,6 +26,7 @@ extern "C" {
 typedef struct stSystemManagerState {
     bool isInitialized;
     bool isConsoleReady;
+    bool isWatchdogActive;
     uint32_t watchdogTick;
 } stSystemManagerState;
 
