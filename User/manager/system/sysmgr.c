@@ -25,7 +25,7 @@
 #include "log.h"
 #include "systask.h"
 #include "system_debug.h"
-#include "update.h"
+#include "update_mgr.h"
 
 static stSystemManagerState gSystemManagerState;
 
@@ -55,7 +55,7 @@ bool systemManagerInit(void)
     systemLogPump();
 
     (void)systemTaskSchedulerInit();
-    (void)updateInit();
+    (void)updateManagerInit();
     LOG_I(SYSTEM_MANAGER_LOG_TAG, "IWDG deferred until update request is confirmed");
     systemLogPump();
 
@@ -84,8 +84,8 @@ void systemInitModeRun(void)
 
 void systemCheckModeRun(void)
 {
-    if (updateHasNormalAppBootFlag()) {
-        (void)updateJumpToAppIfValid();
+    if (updateManagerHasNormalAppBootFlag()) {
+        (void)updateManagerJumpToAppIfValid();
     }
 
     systemSetMode(E_SYSTEM_UPDATE_MODE);
@@ -93,11 +93,11 @@ void systemCheckModeRun(void)
 
 void systemUpdateModeRun(void)
 {
-    const stUpdateStatus *lUpdateStatus = updateGetStatus();
+    const stUpdateStatus *lUpdateStatus = updateManagerGetStatus();
 
-    updateProcess(Drv_GetTick());
+    updateManagerProcess(Drv_GetTick());
 
-    lUpdateStatus = updateGetStatus();
+    lUpdateStatus = updateManagerGetStatus();
     systemEnsureWatchdogForUpdate(lUpdateStatus);
     if ((lUpdateStatus != NULL) && lUpdateStatus->isUpdateRequested) {
         return;

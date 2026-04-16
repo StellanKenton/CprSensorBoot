@@ -277,7 +277,7 @@
               <OCR_RVCT4>
                 <Type>1</Type>
                 <StartAddress>0x8000000</StartAddress>
-                <Size>0x20000</Size>
+                <Size>0x18000</Size>
               </OCR_RVCT4>
               <OCR_RVCT5>
                 <Type>1</Type>
@@ -675,9 +675,24 @@
               <FilePath>..\User\manager\flash\flash.c</FilePath>
             </File>
             <File>
+              <FileName>update_mgr.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\manager\update\update_mgr.c</FilePath>
+            </File>
+            <File>
               <FileName>update.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\manager\update\update.c</FilePath>
+              <FilePath>..\rep\service\update\update.c</FilePath>
+            </File>
+            <File>
+              <FileName>update_port.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\rep\service\update\update_port.c</FilePath>
+            </File>
+            <File>
+              <FileName>update_debug.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\rep\service\update\update_debug.c</FilePath>
             </File>
           </Files>
         </Group>

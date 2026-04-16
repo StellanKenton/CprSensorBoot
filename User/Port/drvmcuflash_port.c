@@ -26,6 +26,11 @@ const stDrvMcuFlashBspInterface *drvMcuFlashGetPlatformBspInterface(void)
     return &gDrvMcuFlashBspInterface;
 }
 
+uint8_t drvMcuFlashGetPlatformAreaCount(void)
+{
+    return (uint8_t)DRVMCUFLASH_AREA_MAX;
+}
+
 eDrvStatus drvMcuFlashGetPlatformAreaInfo(uint8_t area, stDrvMcuFlashAreaInfo *info)
 {
     if (info == NULL) {
@@ -33,6 +38,10 @@ eDrvStatus drvMcuFlashGetPlatformAreaInfo(uint8_t area, stDrvMcuFlashAreaInfo *i
     }
 
     switch (area) {
+        case DRVMCUFLASH_AREA_BOOT_RECORD:
+            info->startAddress = DRVMCUFLASH_BOOT_RECORD_START_ADDR;
+            info->size = DRVMCUFLASH_BOOT_RECORD_SIZE;
+            return DRV_STATUS_OK;
         case DRVMCUFLASH_AREA_APP:
             info->startAddress = DRVMCUFLASH_APP_START_ADDR;
             info->size = DRVMCUFLASH_APP_SIZE;

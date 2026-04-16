@@ -18,14 +18,18 @@ extern "C" {
 #endif
 
 typedef enum eDrvMcuFlashAreaMap {
-    DRVMCUFLASH_AREA_APP = 0,
+    DRVMCUFLASH_AREA_BOOT_RECORD = 0,
+    DRVMCUFLASH_AREA_APP,
     DRVMCUFLASH_AREA_MAX,
 } eDrvMcuFlashAreaMap;
 
+#define DRVMCUFLASH_BOOT_RECORD_START_ADDR 0x0801F000UL
+#define DRVMCUFLASH_BOOT_RECORD_SIZE       0x00001000UL
 #define DRVMCUFLASH_APP_START_ADDR         0x08020000UL
 #define DRVMCUFLASH_APP_SIZE               0x00060000UL
 
 const stDrvMcuFlashBspInterface *drvMcuFlashGetPlatformBspInterface(void);
+uint8_t drvMcuFlashGetPlatformAreaCount(void);
 eDrvStatus drvMcuFlashGetPlatformAreaInfo(uint8_t area, stDrvMcuFlashAreaInfo *info);
 
 #ifdef __cplusplus
