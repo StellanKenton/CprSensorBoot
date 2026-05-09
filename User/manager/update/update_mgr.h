@@ -20,7 +20,7 @@ extern "C" {
 #endif
 
 #ifndef UPDATE_MANAGER_FORCE_RUN_APP_BOOT_RECORD
-#define UPDATE_MANAGER_FORCE_RUN_APP_BOOT_RECORD    0
+#define UPDATE_MANAGER_FORCE_RUN_APP_BOOT_RECORD   0
 #endif
 
 void updateManagerReset(void);

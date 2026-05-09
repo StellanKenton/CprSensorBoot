@@ -17,6 +17,7 @@
 #include "spi.h"
 #include "tim.h"
 #include "usart.h"
+#include "usb_device.h"
 
 #include "cm_backtrace.h"
 #include "console.h"
@@ -33,6 +34,7 @@ static bool systemConsoleEnsureReady(void);
 static void systemLogPump(void);
 static void systemEnsureWatchdogForUpdate(const stUpdateStatus *updateStatus);
 static void systemWatchdogProcess(void);
+static void systemUsbForceReenumerate(void);
 
 bool systemManagerInit(void)
 {
@@ -77,7 +79,10 @@ void systemInitModeRun(void)
     MX_RTC_Init();
     //MX_IWDG_Init();
     MX_UART4_Init();
+    systemUsbForceReenumerate();
+    MX_USB_DEVICE_Init();
     (void)systemManagerInit();
+    LOG_I(SYSTEM_MANAGER_LOG_TAG, "USB_Select pin is now HIGH, USB should be routed to MCU");
     gSystemManagerState.isInitialized = true;
     systemSetMode(E_SYSTEM_CHECK_MODE);
 }
@@ -205,5 +210,41 @@ static void systemWatchdogProcess(void)
 
     Drv_WatchDogFeed();
     gSystemManagerState.watchdogTick = lNowTick;
+}
+
+/*
+ * Pull USB D+ (PA12) low for a few milliseconds before handing the pins back to
+ * the USB peripheral. STM32F103 has no software-controlled D+ pull-up, so after
+ * a flash/reset the host may still see the board as connected and skip
+ * re-enumeration. Driving D+ low forces the host to observe a disconnect and
+ * issue a fresh enumeration when the USB peripheral reasserts the pull-up.
+ */
+static void systemUsbForceReenumerate(void)
+{
+    GPIO_InitTypeDef lGpioInit = {0};
+    volatile uint32_t lDelay;
+
+    __HAL_RCC_GPIOA_CLK_ENABLE();
+
+    /* Route the external USB mux to the MCU. MX_GPIO_Init leaves this pin
+     * in its reset-low state; flip it high here so the USB connector lines
+     * are actually presented to the STM32's USB peripheral. */
+    HAL_GPIO_WritePin(USB_Select_GPIO_Port, USB_Select_Pin, GPIO_PIN_SET);
+
+    lGpioInit.Pin = GPIO_PIN_12;
+    lGpioInit.Mode = GPIO_MODE_OUTPUT_PP;
+    lGpioInit.Pull = GPIO_NOPULL;
+    lGpioInit.Speed = GPIO_SPEED_FREQ_HIGH;
+    HAL_GPIO_Init(GPIOA, &lGpioInit);
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_12, GPIO_PIN_RESET);
+
+    /* Hold for roughly 20 ms; HAL tick is not yet fully running here, so use a
+     * rough software delay that assumes 72 MHz SYSCLK. */
+    for (lDelay = 0U; lDelay < (72000UL * 20UL); ++lDelay) {
+        __NOP();
+    }
+
+    /* Release the pin so the USB peripheral regains control. */
+    HAL_GPIO_DeInit(GPIOA, GPIO_PIN_12);
 }
 /**************************End of file********************************/

@@ -10,7 +10,6 @@
 **********************************************************************************/
 #include "update_mgr.h"
 
-#include <stddef.h>
 #include <string.h>
 
 #include "drv_wdg.h"
@@ -25,22 +24,13 @@
 #define UPDATE_APP_VECTOR_STACK_BASE       0x20000000UL
 #define UPDATE_APP_VECTOR_ENTRY_MASK       0xFFFFFFFEUL
 #define UPDATE_NVIC_REGISTER_COUNT         8U
-#define UPDATE_MANAGER_CRC32_INIT_VALUE    0xFFFFFFFFUL
 
 static bool updateManagerCanBootNormally(const stUpdateBootRecord *record);
-static uint32_t updateManagerCrc32Update(uint32_t crc, const uint8_t *data, uint32_t length);
-static uint32_t updateManagerCrc32Finalize(uint32_t crc);
-static uint32_t updateManagerCalcBootRecordCrc(const stUpdateBootRecord *record);
-static uint32_t updateManagerCalcMetaHeaderCrc(const stUpdateMetaRecord *record);
-static bool updateManagerIsMetaRecordValid(const stUpdateMetaRecord *record, uint32_t payloadSize);
-static uint32_t updateManagerGetNextSequence(uint32_t currentSequence);
-static bool updateManagerReadBootMetaSequence(uint32_t *sequenceOut);
-static bool updateManagerStoreBootRecord(const stUpdateBootRecord *record);
 static bool updateManagerGetExecutableRegion(uint8_t regionId, stUpdateRegionCfg *cfg);
 static bool updateManagerReadAppVector(const stUpdateRegionCfg *cfg, uint32_t vector[2]);
 static bool updateManagerJumpToRegionInternal(uint8_t regionId);
 static void updateManagerPrepareAppJump(uint32_t vectorBase);
-static void updateManagerLaunchApp(uint32_t stackPointer, uint32_t resetHandler);
+static __NO_RETURN __ASM void updateManagerLaunchApp(uint32_t stackPointer, uint32_t resetHandler);
 
 void updateManagerReset(void)
 {
@@ -115,7 +105,7 @@ bool updateManagerSetBootRecordRunApp(void)
     lRecord.lastError = (uint32_t)E_UPDATE_ERROR_NONE;
     lRecord.targetRegion = (uint32_t)E_UPDATE_REGION_RUN_APP;
 
-    if (!updateManagerStoreBootRecord(&lRecord)) {
+    if (!updateWriteBootRecord(&lRecord)) {
         LOG_E(UPDATE_MANAGER_LOG_TAG, "store run_app boot record failed");
         return false;
     }
@@ -137,204 +127,6 @@ static bool updateManagerCanBootNormally(const stUpdateBootRecord *record)
     return (record->requestFlag == (uint32_t)E_UPDATE_REQUEST_IDLE) ||
            (record->requestFlag == (uint32_t)E_UPDATE_REQUEST_RUN_APP) ||
            (record->requestFlag == (uint32_t)E_UPDATE_REQUEST_FAILED);
-}
-
-static uint32_t updateManagerCrc32Update(uint32_t crc, const uint8_t *data, uint32_t length)
-{
-    uint32_t lIndex;
-    uint8_t lBit;
-
-    if ((data == NULL) && (length > 0U)) {
-        return crc;
-    }
-
-    for (lIndex = 0U; lIndex < length; lIndex++) {
-        crc ^= data[lIndex];
-        for (lBit = 0U; lBit < 8U; lBit++) {
-            if ((crc & 1U) != 0U) {
-                crc = (crc >> 1) ^ 0xEDB88320UL;
-            } else {
-                crc >>= 1;
-            }
-        }
-    }
-
-    return crc;
-}
-
-static uint32_t updateManagerCrc32Finalize(uint32_t crc)
-{
-    return crc ^ 0xFFFFFFFFUL;
-}
-
-static uint32_t updateManagerCalcBootRecordCrc(const stUpdateBootRecord *record)
-{
-    if (record == NULL) {
-        return 0U;
-    }
-
-    return updateManagerCrc32Finalize(updateManagerCrc32Update(UPDATE_MANAGER_CRC32_INIT_VALUE,
-                                                               (const uint8_t *)record,
-                                                               offsetof(stUpdateBootRecord, recordCrc32)));
-}
-
-static uint32_t updateManagerCalcMetaHeaderCrc(const stUpdateMetaRecord *record)
-{
-    if (record == NULL) {
-        return 0U;
-    }
-
-    return updateManagerCrc32Finalize(updateManagerCrc32Update(UPDATE_MANAGER_CRC32_INIT_VALUE,
-                                                               (const uint8_t *)record,
-                                                               offsetof(stUpdateMetaRecord, headerCrc32)));
-}
-
-static bool updateManagerIsMetaRecordValid(const stUpdateMetaRecord *record, uint32_t payloadSize)
-{
-    uint32_t lPayloadCrc;
-
-    if (record == NULL) {
-        return false;
-    }
-
-    if ((record->recordMagic != UPDATE_META_RECORD_MAGIC) ||
-        (record->commitMarker != UPDATE_META_COMMIT_MARKER) ||
-        (record->payloadLength != payloadSize) ||
-        (record->headerCrc32 != updateManagerCalcMetaHeaderCrc(record))) {
-        return false;
-    }
-
-    lPayloadCrc = updateManagerCrc32Finalize(updateManagerCrc32Update(UPDATE_MANAGER_CRC32_INIT_VALUE,
-                                                                      record->payload,
-                                                                      record->payloadLength));
-    return record->payloadCrc32 == lPayloadCrc;
-}
-
-static uint32_t updateManagerGetNextSequence(uint32_t currentSequence)
-{
-    if ((currentSequence == 0U) || (currentSequence == 0xFFFFFFFFUL)) {
-        return 1U;
-    }
-
-    return currentSequence + 1U;
-}
-
-static bool updateManagerReadBootMetaSequence(uint32_t *sequenceOut)
-{
-    stUpdateRegionCfg lRegionCfg;
-    stUpdateMetaRecord lMetaRecord;
-    uint32_t lSlotCount;
-    uint32_t lSlotIndex;
-    uint32_t lBestSequence = 0U;
-    bool lHasValidRecord = false;
-
-    if ((sequenceOut == NULL) || !updatePortGetRegionMap(E_UPDATE_REGION_BOOT_RECORD, &lRegionCfg)) {
-        return false;
-    }
-
-    if ((lRegionCfg.storageId != E_UPDATE_STORAGE_INTERNAL_FLASH) || (lRegionCfg.eraseUnit == 0U) ||
-        (lRegionCfg.size < lRegionCfg.eraseUnit)) {
-        return false;
-    }
-
-    lSlotCount = lRegionCfg.size / lRegionCfg.eraseUnit;
-    if (lSlotCount > 2U) {
-        lSlotCount = 2U;
-    }
-
-    for (lSlotIndex = 0U; lSlotIndex < lSlotCount; lSlotIndex++) {
-        uint32_t lAddress = lRegionCfg.startAddress + (lSlotIndex * lRegionCfg.eraseUnit);
-
-        if (!drvMcuFlashRead(lAddress, (uint8_t *)&lMetaRecord, sizeof(lMetaRecord))) {
-            continue;
-        }
-
-        if (!updateManagerIsMetaRecordValid(&lMetaRecord, sizeof(stUpdateBootRecord))) {
-            continue;
-        }
-
-        if (!lHasValidRecord || (lMetaRecord.sequence >= lBestSequence)) {
-            lHasValidRecord = true;
-            lBestSequence = lMetaRecord.sequence;
-        }
-    }
-
-    *sequenceOut = lBestSequence;
-    return true;
-}
-
-static bool updateManagerStoreBootRecord(const stUpdateBootRecord *record)
-{
-    stUpdateRegionCfg lRegionCfg;
-    stUpdateMetaRecord lMetaRecord;
-    stUpdateMetaRecord lReadback;
-    stUpdateBootRecord lBootRecord;
-    uint32_t lCommitMarker = UPDATE_META_COMMIT_MARKER;
-    uint32_t lCurrentSequence;
-    uint32_t lNextSequence;
-    uint32_t lTargetSlot;
-    uint32_t lBaseAddress;
-    uint32_t lCommitAddress;
-
-    if ((record == NULL) || !updatePortGetRegionMap(E_UPDATE_REGION_BOOT_RECORD, &lRegionCfg)) {
-        return false;
-    }
-
-    if ((lRegionCfg.storageId != E_UPDATE_STORAGE_INTERNAL_FLASH) || (lRegionCfg.eraseUnit == 0U) ||
-        (lRegionCfg.size < (2U * lRegionCfg.eraseUnit))) {
-        return false;
-    }
-
-    if (!updateManagerReadBootMetaSequence(&lCurrentSequence)) {
-        return false;
-    }
-
-    lNextSequence = updateManagerGetNextSequence(lCurrentSequence);
-    lTargetSlot = ((lNextSequence > 1U) ? ((lNextSequence - 1U) % 2U) : 0U);
-    lBaseAddress = lRegionCfg.startAddress + (lTargetSlot * lRegionCfg.eraseUnit);
-
-    lBootRecord = *record;
-    lBootRecord.sequence = lNextSequence;
-    lBootRecord.recordCrc32 = updateManagerCalcBootRecordCrc(&lBootRecord);
-
-    (void)memset(&lMetaRecord, 0xFF, sizeof(lMetaRecord));
-    lMetaRecord.recordMagic = UPDATE_META_RECORD_MAGIC;
-    lMetaRecord.sequence = lNextSequence;
-    lMetaRecord.payloadLength = sizeof(stUpdateBootRecord);
-    memcpy(lMetaRecord.payload, &lBootRecord, sizeof(lBootRecord));
-    lMetaRecord.payloadCrc32 = updateManagerCrc32Finalize(updateManagerCrc32Update(UPDATE_MANAGER_CRC32_INIT_VALUE,
-                                                                                   lMetaRecord.payload,
-                                                                                   lMetaRecord.payloadLength));
-    lMetaRecord.headerCrc32 = updateManagerCalcMetaHeaderCrc(&lMetaRecord);
-
-    if (!drvMcuFlashErase(lBaseAddress, lRegionCfg.eraseUnit)) {
-        return false;
-    }
-
-    if (!drvMcuFlashWrite(lBaseAddress,
-                          (const uint8_t *)&lMetaRecord,
-                          offsetof(stUpdateMetaRecord, commitMarker))) {
-        return false;
-    }
-
-    if (!drvMcuFlashRead(lBaseAddress,
-                         (uint8_t *)&lReadback,
-                         offsetof(stUpdateMetaRecord, commitMarker))) {
-        return false;
-    }
-
-    if ((lReadback.recordMagic != lMetaRecord.recordMagic) ||
-        (lReadback.sequence != lMetaRecord.sequence) ||
-        (lReadback.payloadLength != lMetaRecord.payloadLength) ||
-        (lReadback.payloadCrc32 != lMetaRecord.payloadCrc32) ||
-        (lReadback.headerCrc32 != lMetaRecord.headerCrc32)) {
-        return false;
-    }
-
-    lCommitAddress = lBaseAddress + offsetof(stUpdateMetaRecord, commitMarker);
-    return drvMcuFlashWrite(lCommitAddress,
-                            (const uint8_t *)&lCommitMarker,
-                            sizeof(lCommitMarker));
 }
 
 static bool updateManagerGetExecutableRegion(uint8_t regionId, stUpdateRegionCfg *cfg)
@@ -407,6 +199,7 @@ static void updateManagerPrepareAppJump(uint32_t vectorBase)
     __disable_irq();
     HAL_DeInit();
     HAL_RCC_DeInit();
+    __disable_irq();
 
     SysTick->CTRL = 0U;
     SysTick->LOAD = 0U;
@@ -434,17 +227,14 @@ static void updateManagerPrepareAppJump(uint32_t vectorBase)
     __ISB();
 }
 
-static void updateManagerLaunchApp(uint32_t stackPointer, uint32_t resetHandler)
+static __NO_RETURN __ASM void updateManagerLaunchApp(uint32_t stackPointer, uint32_t resetHandler)
 {
-    __set_MSP(stackPointer);
-    __set_PRIMASK(0U);
-    __DSB();
-    __ISB();
-
-    ((void (*)(void))resetHandler)();
-
-    while (1) {
-    }
+    MSR MSP, r0
+    MOVS r0, #0
+    MSR PRIMASK, r0
+    DSB
+    ISB
+    BX  r1
 }
 
 void updatePortFeedWatchdog(void)
