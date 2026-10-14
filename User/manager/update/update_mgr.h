@@ -23,6 +23,14 @@ extern "C" {
 #define UPDATE_MANAGER_FORCE_RUN_APP_BOOT_RECORD   0
 #endif
 
+#ifndef UPDATE_MANAGER_IDLE_TIMEOUT_MS
+#define UPDATE_MANAGER_IDLE_TIMEOUT_MS             180000UL
+#endif
+
+#ifndef UPDATE_MANAGER_COPY_CHUNK_SIZE
+#define UPDATE_MANAGER_COPY_CHUNK_SIZE             UPDATE_PROCESS_CHUNK_SIZE
+#endif
+
 void updateManagerReset(void);
 bool updateManagerInit(void);
 void updateManagerProcess(uint32_t nowTickMs);

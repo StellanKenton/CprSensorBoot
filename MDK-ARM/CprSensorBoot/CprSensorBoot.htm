@@ -3,11 +3,11 @@
 <title>Static Call Graph - [CprSensorBoot\CprSensorBoot.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image CprSensorBoot\CprSensorBoot.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Fri May 08 13:54:40 2026
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Sat May 09 16:56:22 2026
 <BR><P>
-<H3>Maximum Stack Usage =        624 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        840 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
-HardFault_Handler &rArr; cm_backtrace_fault &rArr; print_call_stack &rArr; SEGGER_RTT_printf &rArr; SEGGER_RTT_vprintf &rArr; _PrintInt &rArr; _PrintUnsigned &rArr; _StoreChar &rArr; SEGGER_RTT_Write &rArr; SEGGER_RTT_WriteNoLock &rArr; _WriteBlocking
+__rt_entry_main &rArr; main &rArr; systemManagerProcess &rArr; systemFunctionStateMachine &rArr; systemUpdateModeRun &rArr; updateManagerProcess &rArr; updateManagerProcessIdleRecovery &rArr; updateManagerHandleIdleTimeout &rArr; updateManagerRestoreAppFromBackup &rArr; updateManagerSetBootRecordRunApp &rArr; updateWriteBootRecord &rArr; updateStoreBootRecord &rArr; updateMetaCommit &rArr; updateStorageWrite &rArr; updateGetRegionCfg &rArr; __aeabi_memcpy4
 <P>
 <H3>
 Functions with no stack information
@@ -198,15 +198,15 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry
 </UL>
 
-<P><STRONG><a name="[372]"></a>__scatterload_rt2_thumb_only</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter), UNUSED)
+<P><STRONG><a name="[384]"></a>__scatterload_rt2_thumb_only</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter), UNUSED)
 
-<P><STRONG><a name="[373]"></a>__scatterload_null</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter), UNUSED)
+<P><STRONG><a name="[385]"></a>__scatterload_null</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter), UNUSED)
 
-<P><STRONG><a name="[374]"></a>__decompress</STRONG> (Thumb, 90 bytes, Stack size unknown bytes, __dczerorl2.o(!!dczerorl2), UNUSED)
+<P><STRONG><a name="[386]"></a>__decompress</STRONG> (Thumb, 90 bytes, Stack size unknown bytes, __dczerorl2.o(!!dczerorl2), UNUSED)
 
-<P><STRONG><a name="[375]"></a>__decompress1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __dczerorl2.o(!!dczerorl2), UNUSED)
+<P><STRONG><a name="[387]"></a>__decompress1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __dczerorl2.o(!!dczerorl2), UNUSED)
 
-<P><STRONG><a name="[376]"></a>__scatterload_zeroinit</STRONG> (Thumb, 28 bytes, Stack size unknown bytes, __scatter_zi.o(!!handler_zi), UNUSED)
+<P><STRONG><a name="[388]"></a>__scatterload_zeroinit</STRONG> (Thumb, 28 bytes, Stack size unknown bytes, __scatter_zi.o(!!handler_zi), UNUSED)
 
 <P><STRONG><a name="[ab]"></a>_printf_n</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, _printf_n.o(.ARM.Collect$$_printf_percent$$00000001))
 <BR><BR>[Calls]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_charcount
@@ -251,7 +251,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_fp_hex
 </UL>
 
-<P><STRONG><a name="[377]"></a>_printf_ll</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, _printf_ll.o(.ARM.Collect$$_printf_percent$$00000007))
+<P><STRONG><a name="[389]"></a>_printf_ll</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, _printf_ll.o(.ARM.Collect$$_printf_percent$$00000007))
 
 <P><STRONG><a name="[b5]"></a>_printf_i</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, _printf_i.o(.ARM.Collect$$_printf_percent$$00000008))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72 + Unknown Stack Size
@@ -323,7 +323,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_ll_hex
 </UL>
 
-<P><STRONG><a name="[378]"></a>_printf_l</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, _printf_l.o(.ARM.Collect$$_printf_percent$$00000012))
+<P><STRONG><a name="[38a]"></a>_printf_l</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, _printf_l.o(.ARM.Collect$$_printf_percent$$00000012))
 
 <P><STRONG><a name="[c5]"></a>_printf_c</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, _printf_c.o(.ARM.Collect$$_printf_percent$$00000013))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40 + Unknown Stack Size
@@ -353,27 +353,27 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_wstring
 </UL>
 
-<P><STRONG><a name="[379]"></a>_printf_percent_end</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, _printf_percent_end.o(.ARM.Collect$$_printf_percent$$00000017))
+<P><STRONG><a name="[38b]"></a>_printf_percent_end</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, _printf_percent_end.o(.ARM.Collect$$_printf_percent$$00000017))
 
 <P><STRONG><a name="[d5]"></a>__rt_lib_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit.o(.ARM.Collect$$libinit$$00000000))
 <BR><BR>[Called By]<UL><LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_li
 </UL>
 
-<P><STRONG><a name="[37a]"></a>__rt_lib_init_fp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000002))
+<P><STRONG><a name="[38c]"></a>__rt_lib_init_fp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000002))
 
-<P><STRONG><a name="[37b]"></a>__rt_lib_init_heap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000A))
+<P><STRONG><a name="[38d]"></a>__rt_lib_init_heap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000A))
 
 <P><STRONG><a name="[cd]"></a>__rt_lib_init_lc_common</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000F))
 <BR><BR>[Calls]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_locale
 </UL>
 
-<P><STRONG><a name="[37c]"></a>__rt_lib_init_preinit_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000004))
+<P><STRONG><a name="[38e]"></a>__rt_lib_init_preinit_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000004))
 
-<P><STRONG><a name="[37d]"></a>__rt_lib_init_rand_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000E))
+<P><STRONG><a name="[38f]"></a>__rt_lib_init_rand_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000E))
 
-<P><STRONG><a name="[37e]"></a>__rt_lib_init_user_alloc_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000C))
+<P><STRONG><a name="[390]"></a>__rt_lib_init_user_alloc_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000C))
 
-<P><STRONG><a name="[37f]"></a>__rt_lib_init_lc_collate_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000011))
+<P><STRONG><a name="[391]"></a>__rt_lib_init_lc_collate_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000011))
 
 <P><STRONG><a name="[cf]"></a>__rt_lib_init_lc_ctype_2</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000012))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
@@ -382,9 +382,9 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_get_lc_ctype
 </UL>
 
-<P><STRONG><a name="[380]"></a>__rt_lib_init_lc_ctype_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000013))
+<P><STRONG><a name="[392]"></a>__rt_lib_init_lc_ctype_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000013))
 
-<P><STRONG><a name="[381]"></a>__rt_lib_init_lc_monetary_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000015))
+<P><STRONG><a name="[393]"></a>__rt_lib_init_lc_monetary_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000015))
 
 <P><STRONG><a name="[d0]"></a>__rt_lib_init_lc_numeric_2</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000016))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
@@ -393,58 +393,58 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_get_lc_numeric
 </UL>
 
-<P><STRONG><a name="[382]"></a>__rt_lib_init_alloca_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000002E))
+<P><STRONG><a name="[394]"></a>__rt_lib_init_alloca_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000002E))
 
-<P><STRONG><a name="[383]"></a>__rt_lib_init_argv_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000002C))
+<P><STRONG><a name="[395]"></a>__rt_lib_init_argv_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000002C))
 
-<P><STRONG><a name="[384]"></a>__rt_lib_init_atexit_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001B))
+<P><STRONG><a name="[396]"></a>__rt_lib_init_atexit_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001B))
 
-<P><STRONG><a name="[385]"></a>__rt_lib_init_clock_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000021))
+<P><STRONG><a name="[397]"></a>__rt_lib_init_clock_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000021))
 
-<P><STRONG><a name="[386]"></a>__rt_lib_init_cpp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000032))
+<P><STRONG><a name="[398]"></a>__rt_lib_init_cpp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000032))
 
-<P><STRONG><a name="[387]"></a>__rt_lib_init_exceptions_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000030))
+<P><STRONG><a name="[399]"></a>__rt_lib_init_exceptions_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000030))
 
-<P><STRONG><a name="[388]"></a>__rt_lib_init_fp_trap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001F))
+<P><STRONG><a name="[39a]"></a>__rt_lib_init_fp_trap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001F))
 
-<P><STRONG><a name="[389]"></a>__rt_lib_init_getenv_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000023))
+<P><STRONG><a name="[39b]"></a>__rt_lib_init_getenv_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000023))
 
-<P><STRONG><a name="[38a]"></a>__rt_lib_init_lc_numeric_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000017))
+<P><STRONG><a name="[39c]"></a>__rt_lib_init_lc_numeric_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000017))
 
-<P><STRONG><a name="[38b]"></a>__rt_lib_init_lc_time_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000019))
+<P><STRONG><a name="[39d]"></a>__rt_lib_init_lc_time_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000019))
 
-<P><STRONG><a name="[38c]"></a>__rt_lib_init_return</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000033))
+<P><STRONG><a name="[39e]"></a>__rt_lib_init_return</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000033))
 
-<P><STRONG><a name="[38d]"></a>__rt_lib_init_signal_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001D))
+<P><STRONG><a name="[39f]"></a>__rt_lib_init_signal_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001D))
 
-<P><STRONG><a name="[38e]"></a>__rt_lib_init_stdio_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000025))
+<P><STRONG><a name="[3a0]"></a>__rt_lib_init_stdio_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000025))
 
 <P><STRONG><a name="[da]"></a>__rt_lib_shutdown</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown.o(.ARM.Collect$$libshutdown$$00000000))
 <BR><BR>[Called By]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_exit_ls
 </UL>
 
-<P><STRONG><a name="[38f]"></a>__rt_lib_shutdown_cpp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000004))
+<P><STRONG><a name="[3a1]"></a>__rt_lib_shutdown_cpp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000004))
 
-<P><STRONG><a name="[390]"></a>__rt_lib_shutdown_fini_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000002))
+<P><STRONG><a name="[3a2]"></a>__rt_lib_shutdown_fini_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000002))
 
-<P><STRONG><a name="[391]"></a>__rt_lib_shutdown_fp_trap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000009))
+<P><STRONG><a name="[3a3]"></a>__rt_lib_shutdown_fp_trap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000009))
 
-<P><STRONG><a name="[392]"></a>__rt_lib_shutdown_heap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000011))
+<P><STRONG><a name="[3a4]"></a>__rt_lib_shutdown_heap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000011))
 
-<P><STRONG><a name="[393]"></a>__rt_lib_shutdown_return</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000012))
+<P><STRONG><a name="[3a5]"></a>__rt_lib_shutdown_return</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000012))
 
-<P><STRONG><a name="[394]"></a>__rt_lib_shutdown_signal_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000C))
+<P><STRONG><a name="[3a6]"></a>__rt_lib_shutdown_signal_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000C))
 
-<P><STRONG><a name="[395]"></a>__rt_lib_shutdown_stdio_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000006))
+<P><STRONG><a name="[3a7]"></a>__rt_lib_shutdown_stdio_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000006))
 
-<P><STRONG><a name="[396]"></a>__rt_lib_shutdown_user_alloc_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000E))
+<P><STRONG><a name="[3a8]"></a>__rt_lib_shutdown_user_alloc_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000E))
 
 <P><STRONG><a name="[a9]"></a>__rt_entry</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry.o(.ARM.Collect$$rtentry$$00000000))
 <BR><BR>[Called By]<UL><LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
 <LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_rt2
 </UL>
 
-<P><STRONG><a name="[397]"></a>__rt_entry_presh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000002))
+<P><STRONG><a name="[3a9]"></a>__rt_entry_presh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000002))
 
 <P><STRONG><a name="[d2]"></a>__rt_entry_sh</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry4.o(.ARM.Collect$$rtentry$$00000004))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
@@ -457,17 +457,17 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init
 </UL>
 
-<P><STRONG><a name="[398]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000009))
+<P><STRONG><a name="[3aa]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000009))
 
 <P><STRONG><a name="[d6]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
-<BR><BR>[Stack]<UL><LI>Max Depth = 576 + Unknown Stack Size
-<LI>Call Chain = __rt_entry_main &rArr; main &rArr; systemManagerProcess &rArr; systemFunctionStateMachine &rArr; systemUpdateModeRun &rArr; updateManagerProcess &rArr; updateProcess &rArr; updateHandlePrepareBackup &rArr; updateStoreImageHeader &rArr; updateMetaCommit &rArr; updateStorageWrite &rArr; updateGetRegionCfg &rArr; __aeabi_memcpy4
+<BR><BR>[Stack]<UL><LI>Max Depth = 840 + Unknown Stack Size
+<LI>Call Chain = __rt_entry_main &rArr; main &rArr; systemManagerProcess &rArr; systemFunctionStateMachine &rArr; systemUpdateModeRun &rArr; updateManagerProcess &rArr; updateManagerProcessIdleRecovery &rArr; updateManagerHandleIdleTimeout &rArr; updateManagerRestoreAppFromBackup &rArr; updateManagerSetBootRecordRunApp &rArr; updateWriteBootRecord &rArr; updateStoreBootRecord &rArr; updateMetaCommit &rArr; updateStorageWrite &rArr; updateGetRegionCfg &rArr; __aeabi_memcpy4
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
 </UL>
 
-<P><STRONG><a name="[399]"></a>__rt_entry_postli_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000C))
+<P><STRONG><a name="[3ab]"></a>__rt_entry_postli_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000C))
 
 <P><STRONG><a name="[106]"></a>__rt_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtexit.o(.ARM.Collect$$rtexit$$00000000))
 <BR><BR>[Called By]<UL><LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
@@ -477,14 +477,14 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_shutdown
 </UL>
 
-<P><STRONG><a name="[39a]"></a>__rt_exit_prels_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtexit2.o(.ARM.Collect$$rtexit$$00000002))
+<P><STRONG><a name="[3ac]"></a>__rt_exit_prels_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtexit2.o(.ARM.Collect$$rtexit$$00000002))
 
 <P><STRONG><a name="[db]"></a>__rt_exit_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtexit2.o(.ARM.Collect$$rtexit$$00000004))
 <BR><BR>[Calls]<UL><LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_exit
 </UL>
 
-<P><STRONG><a name="[36c]"></a>__asm___12_update_mgr_c_7103a135__updateManagerLaunchApp</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, update_mgr.o(.emb_text))
-<BR><BR>[Called By]<UL><LI><a href="#[369]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerJumpToRegionInternal
+<P><STRONG><a name="[375]"></a>__asm___12_update_mgr_c_7103a135__updateManagerLaunchApp</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, update_mgr.o(.emb_text))
+<BR><BR>[Called By]<UL><LI><a href="#[36e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerJumpToRegionInternal
 </UL>
 
 <P><STRONG><a name="[25]"></a>Reset_Handler</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, startup_stm32f103xe.o(.text))
@@ -665,7 +665,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_FLASH_Program
 </UL>
 
-<P><STRONG><a name="[39b]"></a>_ll_ushift_r</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, llushr.o(.text), UNUSED)
+<P><STRONG><a name="[3ad]"></a>_ll_ushift_r</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, llushr.o(.text), UNUSED)
 
 <P><STRONG><a name="[df]"></a>vsnprintf</STRONG> (Thumb, 48 bytes, Stack size 24 bytes, vsnprintf.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 128 + Unknown Stack Size
@@ -796,22 +796,24 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[341]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateStoreImageHeader
 <LI><a href="#[342]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateStoreBootRecord
 <LI><a href="#[361]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateMetaLoad
-<LI><a href="#[36e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateMetaCommit
+<LI><a href="#[380]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateMetaCommit
 <LI><a href="#[351]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateLoadImageHeader
 <LI><a href="#[345]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateLoadBootRecord
+<LI><a href="#[37f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateWriteBootRecord
 <LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drvMcuFlashRead
-<LI><a href="#[1bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_ReadNoLock
+<LI><a href="#[377]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerReadMetaPayload
 <LI><a href="#[1c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_WriteNoCheck
 <LI><a href="#[1c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_WriteBlocking
 <LI><a href="#[2e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ringBufferCopyOut
 <LI><a href="#[2e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ringBufferCopyIn
+<LI><a href="#[1bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_ReadNoLock
 </UL>
 
 <P><STRONG><a name="[ed]"></a>__rt_memcpy</STRONG> (Thumb, 138 bytes, Stack size 0 bytes, rt_memcpy_v6.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
 </UL>
 
-<P><STRONG><a name="[39c]"></a>_memcpy_lastbytes</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rt_memcpy_v6.o(.text), UNUSED)
+<P><STRONG><a name="[3ae]"></a>_memcpy_lastbytes</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rt_memcpy_v6.o(.text), UNUSED)
 
 <P><STRONG><a name="[ee]"></a>__aeabi_memcpy4</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, rt_memcpy_w.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = __aeabi_memcpy4
@@ -822,7 +824,8 @@ Global Symbols
 <LI><a href="#[342]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateStoreBootRecord
 <LI><a href="#[34b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateHandlePrepareBackup
 <LI><a href="#[339]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateGetRegionCfg
-<LI><a href="#[365]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updatePortGetRegionMap
+<LI><a href="#[36a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updatePortGetRegionMap
+<LI><a href="#[368]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerGetRegionOps
 <LI><a href="#[272]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drvSpiWriteTimeout
 <LI><a href="#[273]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drvSpiWriteReadTimeout
 <LI><a href="#[26e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drvSpiReadTimeout
@@ -830,16 +833,16 @@ Global Symbols
 <LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cm_backtrace_fault
 </UL>
 
-<P><STRONG><a name="[39d]"></a>__aeabi_memcpy8</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, rt_memcpy_w.o(.text), UNUSED)
+<P><STRONG><a name="[3af]"></a>__aeabi_memcpy8</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, rt_memcpy_w.o(.text), UNUSED)
 
-<P><STRONG><a name="[39e]"></a>__rt_memcpy_w</STRONG> (Thumb, 100 bytes, Stack size 8 bytes, rt_memcpy_w.o(.text), UNUSED)
+<P><STRONG><a name="[3b0]"></a>__rt_memcpy_w</STRONG> (Thumb, 100 bytes, Stack size 8 bytes, rt_memcpy_w.o(.text), UNUSED)
 
-<P><STRONG><a name="[39f]"></a>_memcpy_lastbytes_aligned</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rt_memcpy_w.o(.text), UNUSED)
+<P><STRONG><a name="[3b1]"></a>_memcpy_lastbytes_aligned</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rt_memcpy_w.o(.text), UNUSED)
 
 <P><STRONG><a name="[ef]"></a>__aeabi_memset</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, aeabi_memset.o(.text))
 <BR><BR>[Calls]<UL><LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_memset
 </UL>
-<BR>[Called By]<UL><LI><a href="#[36e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateMetaCommit
+<BR>[Called By]<UL><LI><a href="#[380]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateMetaCommit
 </UL>
 
 <P><STRONG><a name="[f4]"></a>__aeabi_memclr</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, rt_memclr.o(.text))
@@ -865,15 +868,16 @@ Global Symbols
 <LI><a href="#[218]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;consoleInit
 <LI><a href="#[358]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updatePortLoadDefaultCfg
 <LI><a href="#[357]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateReset
+<LI><a href="#[37e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerSetBootRecordRunApp
 <LI><a href="#[1ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_DoInit
 <LI><a href="#[219]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;logInit
 <LI><a href="#[2ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;logInitOutputState
 <LI><a href="#[20c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;print_call_stack
 </UL>
 
-<P><STRONG><a name="[3a0]"></a>__aeabi_memclr8</STRONG> (Thumb, 0 bytes, Stack size 4 bytes, rt_memclr_w.o(.text), UNUSED)
+<P><STRONG><a name="[3b2]"></a>__aeabi_memclr8</STRONG> (Thumb, 0 bytes, Stack size 4 bytes, rt_memclr_w.o(.text), UNUSED)
 
-<P><STRONG><a name="[3a1]"></a>__rt_memclr_w</STRONG> (Thumb, 78 bytes, Stack size 4 bytes, rt_memclr_w.o(.text), UNUSED)
+<P><STRONG><a name="[3b3]"></a>__rt_memclr_w</STRONG> (Thumb, 78 bytes, Stack size 4 bytes, rt_memclr_w.o(.text), UNUSED)
 
 <P><STRONG><a name="[f2]"></a>_memset_w</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rt_memclr_w.o(.text), UNUSED)
 <BR><BR>[Called By]<UL><LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_memclr
@@ -897,16 +901,16 @@ Global Symbols
 <LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_get_lc_numeric
 </UL>
 
-<P><STRONG><a name="[3a2]"></a>__use_two_region_memory</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
+<P><STRONG><a name="[3b4]"></a>__use_two_region_memory</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
 
 <P><STRONG><a name="[9]"></a>__rt_heap_escrow</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
 
 <P><STRONG><a name="[8]"></a>__rt_heap_expand</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
 
 <P><STRONG><a name="[ce]"></a>__rt_locale</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, rt_locale_intlibspace.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init_lc_common
-<LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_fp_dec_real
+<BR><BR>[Called By]<UL><LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_fp_dec_real
 <LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_ctype_table
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init_lc_common
 </UL>
 
 <P><STRONG><a name="[e6]"></a>_printf_truncate_signed</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, _printf_truncate.o(.text))
@@ -1029,13 +1033,13 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_llo
 </UL>
 
-<P><STRONG><a name="[3a3]"></a>__user_libspace</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
+<P><STRONG><a name="[3b5]"></a>__user_libspace</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
 
 <P><STRONG><a name="[104]"></a>__user_perproc_libspace</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, libspace.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
 </UL>
 
-<P><STRONG><a name="[3a4]"></a>__user_perthread_libspace</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
+<P><STRONG><a name="[3b6]"></a>__user_perthread_libspace</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
 
 <P><STRONG><a name="[f8]"></a>_ll_udiv10</STRONG> (Thumb, 138 bytes, Stack size 12 bytes, lludiv10.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = _ll_udiv10
@@ -1044,7 +1048,7 @@ Global Symbols
 <LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_longlong_dec
 </UL>
 
-<P><STRONG><a name="[3a5]"></a>__lib_sel_fp_printf</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, _printf_fp_dec.o(.text), UNUSED)
+<P><STRONG><a name="[3b7]"></a>__lib_sel_fp_printf</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, _printf_fp_dec.o(.text), UNUSED)
 
 <P><STRONG><a name="[ff]"></a>_printf_fp_dec_real</STRONG> (Thumb, 620 bytes, Stack size 104 bytes, _printf_fp_dec.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 324<LI>Call Chain = _printf_fp_dec_real &rArr; _fp_digits &rArr; _btod_etento &rArr; _btod_emul &rArr; _e2e
@@ -1141,11 +1145,11 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
 
-<P><STRONG><a name="[3a6]"></a>__I$use$semihosting</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
+<P><STRONG><a name="[3b8]"></a>__I$use$semihosting</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
 
-<P><STRONG><a name="[3a7]"></a>__use_no_semihosting_swi</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
+<P><STRONG><a name="[3b9]"></a>__use_no_semihosting_swi</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
 
-<P><STRONG><a name="[3a8]"></a>__semihosting_library_function</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, indicate_semi.o(.text), UNUSED)
+<P><STRONG><a name="[3ba]"></a>__semihosting_library_function</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, indicate_semi.o(.text), UNUSED)
 
 <P><STRONG><a name="[dc]"></a>_sys_exit</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, sys_exit.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_exit_exit
@@ -1399,7 +1403,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_MspDeInit
 </UL>
-<BR>[Called By]<UL><LI><a href="#[36b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerPrepareAppJump
+<BR>[Called By]<UL><LI><a href="#[374]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerPrepareAppJump
 </UL>
 
 <P><STRONG><a name="[127]"></a>HAL_Delay</STRONG> (Thumb, 36 bytes, Stack size 16 bytes, stm32f1xx_hal.o(i.HAL_Delay))
@@ -1786,7 +1790,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_InitTick
 <LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 </UL>
-<BR>[Called By]<UL><LI><a href="#[36b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerPrepareAppJump
+<BR>[Called By]<UL><LI><a href="#[374]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerPrepareAppJump
 </UL>
 
 <P><STRONG><a name="[135]"></a>HAL_RCC_GetClockConfig</STRONG> (Thumb, 58 bytes, Stack size 0 bytes, stm32f1xx_hal_rcc.o(i.HAL_RCC_GetClockConfig))
@@ -2287,13 +2291,13 @@ Global Symbols
 <P><STRONG><a name="[1bf]"></a>SEGGER_RTT_Write</STRONG> (Thumb, 70 bytes, Stack size 24 bytes, segger_rtt.o(i.SEGGER_RTT_Write))
 <BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = SEGGER_RTT_Write &rArr; SEGGER_RTT_WriteNoLock &rArr; _WriteBlocking
 </UL>
-<BR>[Calls]<UL><LI><a href="#[1c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_WriteNoLock
-<LI><a href="#[1ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_DoInit
+<BR>[Calls]<UL><LI><a href="#[1ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_DoInit
+<LI><a href="#[1c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_WriteNoLock
 </UL>
-<BR>[Called By]<UL><LI><a href="#[1c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_vprintf
+<BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bspRttLogWrite
+<LI><a href="#[1c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_vprintf
 <LI><a href="#[1c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_StoreChar
 <LI><a href="#[1c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_WriteString
-<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bspRttLogWrite
 </UL>
 
 <P><STRONG><a name="[1c0]"></a>SEGGER_RTT_WriteNoLock</STRONG> (Thumb, 126 bytes, Stack size 32 bytes, segger_rtt.o(i.SEGGER_RTT_WriteNoLock))
@@ -2336,10 +2340,10 @@ Global Symbols
 <P><STRONG><a name="[1c7]"></a>SEGGER_RTT_vprintf</STRONG> (Thumb, 582 bytes, Stack size 144 bytes, segger_rtt_printf.o(i.SEGGER_RTT_vprintf))
 <BR><BR>[Stack]<UL><LI>Max Depth = 352<LI>Call Chain = SEGGER_RTT_vprintf &rArr; _PrintInt &rArr; _PrintUnsigned &rArr; _StoreChar &rArr; SEGGER_RTT_Write &rArr; SEGGER_RTT_WriteNoLock &rArr; _WriteBlocking
 </UL>
-<BR>[Calls]<UL><LI><a href="#[1c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_StoreChar
+<BR>[Calls]<UL><LI><a href="#[1bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_Write
+<LI><a href="#[1c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_StoreChar
 <LI><a href="#[1ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_PrintUnsigned
 <LI><a href="#[1c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_PrintInt
-<LI><a href="#[1bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_Write
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_printf
 </UL>
@@ -3009,8 +3013,8 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 68<LI>Call Chain = bspSpiCsInit &rArr; HAL_GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_Init
-<LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bspSpiCsWrite
 <LI><a href="#[201]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bspSpiEnableGpioClock
+<LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bspSpiCsWrite
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> drvspi_port.o(.data)
 </UL>
@@ -3038,9 +3042,9 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[180]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SPI_TransmitReceive
 <LI><a href="#[17e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SPI_Transmit
-<LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bspSpiInit
 <LI><a href="#[203]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bspSpiMapHalStatus
 <LI><a href="#[202]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bspSpiGetHandle
+<LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bspSpiInit
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> drvspi_port.o(.data)
 </UL>
@@ -3241,7 +3245,7 @@ Global Symbols
 <LI><a href="#[242]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drvMcuFlashLock
 <LI><a href="#[245]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drvMcuFlashHasValidMutableBuffer
 </UL>
-<BR>[Called By]<UL><LI><a href="#[36a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerReadAppVector
+<BR>[Called By]<UL><LI><a href="#[373]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerReadAppVector
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> update_port.o(.constdata)
 </UL>
@@ -3306,8 +3310,8 @@ Global Symbols
 <LI><a href="#[264]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drvSpiGetBspInterface
 <LI><a href="#[25c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drvSpiEnsureMutex
 </UL>
-<BR>[Called By]<UL><LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxPortSpiInit
-<LI><a href="#[24b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drvSpiDebugHandleInit
+<BR>[Called By]<UL><LI><a href="#[24b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drvSpiDebugHandleInit
+<LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxPortSpiInit
 </UL>
 
 <P><STRONG><a name="[258]"></a>drvSpiRead</STRONG> (Thumb, 22 bytes, Stack size 16 bytes, drvspi.o(i.drvSpiRead))
@@ -3420,14 +3424,14 @@ Global Symbols
 <P><STRONG><a name="[27c]"></a>gd25qxxxEraseBlock64k</STRONG> (Thumb, 154 bytes, Stack size 48 bytes, gd25qxxx.o(i.gd25qxxxEraseBlock64k))
 <BR><BR>[Stack]<UL><LI>Max Depth = 200<LI>Call Chain = gd25qxxxEraseBlock64k &rArr; gd25qxxxWriteEnInt &rArr; gd25qxxxReadStatus1Int &rArr; gd25qxxxTransferInt &rArr; gd25qxxxGetSpiIf &rArr; gd25qxxxIsValidDev
 </UL>
-<BR>[Calls]<UL><LI><a href="#[280]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxWriteEnInt
+<BR>[Calls]<UL><LI><a href="#[281]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxGetBlkEraseCmd
+<LI><a href="#[282]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxBuildAddrCmd
+<LI><a href="#[280]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxWriteEnInt
 <LI><a href="#[284]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxWaitReadyInt
 <LI><a href="#[283]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxTransferInt
 <LI><a href="#[27e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxIsReadyXfer
 <LI><a href="#[27f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxIsRangeValid
 <LI><a href="#[27d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxGetDevCtx
-<LI><a href="#[281]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxGetBlkEraseCmd
-<LI><a href="#[282]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxBuildAddrCmd
 </UL>
 <BR>[Called By]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updatePortEraseExtFlash1
 </UL>
@@ -3435,14 +3439,14 @@ Global Symbols
 <P><STRONG><a name="[285]"></a>gd25qxxxEraseSector</STRONG> (Thumb, 154 bytes, Stack size 48 bytes, gd25qxxx.o(i.gd25qxxxEraseSector))
 <BR><BR>[Stack]<UL><LI>Max Depth = 200<LI>Call Chain = gd25qxxxEraseSector &rArr; gd25qxxxWriteEnInt &rArr; gd25qxxxReadStatus1Int &rArr; gd25qxxxTransferInt &rArr; gd25qxxxGetSpiIf &rArr; gd25qxxxIsValidDev
 </UL>
-<BR>[Calls]<UL><LI><a href="#[280]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxWriteEnInt
+<BR>[Calls]<UL><LI><a href="#[282]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxBuildAddrCmd
+<LI><a href="#[280]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxWriteEnInt
 <LI><a href="#[284]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxWaitReadyInt
 <LI><a href="#[283]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxTransferInt
 <LI><a href="#[27e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxIsReadyXfer
 <LI><a href="#[27f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxIsRangeValid
 <LI><a href="#[286]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxGetSectEraseCmd
 <LI><a href="#[27d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxGetDevCtx
-<LI><a href="#[282]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxBuildAddrCmd
 </UL>
 <BR>[Called By]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updatePortEraseExtFlash1
 </UL>
@@ -3458,15 +3462,15 @@ Global Symbols
 <P><STRONG><a name="[278]"></a>gd25qxxxInit</STRONG> (Thumb, 146 bytes, Stack size 24 bytes, gd25qxxx.o(i.gd25qxxxInit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = gd25qxxxInit &rArr; gd25qxxxReadJedecIdInt &rArr; gd25qxxxTransferInt &rArr; gd25qxxxGetSpiIf &rArr; gd25qxxxIsValidDev
 </UL>
-<BR>[Calls]<UL><LI><a href="#[28b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxPlatformIsValidCfg
+<BR>[Calls]<UL><LI><a href="#[291]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxFillInfo
+<LI><a href="#[289]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxClrInfo
+<LI><a href="#[28b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxPlatformIsValidCfg
 <LI><a href="#[28f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxReadJedecIdInt
 <LI><a href="#[28e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxMapPortStatus
 <LI><a href="#[28d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxIsValidDev
 <LI><a href="#[290]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxIsValidCapacityId
 <LI><a href="#[28c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxGetSpiIf
 <LI><a href="#[27d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxGetDevCtx
-<LI><a href="#[291]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxFillInfo
-<LI><a href="#[289]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxClrInfo
 </UL>
 <BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updatePortInitExtFlash1
 <LI><a href="#[276]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;flashManagerProbe
@@ -3493,12 +3497,12 @@ Global Symbols
 <P><STRONG><a name="[295]"></a>gd25qxxxRead</STRONG> (Thumb, 170 bytes, Stack size 64 bytes, gd25qxxx.o(i.gd25qxxxRead))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = gd25qxxxRead &rArr; gd25qxxxTransferInt &rArr; gd25qxxxGetSpiIf &rArr; gd25qxxxIsValidDev
 </UL>
-<BR>[Calls]<UL><LI><a href="#[283]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxTransferInt
+<BR>[Calls]<UL><LI><a href="#[282]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxBuildAddrCmd
+<LI><a href="#[283]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxTransferInt
 <LI><a href="#[27e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxIsReadyXfer
 <LI><a href="#[27f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxIsRangeValid
 <LI><a href="#[296]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxGetReadCmd
 <LI><a href="#[27d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxGetDevCtx
-<LI><a href="#[282]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxBuildAddrCmd
 </UL>
 <BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updatePortReadExtFlash1
 </UL>
@@ -3528,14 +3532,14 @@ Global Symbols
 <P><STRONG><a name="[298]"></a>gd25qxxxWrite</STRONG> (Thumb, 218 bytes, Stack size 80 bytes, gd25qxxx.o(i.gd25qxxxWrite))
 <BR><BR>[Stack]<UL><LI>Max Depth = 232<LI>Call Chain = gd25qxxxWrite &rArr; gd25qxxxWriteEnInt &rArr; gd25qxxxReadStatus1Int &rArr; gd25qxxxTransferInt &rArr; gd25qxxxGetSpiIf &rArr; gd25qxxxIsValidDev
 </UL>
-<BR>[Calls]<UL><LI><a href="#[280]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxWriteEnInt
+<BR>[Calls]<UL><LI><a href="#[282]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxBuildAddrCmd
+<LI><a href="#[280]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxWriteEnInt
 <LI><a href="#[284]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxWaitReadyInt
 <LI><a href="#[283]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxTransferInt
 <LI><a href="#[27e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxIsReadyXfer
 <LI><a href="#[27f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxIsRangeValid
 <LI><a href="#[299]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxGetProgCmd
 <LI><a href="#[27d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxGetDevCtx
-<LI><a href="#[282]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxBuildAddrCmd
 </UL>
 <BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updatePortWriteExtFlash1
 </UL>
@@ -3644,7 +3648,10 @@ Global Symbols
 <LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drvMcuFlashInit
 <LI><a href="#[362]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateLogStateTransition
 <LI><a href="#[33f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateLogProgress
-<LI><a href="#[369]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerJumpToRegionInternal
+<LI><a href="#[37e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerSetBootRecordRunApp
+<LI><a href="#[36f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerRestoreAppFromBackup
+<LI><a href="#[36e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerJumpToRegionInternal
+<LI><a href="#[36c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerHandleIdleTimeout
 <LI><a href="#[276]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;flashManagerProbe
 <LI><a href="#[27a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;flashManagerProcess
 <LI><a href="#[237]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;displayManagerProcess
@@ -3664,8 +3671,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[d7]"></a>main</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, main.o(i.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 576 + Unknown Stack Size
-<LI>Call Chain = main &rArr; systemManagerProcess &rArr; systemFunctionStateMachine &rArr; systemUpdateModeRun &rArr; updateManagerProcess &rArr; updateProcess &rArr; updateHandlePrepareBackup &rArr; updateStoreImageHeader &rArr; updateMetaCommit &rArr; updateStorageWrite &rArr; updateGetRegionCfg &rArr; __aeabi_memcpy4
+<BR><BR>[Stack]<UL><LI>Max Depth = 840 + Unknown Stack Size
+<LI>Call Chain = main &rArr; systemManagerProcess &rArr; systemFunctionStateMachine &rArr; systemUpdateModeRun &rArr; updateManagerProcess &rArr; updateManagerProcessIdleRecovery &rArr; updateManagerHandleIdleTimeout &rArr; updateManagerRestoreAppFromBackup &rArr; updateManagerSetBootRecordRunApp &rArr; updateWriteBootRecord &rArr; updateStoreBootRecord &rArr; updateMetaCommit &rArr; updateStorageWrite &rArr; updateGetRegionCfg &rArr; __aeabi_memcpy4
 </UL>
 <BR>[Calls]<UL><LI><a href="#[2b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;systemManagerProcess
 <LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Init
@@ -3846,8 +3853,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[2dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;repRtosGetOps
 </UL>
-<BR>[Called By]<UL><LI><a href="#[293]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxPlatformDelayMs
-<LI><a href="#[2c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pca9535PlatformDelayMs
+<BR>[Called By]<UL><LI><a href="#[2c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pca9535PlatformDelayMs
+<LI><a href="#[293]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxPlatformDelayMs
 </UL>
 
 <P><STRONG><a name="[29b]"></a>repRtosEnterCritical</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, rtos.o(i.repRtosEnterCritical))
@@ -3879,7 +3886,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[2dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;repRtosGetOps
 </UL>
-<BR>[Called By]<UL><LI><a href="#[36f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updatePortGetTickMs
+<BR>[Called By]<UL><LI><a href="#[381]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updatePortGetTickMs
 <LI><a href="#[210]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;consoleGetTick
 <LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;logGetDefaultTimestamp
 </UL>
@@ -4045,8 +4052,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[300]"></a>systemFunctionStateMachine</STRONG> (Thumb, 62 bytes, Stack size 8 bytes, sysmgr.o(i.systemFunctionStateMachine))
-<BR><BR>[Stack]<UL><LI>Max Depth = 568 + Unknown Stack Size
-<LI>Call Chain = systemFunctionStateMachine &rArr; systemUpdateModeRun &rArr; updateManagerProcess &rArr; updateProcess &rArr; updateHandlePrepareBackup &rArr; updateStoreImageHeader &rArr; updateMetaCommit &rArr; updateStorageWrite &rArr; updateGetRegionCfg &rArr; __aeabi_memcpy4
+<BR><BR>[Stack]<UL><LI>Max Depth = 832 + Unknown Stack Size
+<LI>Call Chain = systemFunctionStateMachine &rArr; systemUpdateModeRun &rArr; updateManagerProcess &rArr; updateManagerProcessIdleRecovery &rArr; updateManagerHandleIdleTimeout &rArr; updateManagerRestoreAppFromBackup &rArr; updateManagerSetBootRecordRunApp &rArr; updateWriteBootRecord &rArr; updateStoreBootRecord &rArr; updateMetaCommit &rArr; updateStorageWrite &rArr; updateGetRegionCfg &rArr; __aeabi_memcpy4
 </UL>
 <BR>[Calls]<UL><LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Drv_GetTick
 <LI><a href="#[302]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;systemUpdateModeRun
@@ -4128,8 +4135,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[2b7]"></a>systemManagerProcess</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, sysmgr.o(i.systemManagerProcess))
-<BR><BR>[Stack]<UL><LI>Max Depth = 576 + Unknown Stack Size
-<LI>Call Chain = systemManagerProcess &rArr; systemFunctionStateMachine &rArr; systemUpdateModeRun &rArr; updateManagerProcess &rArr; updateProcess &rArr; updateHandlePrepareBackup &rArr; updateStoreImageHeader &rArr; updateMetaCommit &rArr; updateStorageWrite &rArr; updateGetRegionCfg &rArr; __aeabi_memcpy4
+<BR><BR>[Stack]<UL><LI>Max Depth = 840 + Unknown Stack Size
+<LI>Call Chain = systemManagerProcess &rArr; systemFunctionStateMachine &rArr; systemUpdateModeRun &rArr; updateManagerProcess &rArr; updateManagerProcessIdleRecovery &rArr; updateManagerHandleIdleTimeout &rArr; updateManagerRestoreAppFromBackup &rArr; updateManagerSetBootRecordRunApp &rArr; updateWriteBootRecord &rArr; updateStoreBootRecord &rArr; updateMetaCommit &rArr; updateStorageWrite &rArr; updateGetRegionCfg &rArr; __aeabi_memcpy4
 </UL>
 <BR>[Calls]<UL><LI><a href="#[225]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;consoleProcess
 <LI><a href="#[300]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;systemFunctionStateMachine
@@ -4184,8 +4191,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[302]"></a>systemUpdateModeRun</STRONG> (Thumb, 46 bytes, Stack size 16 bytes, sysmgr.o(i.systemUpdateModeRun))
-<BR><BR>[Stack]<UL><LI>Max Depth = 560 + Unknown Stack Size
-<LI>Call Chain = systemUpdateModeRun &rArr; updateManagerProcess &rArr; updateProcess &rArr; updateHandlePrepareBackup &rArr; updateStoreImageHeader &rArr; updateMetaCommit &rArr; updateStorageWrite &rArr; updateGetRegionCfg &rArr; __aeabi_memcpy4
+<BR><BR>[Stack]<UL><LI>Max Depth = 824 + Unknown Stack Size
+<LI>Call Chain = systemUpdateModeRun &rArr; updateManagerProcess &rArr; updateManagerProcessIdleRecovery &rArr; updateManagerHandleIdleTimeout &rArr; updateManagerRestoreAppFromBackup &rArr; updateManagerSetBootRecordRunApp &rArr; updateWriteBootRecord &rArr; updateStoreBootRecord &rArr; updateMetaCommit &rArr; updateStorageWrite &rArr; updateGetRegionCfg &rArr; __aeabi_memcpy4
 </UL>
 <BR>[Calls]<UL><LI><a href="#[30e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerProcess
 <LI><a href="#[30d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerGetStatus
@@ -4220,13 +4227,13 @@ Global Symbols
 <P><STRONG><a name="[31f]"></a>tm1651Init</STRONG> (Thumb, 116 bytes, Stack size 24 bytes, tm1651.o(i.tm1651Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 124<LI>Call Chain = tm1651Init &rArr; tm1651RefreshDisplay &rArr; tm1651ApplyDisplayCtrl &rArr; tm1651WriteFrame &rArr; tm1651GetIicIf &rArr; tm1651GetPlatformIicInterface
 </UL>
-<BR>[Calls]<UL><LI><a href="#[31d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tm1651PlatformIsValidAssemble
-<LI><a href="#[320]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tm1651PlatformGetLinkId
-<LI><a href="#[317]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tm1651RefreshDisplay
+<BR>[Calls]<UL><LI><a href="#[317]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tm1651RefreshDisplay
 <LI><a href="#[31b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tm1651IsValidCfg
 <LI><a href="#[31a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tm1651GetIicIf
 <LI><a href="#[313]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tm1651GetDevCtx
 <LI><a href="#[315]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tm1651FillBlank
+<LI><a href="#[31d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tm1651PlatformIsValidAssemble
+<LI><a href="#[320]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tm1651PlatformGetLinkId
 </UL>
 <BR>[Called By]<UL><LI><a href="#[231]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tm1651PortInit
 </UL>
@@ -4251,9 +4258,9 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[31d]"></a>tm1651PlatformIsValidAssemble</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, tm1651_port.o(i.tm1651PlatformIsValidAssemble))
-<BR><BR>[Called By]<UL><LI><a href="#[31e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tm1651GetPlatformIicInterface
-<LI><a href="#[31f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tm1651Init
+<BR><BR>[Called By]<UL><LI><a href="#[31f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tm1651Init
 <LI><a href="#[31a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tm1651GetIicIf
+<LI><a href="#[31e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tm1651GetPlatformIicInterface
 </UL>
 
 <P><STRONG><a name="[231]"></a>tm1651PortInit</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, tm1651_port.o(i.tm1651PortInit))
@@ -4362,7 +4369,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[337]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateDbgNotifyStateChanged
 </UL>
 
-<P><STRONG><a name="[366]"></a>updateGetStatus</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, update.o(i.updateGetStatus))
+<P><STRONG><a name="[36b]"></a>updateGetStatus</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, update.o(i.updateGetStatus))
 <BR><BR>[Called By]<UL><LI><a href="#[30e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerProcess
 <LI><a href="#[30d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerGetStatus
 </UL>
@@ -4394,7 +4401,7 @@ Global Symbols
 <P><STRONG><a name="[30d]"></a>updateManagerGetStatus</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, update_mgr.o(i.updateManagerGetStatus))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = updateManagerGetStatus
 </UL>
-<BR>[Calls]<UL><LI><a href="#[366]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateGetStatus
+<BR>[Calls]<UL><LI><a href="#[36b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateGetStatus
 </UL>
 <BR>[Called By]<UL><LI><a href="#[302]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;systemUpdateModeRun
 </UL>
@@ -4402,13 +4409,13 @@ Global Symbols
 <P><STRONG><a name="[2ef]"></a>updateManagerHasNormalAppBootFlag</STRONG> (Thumb, 26 bytes, Stack size 72 bytes, update_mgr.o(i.updateManagerHasNormalAppBootFlag))
 <BR><BR>[Stack]<UL><LI>Max Depth = 424<LI>Call Chain = updateManagerHasNormalAppBootFlag &rArr; updateReadBootRecord &rArr; updateLoadBootRecord &rArr; updateMetaLoad &rArr; updateStorageRead &rArr; updateGetRegionCfg &rArr; __aeabi_memcpy4
 </UL>
-<BR>[Calls]<UL><LI><a href="#[367]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateReadBootRecord
-<LI><a href="#[368]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerCanBootNormally
+<BR>[Calls]<UL><LI><a href="#[370]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateReadBootRecord
+<LI><a href="#[371]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerCanBootNormally
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;systemCheckModeRun
 </UL>
 
-<P><STRONG><a name="[307]"></a>updateManagerInit</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, update_mgr.o(i.updateManagerInit))
+<P><STRONG><a name="[307]"></a>updateManagerInit</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, update_mgr.o(i.updateManagerInit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 360 + Unknown Stack Size
 <LI>Call Chain = updateManagerInit &rArr; updateInit &rArr; updateSetState &rArr; updateLogStateTransition &rArr; logWrite &rArr; logVWrite &rArr; logFormatLine &rArr; __2snprintf &rArr; _printf_char_common &rArr; __printf
 </UL>
@@ -4426,15 +4433,28 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[2ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;systemCheckModeRun
 </UL>
 
-<P><STRONG><a name="[30e]"></a>updateManagerProcess</STRONG> (Thumb, 30 bytes, Stack size 16 bytes, update_mgr.o(i.updateManagerProcess))
-<BR><BR>[Stack]<UL><LI>Max Depth = 544 + Unknown Stack Size
-<LI>Call Chain = updateManagerProcess &rArr; updateProcess &rArr; updateHandlePrepareBackup &rArr; updateStoreImageHeader &rArr; updateMetaCommit &rArr; updateStorageWrite &rArr; updateGetRegionCfg &rArr; __aeabi_memcpy4
+<P><STRONG><a name="[30e]"></a>updateManagerProcess</STRONG> (Thumb, 50 bytes, Stack size 16 bytes, update_mgr.o(i.updateManagerProcess))
+<BR><BR>[Stack]<UL><LI>Max Depth = 808 + Unknown Stack Size
+<LI>Call Chain = updateManagerProcess &rArr; updateManagerProcessIdleRecovery &rArr; updateManagerHandleIdleTimeout &rArr; updateManagerRestoreAppFromBackup &rArr; updateManagerSetBootRecordRunApp &rArr; updateWriteBootRecord &rArr; updateStoreBootRecord &rArr; updateMetaCommit &rArr; updateStorageWrite &rArr; updateGetRegionCfg &rArr; __aeabi_memcpy4
 </UL>
-<BR>[Calls]<UL><LI><a href="#[36d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateProcess
+<BR>[Calls]<UL><LI><a href="#[379]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateProcess
 <LI><a href="#[35e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateJumpToTargetIfValid
-<LI><a href="#[366]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateGetStatus
+<LI><a href="#[36b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateGetStatus
+<LI><a href="#[37a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerProcessIdleRecovery
 </UL>
 <BR>[Called By]<UL><LI><a href="#[302]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;systemUpdateModeRun
+</UL>
+
+<P><STRONG><a name="[37e]"></a>updateManagerSetBootRecordRunApp</STRONG> (Thumb, 78 bytes, Stack size 72 bytes, update_mgr.o(i.updateManagerSetBootRecordRunApp))
+<BR><BR>[Stack]<UL><LI>Max Depth = 656 + Unknown Stack Size
+<LI>Call Chain = updateManagerSetBootRecordRunApp &rArr; updateWriteBootRecord &rArr; updateStoreBootRecord &rArr; updateMetaCommit &rArr; updateStorageWrite &rArr; updateGetRegionCfg &rArr; __aeabi_memcpy4
+</UL>
+<BR>[Calls]<UL><LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;logWrite
+<LI><a href="#[37f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateWriteBootRecord
+<LI><a href="#[370]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateReadBootRecord
+<LI><a href="#[1af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
+</UL>
+<BR>[Called By]<UL><LI><a href="#[36f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerRestoreAppFromBackup
 </UL>
 
 <P><STRONG><a name="[340]"></a>updatePortFeedWatchdog</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, update_mgr.o(i.updatePortFeedWatchdog))
@@ -4452,14 +4472,20 @@ Global Symbols
 <LI><a href="#[34b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateHandlePrepareBackup
 <LI><a href="#[347]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateHandleEraseTarget
 <LI><a href="#[33a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateHandleBackupRunApp
+<LI><a href="#[37d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerVerifyRegionCrc
+<LI><a href="#[36f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerRestoreAppFromBackup
 </UL>
 
-<P><STRONG><a name="[365]"></a>updatePortGetRegionMap</STRONG> (Thumb, 56 bytes, Stack size 16 bytes, update_port.o(i.updatePortGetRegionMap))
+<P><STRONG><a name="[36a]"></a>updatePortGetRegionMap</STRONG> (Thumb, 56 bytes, Stack size 16 bytes, update_port.o(i.updatePortGetRegionMap))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = updatePortGetRegionMap &rArr; __aeabi_memcpy4
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
 </UL>
-<BR>[Called By]<UL><LI><a href="#[364]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerGetExecutableRegion
+<BR>[Called By]<UL><LI><a href="#[36f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerRestoreAppFromBackup
+<LI><a href="#[377]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerReadMetaPayload
+<LI><a href="#[376]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerLoadBackupHeader
+<LI><a href="#[368]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerGetRegionOps
+<LI><a href="#[369]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerGetExecutableRegion
 </UL>
 
 <P><STRONG><a name="[35b]"></a>updatePortGetStorageOps</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, update_port.o(i.updatePortGetStorageOps))
@@ -4467,21 +4493,22 @@ Global Symbols
 <LI><a href="#[33c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateStorageRead
 <LI><a href="#[348]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateStorageErase
 <LI><a href="#[35a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateInitStorageDevices
+<LI><a href="#[368]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerGetRegionOps
 </UL>
 
-<P><STRONG><a name="[36f]"></a>updatePortGetTickMs</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, update_port.o(i.updatePortGetTickMs))
+<P><STRONG><a name="[381]"></a>updatePortGetTickMs</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, update_port.o(i.updatePortGetTickMs))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = updatePortGetTickMs &rArr; repRtosGetTickMs &rArr; repRtosGetOps
 </UL>
 <BR>[Calls]<UL><LI><a href="#[211]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;repRtosGetTickMs
 </UL>
-<BR>[Called By]<UL><LI><a href="#[370]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateResolveNowTick
+<BR>[Called By]<UL><LI><a href="#[382]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateResolveNowTick
 </UL>
 
 <P><STRONG><a name="[360]"></a>updatePortJumpToRegion</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, update_mgr.o(i.updatePortJumpToRegion))
 <BR><BR>[Stack]<UL><LI>Max Depth = 360 + Unknown Stack Size
 <LI>Call Chain = updatePortJumpToRegion &rArr; updateManagerJumpToRegionInternal &rArr; logWrite &rArr; logVWrite &rArr; logFormatLine &rArr; __2snprintf &rArr; _printf_char_common &rArr; __printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[369]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerJumpToRegionInternal
+<BR>[Calls]<UL><LI><a href="#[36e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerJumpToRegionInternal
 </UL>
 <BR>[Called By]<UL><LI><a href="#[35e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateJumpToTargetIfValid
 </UL>
@@ -4495,11 +4522,11 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[356]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateInit
 </UL>
 
-<P><STRONG><a name="[36d]"></a>updateProcess</STRONG> (Thumb, 140 bytes, Stack size 8 bytes, update.o(i.updateProcess))
+<P><STRONG><a name="[379]"></a>updateProcess</STRONG> (Thumb, 140 bytes, Stack size 8 bytes, update.o(i.updateProcess))
 <BR><BR>[Stack]<UL><LI>Max Depth = 528 + Unknown Stack Size
 <LI>Call Chain = updateProcess &rArr; updateHandlePrepareBackup &rArr; updateStoreImageHeader &rArr; updateMetaCommit &rArr; updateStorageWrite &rArr; updateGetRegionCfg &rArr; __aeabi_memcpy4
 </UL>
-<BR>[Calls]<UL><LI><a href="#[370]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateResolveNowTick
+<BR>[Calls]<UL><LI><a href="#[382]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateResolveNowTick
 <LI><a href="#[355]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateHandleVerifyTarget
 <LI><a href="#[354]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateHandleVerifyRollback
 <LI><a href="#[353]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateHandleVerifyBackup
@@ -4516,12 +4543,13 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[30e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerProcess
 </UL>
 
-<P><STRONG><a name="[367]"></a>updateReadBootRecord</STRONG> (Thumb, 22 bytes, Stack size 16 bytes, update.o(i.updateReadBootRecord))
+<P><STRONG><a name="[370]"></a>updateReadBootRecord</STRONG> (Thumb, 22 bytes, Stack size 16 bytes, update.o(i.updateReadBootRecord))
 <BR><BR>[Stack]<UL><LI>Max Depth = 352<LI>Call Chain = updateReadBootRecord &rArr; updateLoadBootRecord &rArr; updateMetaLoad &rArr; updateStorageRead &rArr; updateGetRegionCfg &rArr; __aeabi_memcpy4
 </UL>
 <BR>[Calls]<UL><LI><a href="#[345]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateLoadBootRecord
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerHasNormalAppBootFlag
+<LI><a href="#[37e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerSetBootRecordRunApp
 </UL>
 
 <P><STRONG><a name="[357]"></a>updateReset</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, update.o(i.updateReset))
@@ -4530,6 +4558,18 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[1af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 </UL>
 <BR>[Called By]<UL><LI><a href="#[356]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateInit
+</UL>
+
+<P><STRONG><a name="[37f]"></a>updateWriteBootRecord</STRONG> (Thumb, 186 bytes, Stack size 144 bytes, update.o(i.updateWriteBootRecord))
+<BR><BR>[Stack]<UL><LI>Max Depth = 584 + Unknown Stack Size
+<LI>Call Chain = updateWriteBootRecord &rArr; updateStoreBootRecord &rArr; updateMetaCommit &rArr; updateStorageWrite &rArr; updateGetRegionCfg &rArr; __aeabi_memcpy4
+</UL>
+<BR>[Calls]<UL><LI><a href="#[342]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateStoreBootRecord
+<LI><a href="#[343]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateSetState
+<LI><a href="#[345]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateLoadBootRecord
+<LI><a href="#[1be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+</UL>
+<BR>[Called By]<UL><LI><a href="#[37e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerSetBootRecordRunApp
 </UL>
 
 <P><STRONG><a name="[6d]"></a>_get_lc_ctype</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, lc_ctype_c.o(locale$$code))
@@ -5089,46 +5129,205 @@ Local Symbols
 <LI><a href="#[274]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;flashManagerInit
 </UL>
 
-<P><STRONG><a name="[368]"></a>updateManagerCanBootNormally</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, update_mgr.o(i.updateManagerCanBootNormally))
+<P><STRONG><a name="[364]"></a>updateManagerCalcHeaderCrc</STRONG> (Thumb, 30 bytes, Stack size 16 bytes, update_mgr.o(i.updateManagerCalcHeaderCrc))
+<BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = updateManagerCalcHeaderCrc &rArr; updateManagerCrc32Update
+</UL>
+<BR>[Calls]<UL><LI><a href="#[365]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerCrc32Update
+<LI><a href="#[366]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerCrc32Finalize
+</UL>
+<BR>[Called By]<UL><LI><a href="#[372]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerIsHeaderValid
+</UL>
+
+<P><STRONG><a name="[371]"></a>updateManagerCanBootNormally</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, update_mgr.o(i.updateManagerCanBootNormally))
 <BR><BR>[Called By]<UL><LI><a href="#[2ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerHasNormalAppBootFlag
 </UL>
 
-<P><STRONG><a name="[364]"></a>updateManagerGetExecutableRegion</STRONG> (Thumb, 44 bytes, Stack size 16 bytes, update_mgr.o(i.updateManagerGetExecutableRegion))
-<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = updateManagerGetExecutableRegion &rArr; updatePortGetRegionMap &rArr; __aeabi_memcpy4
-</UL>
-<BR>[Calls]<UL><LI><a href="#[365]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updatePortGetRegionMap
-</UL>
-<BR>[Called By]<UL><LI><a href="#[369]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerJumpToRegionInternal
+<P><STRONG><a name="[366]"></a>updateManagerCrc32Finalize</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, update_mgr.o(i.updateManagerCrc32Finalize))
+<BR><BR>[Called By]<UL><LI><a href="#[37d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerVerifyRegionCrc
+<LI><a href="#[377]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerReadMetaPayload
+<LI><a href="#[364]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerCalcHeaderCrc
 </UL>
 
-<P><STRONG><a name="[369]"></a>updateManagerJumpToRegionInternal</STRONG> (Thumb, 190 bytes, Stack size 56 bytes, update_mgr.o(i.updateManagerJumpToRegionInternal))
+<P><STRONG><a name="[365]"></a>updateManagerCrc32Update</STRONG> (Thumb, 56 bytes, Stack size 12 bytes, update_mgr.o(i.updateManagerCrc32Update))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = updateManagerCrc32Update
+</UL>
+<BR>[Called By]<UL><LI><a href="#[37d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerVerifyRegionCrc
+<LI><a href="#[377]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerReadMetaPayload
+<LI><a href="#[364]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerCalcHeaderCrc
+</UL>
+
+<P><STRONG><a name="[367]"></a>updateManagerEraseRegion</STRONG> (Thumb, 98 bytes, Stack size 56 bytes, update_mgr.o(i.updateManagerEraseRegion))
+<BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = updateManagerEraseRegion &rArr; updateManagerGetRegionOps &rArr; updatePortGetRegionMap &rArr; __aeabi_memcpy4
+</UL>
+<BR>[Calls]<UL><LI><a href="#[368]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerGetRegionOps
+</UL>
+<BR>[Called By]<UL><LI><a href="#[36f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerRestoreAppFromBackup
+</UL>
+
+<P><STRONG><a name="[369]"></a>updateManagerGetExecutableRegion</STRONG> (Thumb, 44 bytes, Stack size 16 bytes, update_mgr.o(i.updateManagerGetExecutableRegion))
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = updateManagerGetExecutableRegion &rArr; updatePortGetRegionMap &rArr; __aeabi_memcpy4
+</UL>
+<BR>[Calls]<UL><LI><a href="#[36a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updatePortGetRegionMap
+</UL>
+<BR>[Called By]<UL><LI><a href="#[36d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerValidateExecutableRegion
+<LI><a href="#[36e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerJumpToRegionInternal
+</UL>
+
+<P><STRONG><a name="[368]"></a>updateManagerGetRegionOps</STRONG> (Thumb, 66 bytes, Stack size 48 bytes, update_mgr.o(i.updateManagerGetRegionOps))
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = updateManagerGetRegionOps &rArr; updatePortGetRegionMap &rArr; __aeabi_memcpy4
+</UL>
+<BR>[Calls]<UL><LI><a href="#[35b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updatePortGetStorageOps
+<LI><a href="#[36a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updatePortGetRegionMap
+<LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
+</UL>
+<BR>[Called By]<UL><LI><a href="#[37c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerWriteRegion
+<LI><a href="#[37b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerReadRegion
+<LI><a href="#[367]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerEraseRegion
+</UL>
+
+<P><STRONG><a name="[36c]"></a>updateManagerHandleIdleTimeout</STRONG> (Thumb, 86 bytes, Stack size 8 bytes, update_mgr.o(i.updateManagerHandleIdleTimeout))
+<BR><BR>[Stack]<UL><LI>Max Depth = 776 + Unknown Stack Size
+<LI>Call Chain = updateManagerHandleIdleTimeout &rArr; updateManagerRestoreAppFromBackup &rArr; updateManagerSetBootRecordRunApp &rArr; updateWriteBootRecord &rArr; updateStoreBootRecord &rArr; updateMetaCommit &rArr; updateStorageWrite &rArr; updateGetRegionCfg &rArr; __aeabi_memcpy4
+</UL>
+<BR>[Calls]<UL><LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;logWrite
+<LI><a href="#[36d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerValidateExecutableRegion
+<LI><a href="#[36f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerRestoreAppFromBackup
+<LI><a href="#[36e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerJumpToRegionInternal
+</UL>
+<BR>[Called By]<UL><LI><a href="#[37a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerProcessIdleRecovery
+</UL>
+
+<P><STRONG><a name="[372]"></a>updateManagerIsHeaderValid</STRONG> (Thumb, 82 bytes, Stack size 16 bytes, update_mgr.o(i.updateManagerIsHeaderValid))
+<BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = updateManagerIsHeaderValid &rArr; updateManagerCalcHeaderCrc &rArr; updateManagerCrc32Update
+</UL>
+<BR>[Calls]<UL><LI><a href="#[364]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerCalcHeaderCrc
+</UL>
+<BR>[Called By]<UL><LI><a href="#[376]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerLoadBackupHeader
+</UL>
+
+<P><STRONG><a name="[36e]"></a>updateManagerJumpToRegionInternal</STRONG> (Thumb, 190 bytes, Stack size 56 bytes, update_mgr.o(i.updateManagerJumpToRegionInternal))
 <BR><BR>[Stack]<UL><LI>Max Depth = 352 + Unknown Stack Size
 <LI>Call Chain = updateManagerJumpToRegionInternal &rArr; logWrite &rArr; logVWrite &rArr; logFormatLine &rArr; __2snprintf &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;logWrite
-<LI><a href="#[36c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__asm___12_update_mgr_c_7103a135__updateManagerLaunchApp
-<LI><a href="#[36a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerReadAppVector
-<LI><a href="#[36b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerPrepareAppJump
-<LI><a href="#[364]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerGetExecutableRegion
+<LI><a href="#[375]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__asm___12_update_mgr_c_7103a135__updateManagerLaunchApp
+<LI><a href="#[373]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerReadAppVector
+<LI><a href="#[374]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerPrepareAppJump
+<LI><a href="#[369]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerGetExecutableRegion
 </UL>
 <BR>[Called By]<UL><LI><a href="#[360]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updatePortJumpToRegion
+<LI><a href="#[36c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerHandleIdleTimeout
 </UL>
 
-<P><STRONG><a name="[36b]"></a>updateManagerPrepareAppJump</STRONG> (Thumb, 170 bytes, Stack size 16 bytes, update_mgr.o(i.updateManagerPrepareAppJump))
+<P><STRONG><a name="[376]"></a>updateManagerLoadBackupHeader</STRONG> (Thumb, 52 bytes, Stack size 40 bytes, update_mgr.o(i.updateManagerLoadBackupHeader))
+<BR><BR>[Stack]<UL><LI>Max Depth = 328<LI>Call Chain = updateManagerLoadBackupHeader &rArr; updateManagerReadMetaPayload &rArr; updateManagerReadRegion &rArr; updateManagerGetRegionOps &rArr; updatePortGetRegionMap &rArr; __aeabi_memcpy4
+</UL>
+<BR>[Calls]<UL><LI><a href="#[36a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updatePortGetRegionMap
+<LI><a href="#[377]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerReadMetaPayload
+<LI><a href="#[372]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerIsHeaderValid
+</UL>
+<BR>[Called By]<UL><LI><a href="#[36f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerRestoreAppFromBackup
+</UL>
+
+<P><STRONG><a name="[374]"></a>updateManagerPrepareAppJump</STRONG> (Thumb, 174 bytes, Stack size 16 bytes, update_mgr.o(i.updateManagerPrepareAppJump))
 <BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = updateManagerPrepareAppJump &rArr; HAL_RCC_DeInit &rArr; HAL_InitTick &rArr; HAL_TIM_Base_Init &rArr; HAL_TIM_Base_MspInit &rArr; HAL_NVIC_SetPriority &rArr; __NVIC_SetPriority
 </UL>
 <BR>[Calls]<UL><LI><a href="#[16f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_DeInit
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DeInit
+<LI><a href="#[378]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerResetPeripheralState
 </UL>
-<BR>[Called By]<UL><LI><a href="#[369]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerJumpToRegionInternal
+<BR>[Called By]<UL><LI><a href="#[36e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerJumpToRegionInternal
 </UL>
 
-<P><STRONG><a name="[36a]"></a>updateManagerReadAppVector</STRONG> (Thumb, 26 bytes, Stack size 16 bytes, update_mgr.o(i.updateManagerReadAppVector))
+<P><STRONG><a name="[37a]"></a>updateManagerProcessIdleRecovery</STRONG> (Thumb, 82 bytes, Stack size 16 bytes, update_mgr.o(i.updateManagerProcessIdleRecovery))
+<BR><BR>[Stack]<UL><LI>Max Depth = 792 + Unknown Stack Size
+<LI>Call Chain = updateManagerProcessIdleRecovery &rArr; updateManagerHandleIdleTimeout &rArr; updateManagerRestoreAppFromBackup &rArr; updateManagerSetBootRecordRunApp &rArr; updateWriteBootRecord &rArr; updateStoreBootRecord &rArr; updateMetaCommit &rArr; updateStorageWrite &rArr; updateGetRegionCfg &rArr; __aeabi_memcpy4
+</UL>
+<BR>[Calls]<UL><LI><a href="#[36c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerHandleIdleTimeout
+</UL>
+<BR>[Called By]<UL><LI><a href="#[30e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerProcess
+</UL>
+
+<P><STRONG><a name="[373]"></a>updateManagerReadAppVector</STRONG> (Thumb, 26 bytes, Stack size 16 bytes, update_mgr.o(i.updateManagerReadAppVector))
 <BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = updateManagerReadAppVector &rArr; drvMcuFlashRead &rArr; drvMcuFlashResolveAbsoluteRange
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drvMcuFlashRead
 </UL>
-<BR>[Called By]<UL><LI><a href="#[369]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerJumpToRegionInternal
+<BR>[Called By]<UL><LI><a href="#[36d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerValidateExecutableRegion
+<LI><a href="#[36e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerJumpToRegionInternal
+</UL>
+
+<P><STRONG><a name="[377]"></a>updateManagerReadMetaPayload</STRONG> (Thumb, 212 bytes, Stack size 160 bytes, update_mgr.o(i.updateManagerReadMetaPayload))
+<BR><BR>[Stack]<UL><LI>Max Depth = 288<LI>Call Chain = updateManagerReadMetaPayload &rArr; updateManagerReadRegion &rArr; updateManagerGetRegionOps &rArr; updatePortGetRegionMap &rArr; __aeabi_memcpy4
+</UL>
+<BR>[Calls]<UL><LI><a href="#[36a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updatePortGetRegionMap
+<LI><a href="#[37b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerReadRegion
+<LI><a href="#[365]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerCrc32Update
+<LI><a href="#[366]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerCrc32Finalize
+<LI><a href="#[1be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+</UL>
+<BR>[Called By]<UL><LI><a href="#[376]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerLoadBackupHeader
+</UL>
+
+<P><STRONG><a name="[37b]"></a>updateManagerReadRegion</STRONG> (Thumb, 102 bytes, Stack size 56 bytes, update_mgr.o(i.updateManagerReadRegion))
+<BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = updateManagerReadRegion &rArr; updateManagerGetRegionOps &rArr; updatePortGetRegionMap &rArr; __aeabi_memcpy4
+</UL>
+<BR>[Calls]<UL><LI><a href="#[368]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerGetRegionOps
+</UL>
+<BR>[Called By]<UL><LI><a href="#[37d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerVerifyRegionCrc
+<LI><a href="#[36f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerRestoreAppFromBackup
+<LI><a href="#[377]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerReadMetaPayload
+</UL>
+
+<P><STRONG><a name="[378]"></a>updateManagerResetPeripheralState</STRONG> (Thumb, 54 bytes, Stack size 0 bytes, update_mgr.o(i.updateManagerResetPeripheralState))
+<BR><BR>[Called By]<UL><LI><a href="#[374]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerPrepareAppJump
+</UL>
+
+<P><STRONG><a name="[36f]"></a>updateManagerRestoreAppFromBackup</STRONG> (Thumb, 282 bytes, Stack size 112 bytes, update_mgr.o(i.updateManagerRestoreAppFromBackup))
+<BR><BR>[Stack]<UL><LI>Max Depth = 768 + Unknown Stack Size
+<LI>Call Chain = updateManagerRestoreAppFromBackup &rArr; updateManagerSetBootRecordRunApp &rArr; updateWriteBootRecord &rArr; updateStoreBootRecord &rArr; updateMetaCommit &rArr; updateStorageWrite &rArr; updateGetRegionCfg &rArr; __aeabi_memcpy4
+</UL>
+<BR>[Calls]<UL><LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;logWrite
+<LI><a href="#[36a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updatePortGetRegionMap
+<LI><a href="#[340]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updatePortFeedWatchdog
+<LI><a href="#[37e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerSetBootRecordRunApp
+<LI><a href="#[37c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerWriteRegion
+<LI><a href="#[37d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerVerifyRegionCrc
+<LI><a href="#[36d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerValidateExecutableRegion
+<LI><a href="#[37b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerReadRegion
+<LI><a href="#[376]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerLoadBackupHeader
+<LI><a href="#[367]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerEraseRegion
+</UL>
+<BR>[Called By]<UL><LI><a href="#[36c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerHandleIdleTimeout
+</UL>
+
+<P><STRONG><a name="[36d]"></a>updateManagerValidateExecutableRegion</STRONG> (Thumb, 100 bytes, Stack size 48 bytes, update_mgr.o(i.updateManagerValidateExecutableRegion))
+<BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = updateManagerValidateExecutableRegion &rArr; updateManagerReadAppVector &rArr; drvMcuFlashRead &rArr; drvMcuFlashResolveAbsoluteRange
+</UL>
+<BR>[Calls]<UL><LI><a href="#[373]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerReadAppVector
+<LI><a href="#[369]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerGetExecutableRegion
+</UL>
+<BR>[Called By]<UL><LI><a href="#[36f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerRestoreAppFromBackup
+<LI><a href="#[36c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerHandleIdleTimeout
+</UL>
+
+<P><STRONG><a name="[37d]"></a>updateManagerVerifyRegionCrc</STRONG> (Thumb, 100 bytes, Stack size 32 bytes, update_mgr.o(i.updateManagerVerifyRegionCrc))
+<BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = updateManagerVerifyRegionCrc &rArr; updateManagerReadRegion &rArr; updateManagerGetRegionOps &rArr; updatePortGetRegionMap &rArr; __aeabi_memcpy4
+</UL>
+<BR>[Calls]<UL><LI><a href="#[340]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updatePortFeedWatchdog
+<LI><a href="#[37b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerReadRegion
+<LI><a href="#[365]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerCrc32Update
+<LI><a href="#[366]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerCrc32Finalize
+</UL>
+<BR>[Called By]<UL><LI><a href="#[36f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerRestoreAppFromBackup
+</UL>
+
+<P><STRONG><a name="[37c]"></a>updateManagerWriteRegion</STRONG> (Thumb, 108 bytes, Stack size 56 bytes, update_mgr.o(i.updateManagerWriteRegion))
+<BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = updateManagerWriteRegion &rArr; updateManagerGetRegionOps &rArr; updatePortGetRegionMap &rArr; __aeabi_memcpy4
+</UL>
+<BR>[Calls]<UL><LI><a href="#[368]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerGetRegionOps
+</UL>
+<BR>[Called By]<UL><LI><a href="#[36f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateManagerRestoreAppFromBackup
 </UL>
 
 <P><STRONG><a name="[331]"></a>updateBuildDefaultBootRecord</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, update.o(i.updateBuildDefaultBootRecord))
@@ -5175,7 +5374,7 @@ Local Symbols
 
 <P><STRONG><a name="[336]"></a>updateCrc32Finalize</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, update.o(i.updateCrc32Finalize))
 <BR><BR>[Called By]<UL><LI><a href="#[361]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateMetaLoad
-<LI><a href="#[36e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateMetaCommit
+<LI><a href="#[380]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateMetaCommit
 <LI><a href="#[355]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateHandleVerifyTarget
 <LI><a href="#[354]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateHandleVerifyRollback
 <LI><a href="#[353]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateHandleVerifyBackup
@@ -5189,7 +5388,7 @@ Local Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = updateCrc32Update
 </UL>
 <BR>[Called By]<UL><LI><a href="#[361]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateMetaLoad
-<LI><a href="#[36e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateMetaCommit
+<LI><a href="#[380]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateMetaCommit
 <LI><a href="#[355]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateHandleVerifyTarget
 <LI><a href="#[354]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateHandleVerifyRollback
 <LI><a href="#[353]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateHandleVerifyBackup
@@ -5209,7 +5408,7 @@ Local Symbols
 <LI><a href="#[33a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateHandleBackupRunApp
 </UL>
 
-<P><STRONG><a name="[371]"></a>updateGetNextSequence</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, update.o(i.updateGetNextSequence))
+<P><STRONG><a name="[383]"></a>updateGetNextSequence</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, update.o(i.updateGetNextSequence))
 <BR><BR>[Called By]<UL><LI><a href="#[341]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateStoreImageHeader
 <LI><a href="#[342]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateStoreBootRecord
 </UL>
@@ -5225,7 +5424,7 @@ Local Symbols
 <LI><a href="#[33c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateStorageRead
 <LI><a href="#[348]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateStorageErase
 <LI><a href="#[361]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateMetaLoad
-<LI><a href="#[36e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateMetaCommit
+<LI><a href="#[380]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateMetaCommit
 <LI><a href="#[351]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateLoadImageHeader
 <LI><a href="#[35d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateIsRegionConfigured
 <LI><a href="#[35a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateInitStorageDevices
@@ -5249,7 +5448,7 @@ Local Symbols
 <LI><a href="#[336]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateCrc32Finalize
 <LI><a href="#[340]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updatePortFeedWatchdog
 </UL>
-<BR>[Called By]<UL><LI><a href="#[36d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateProcess
+<BR>[Called By]<UL><LI><a href="#[379]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateProcess
 </UL>
 
 <P><STRONG><a name="[344]"></a>updateHandleCheckRequest</STRONG> (Thumb, 206 bytes, Stack size 8 bytes, update.o(i.updateHandleCheckRequest))
@@ -5260,7 +5459,7 @@ Local Symbols
 <LI><a href="#[345]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateLoadBootRecord
 <LI><a href="#[33e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateHandleFailure
 </UL>
-<BR>[Called By]<UL><LI><a href="#[36d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateProcess
+<BR>[Called By]<UL><LI><a href="#[379]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateProcess
 </UL>
 
 <P><STRONG><a name="[346]"></a>updateHandleCommitResult</STRONG> (Thumb, 112 bytes, Stack size 8 bytes, update.o(i.updateHandleCommitResult))
@@ -5273,7 +5472,7 @@ Local Symbols
 <LI><a href="#[33e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateHandleFailure
 <LI><a href="#[334]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateCalcHeaderCrc
 </UL>
-<BR>[Called By]<UL><LI><a href="#[36d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateProcess
+<BR>[Called By]<UL><LI><a href="#[379]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateProcess
 </UL>
 
 <P><STRONG><a name="[347]"></a>updateHandleEraseTarget</STRONG> (Thumb, 122 bytes, Stack size 40 bytes, update.o(i.updateHandleEraseTarget))
@@ -5287,7 +5486,7 @@ Local Symbols
 <LI><a href="#[339]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateGetRegionCfg
 <LI><a href="#[340]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updatePortFeedWatchdog
 </UL>
-<BR>[Called By]<UL><LI><a href="#[36d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateProcess
+<BR>[Called By]<UL><LI><a href="#[379]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateProcess
 </UL>
 
 <P><STRONG><a name="[33e]"></a>updateHandleFailure</STRONG> (Thumb, 82 bytes, Stack size 8 bytes, update.o(i.updateHandleFailure))
@@ -5326,7 +5525,7 @@ Local Symbols
 <LI><a href="#[340]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updatePortFeedWatchdog
 <LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
 </UL>
-<BR>[Called By]<UL><LI><a href="#[36d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateProcess
+<BR>[Called By]<UL><LI><a href="#[379]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateProcess
 </UL>
 
 <P><STRONG><a name="[34d]"></a>updateHandleProgramTarget</STRONG> (Thumb, 152 bytes, Stack size 16 bytes, update.o(i.updateHandleProgramTarget))
@@ -5342,7 +5541,7 @@ Local Symbols
 <LI><a href="#[33b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateGetCopyLimit
 <LI><a href="#[340]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updatePortFeedWatchdog
 </UL>
-<BR>[Called By]<UL><LI><a href="#[36d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateProcess
+<BR>[Called By]<UL><LI><a href="#[379]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateProcess
 </UL>
 
 <P><STRONG><a name="[34e]"></a>updateHandleRollbackEraseTarget</STRONG> (Thumb, 114 bytes, Stack size 40 bytes, update.o(i.updateHandleRollbackEraseTarget))
@@ -5356,7 +5555,7 @@ Local Symbols
 <LI><a href="#[339]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateGetRegionCfg
 <LI><a href="#[340]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updatePortFeedWatchdog
 </UL>
-<BR>[Called By]<UL><LI><a href="#[36d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateProcess
+<BR>[Called By]<UL><LI><a href="#[379]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateProcess
 </UL>
 
 <P><STRONG><a name="[34f]"></a>updateHandleRollbackProgramBackup</STRONG> (Thumb, 118 bytes, Stack size 16 bytes, update.o(i.updateHandleRollbackProgramBackup))
@@ -5371,7 +5570,7 @@ Local Symbols
 <LI><a href="#[33b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateGetCopyLimit
 <LI><a href="#[340]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updatePortFeedWatchdog
 </UL>
-<BR>[Called By]<UL><LI><a href="#[36d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateProcess
+<BR>[Called By]<UL><LI><a href="#[379]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateProcess
 </UL>
 
 <P><STRONG><a name="[350]"></a>updateHandleValidateStaging</STRONG> (Thumb, 236 bytes, Stack size 16 bytes, update.o(i.updateHandleValidateStaging))
@@ -5390,7 +5589,7 @@ Local Symbols
 <LI><a href="#[336]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateCrc32Finalize
 <LI><a href="#[340]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updatePortFeedWatchdog
 </UL>
-<BR>[Called By]<UL><LI><a href="#[36d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateProcess
+<BR>[Called By]<UL><LI><a href="#[379]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateProcess
 </UL>
 
 <P><STRONG><a name="[353]"></a>updateHandleVerifyBackup</STRONG> (Thumb, 142 bytes, Stack size 16 bytes, update.o(i.updateHandleVerifyBackup))
@@ -5406,7 +5605,7 @@ Local Symbols
 <LI><a href="#[336]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateCrc32Finalize
 <LI><a href="#[340]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updatePortFeedWatchdog
 </UL>
-<BR>[Called By]<UL><LI><a href="#[36d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateProcess
+<BR>[Called By]<UL><LI><a href="#[379]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateProcess
 </UL>
 
 <P><STRONG><a name="[354]"></a>updateHandleVerifyRollback</STRONG> (Thumb, 174 bytes, Stack size 16 bytes, update.o(i.updateHandleVerifyRollback))
@@ -5423,7 +5622,7 @@ Local Symbols
 <LI><a href="#[336]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateCrc32Finalize
 <LI><a href="#[340]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updatePortFeedWatchdog
 </UL>
-<BR>[Called By]<UL><LI><a href="#[36d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateProcess
+<BR>[Called By]<UL><LI><a href="#[379]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateProcess
 </UL>
 
 <P><STRONG><a name="[355]"></a>updateHandleVerifyTarget</STRONG> (Thumb, 136 bytes, Stack size 16 bytes, update.o(i.updateHandleVerifyTarget))
@@ -5439,14 +5638,14 @@ Local Symbols
 <LI><a href="#[336]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateCrc32Finalize
 <LI><a href="#[340]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updatePortFeedWatchdog
 </UL>
-<BR>[Called By]<UL><LI><a href="#[36d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateProcess
+<BR>[Called By]<UL><LI><a href="#[379]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateProcess
 </UL>
 
 <P><STRONG><a name="[35a]"></a>updateInitStorageDevices</STRONG> (Thumb, 98 bytes, Stack size 48 bytes, update.o(i.updateInitStorageDevices))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = updateInitStorageDevices &rArr; updateGetRegionCfg &rArr; __aeabi_memcpy4
 </UL>
-<BR>[Calls]<UL><LI><a href="#[35b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updatePortGetStorageOps
-<LI><a href="#[339]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateGetRegionCfg
+<BR>[Calls]<UL><LI><a href="#[339]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateGetRegionCfg
+<LI><a href="#[35b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updatePortGetStorageOps
 </UL>
 <BR>[Called By]<UL><LI><a href="#[356]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateInit
 </UL>
@@ -5486,7 +5685,8 @@ Local Symbols
 <LI><a href="#[1be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 </UL>
 <BR>[Called By]<UL><LI><a href="#[344]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateHandleCheckRequest
-<LI><a href="#[367]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateReadBootRecord
+<LI><a href="#[37f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateWriteBootRecord
+<LI><a href="#[370]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateReadBootRecord
 </UL>
 
 <P><STRONG><a name="[351]"></a>updateLoadImageHeader</STRONG> (Thumb, 108 bytes, Stack size 120 bytes, update.o(i.updateLoadImageHeader))
@@ -5532,7 +5732,7 @@ Local Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[33e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateHandleFailure
 </UL>
 
-<P><STRONG><a name="[36e]"></a>updateMetaCommit</STRONG> (Thumb, 448 bytes, Stack size 280 bytes, update.o(i.updateMetaCommit))
+<P><STRONG><a name="[380]"></a>updateMetaCommit</STRONG> (Thumb, 448 bytes, Stack size 280 bytes, update.o(i.updateMetaCommit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 360 + Unknown Stack Size
 <LI>Call Chain = updateMetaCommit &rArr; updateStorageWrite &rArr; updateGetRegionCfg &rArr; __aeabi_memcpy4
 </UL>
@@ -5562,12 +5762,12 @@ Local Symbols
 <LI><a href="#[345]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateLoadBootRecord
 </UL>
 
-<P><STRONG><a name="[370]"></a>updateResolveNowTick</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, update.o(i.updateResolveNowTick))
+<P><STRONG><a name="[382]"></a>updateResolveNowTick</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, update.o(i.updateResolveNowTick))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = updateResolveNowTick &rArr; updatePortGetTickMs &rArr; repRtosGetTickMs &rArr; repRtosGetOps
 </UL>
-<BR>[Calls]<UL><LI><a href="#[36f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updatePortGetTickMs
+<BR>[Calls]<UL><LI><a href="#[381]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updatePortGetTickMs
 </UL>
-<BR>[Called By]<UL><LI><a href="#[36d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateProcess
+<BR>[Called By]<UL><LI><a href="#[379]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateProcess
 </UL>
 
 <P><STRONG><a name="[343]"></a>updateSetState</STRONG> (Thumb, 80 bytes, Stack size 24 bytes, update.o(i.updateSetState))
@@ -5590,6 +5790,7 @@ Local Symbols
 <LI><a href="#[346]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateHandleCommitResult
 <LI><a href="#[344]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateHandleCheckRequest
 <LI><a href="#[33a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateHandleBackupRunApp
+<LI><a href="#[37f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateWriteBootRecord
 <LI><a href="#[356]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateInit
 </UL>
 
@@ -5611,10 +5812,10 @@ Local Symbols
 <P><STRONG><a name="[348]"></a>updateStorageErase</STRONG> (Thumb, 108 bytes, Stack size 56 bytes, update.o(i.updateStorageErase))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = updateStorageErase &rArr; updateGetRegionCfg &rArr; __aeabi_memcpy4
 </UL>
-<BR>[Calls]<UL><LI><a href="#[35b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updatePortGetStorageOps
-<LI><a href="#[339]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateGetRegionCfg
+<BR>[Calls]<UL><LI><a href="#[339]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateGetRegionCfg
+<LI><a href="#[35b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updatePortGetStorageOps
 </UL>
-<BR>[Called By]<UL><LI><a href="#[36e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateMetaCommit
+<BR>[Called By]<UL><LI><a href="#[380]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateMetaCommit
 <LI><a href="#[34e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateHandleRollbackEraseTarget
 <LI><a href="#[34b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateHandlePrepareBackup
 <LI><a href="#[347]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateHandleEraseTarget
@@ -5623,12 +5824,12 @@ Local Symbols
 <P><STRONG><a name="[33c]"></a>updateStorageRead</STRONG> (Thumb, 116 bytes, Stack size 56 bytes, update.o(i.updateStorageRead))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = updateStorageRead &rArr; updateGetRegionCfg &rArr; __aeabi_memcpy4
 </UL>
-<BR>[Calls]<UL><LI><a href="#[35b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updatePortGetStorageOps
-<LI><a href="#[339]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateGetRegionCfg
+<BR>[Calls]<UL><LI><a href="#[339]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateGetRegionCfg
+<LI><a href="#[35b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updatePortGetStorageOps
 </UL>
 <BR>[Called By]<UL><LI><a href="#[35f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateValidateExecutableRegion
 <LI><a href="#[361]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateMetaLoad
-<LI><a href="#[36e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateMetaCommit
+<LI><a href="#[380]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateMetaCommit
 <LI><a href="#[355]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateHandleVerifyTarget
 <LI><a href="#[354]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateHandleVerifyRollback
 <LI><a href="#[353]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateHandleVerifyBackup
@@ -5641,10 +5842,10 @@ Local Symbols
 <P><STRONG><a name="[33d]"></a>updateStorageWrite</STRONG> (Thumb, 116 bytes, Stack size 56 bytes, update.o(i.updateStorageWrite))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = updateStorageWrite &rArr; updateGetRegionCfg &rArr; __aeabi_memcpy4
 </UL>
-<BR>[Calls]<UL><LI><a href="#[35b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updatePortGetStorageOps
-<LI><a href="#[339]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateGetRegionCfg
+<BR>[Calls]<UL><LI><a href="#[339]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateGetRegionCfg
+<LI><a href="#[35b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updatePortGetStorageOps
 </UL>
-<BR>[Called By]<UL><LI><a href="#[36e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateMetaCommit
+<BR>[Called By]<UL><LI><a href="#[380]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateMetaCommit
 <LI><a href="#[34f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateHandleRollbackProgramBackup
 <LI><a href="#[34d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateHandleProgramTarget
 <LI><a href="#[33a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateHandleBackupRunApp
@@ -5654,8 +5855,8 @@ Local Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 440 + Unknown Stack Size
 <LI>Call Chain = updateStoreBootRecord &rArr; updateMetaCommit &rArr; updateStorageWrite &rArr; updateGetRegionCfg &rArr; __aeabi_memcpy4
 </UL>
-<BR>[Calls]<UL><LI><a href="#[36e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateMetaCommit
-<LI><a href="#[371]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateGetNextSequence
+<BR>[Calls]<UL><LI><a href="#[380]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateMetaCommit
+<LI><a href="#[383]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateGetNextSequence
 <LI><a href="#[332]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateCalcBootRecordCrc
 <LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
 <LI><a href="#[1be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
@@ -5665,14 +5866,15 @@ Local Symbols
 <LI><a href="#[33e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateHandleFailure
 <LI><a href="#[346]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateHandleCommitResult
 <LI><a href="#[33a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateHandleBackupRunApp
+<LI><a href="#[37f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateWriteBootRecord
 </UL>
 
 <P><STRONG><a name="[341]"></a>updateStoreImageHeader</STRONG> (Thumb, 102 bytes, Stack size 88 bytes, update.o(i.updateStoreImageHeader))
 <BR><BR>[Stack]<UL><LI>Max Depth = 448 + Unknown Stack Size
 <LI>Call Chain = updateStoreImageHeader &rArr; updateMetaCommit &rArr; updateStorageWrite &rArr; updateGetRegionCfg &rArr; __aeabi_memcpy4
 </UL>
-<BR>[Calls]<UL><LI><a href="#[36e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateMetaCommit
-<LI><a href="#[371]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateGetNextSequence
+<BR>[Calls]<UL><LI><a href="#[380]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateMetaCommit
+<LI><a href="#[383]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateGetNextSequence
 <LI><a href="#[334]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateCalcHeaderCrc
 <LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
 <LI><a href="#[1be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
@@ -5821,10 +6023,10 @@ Local Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 </UL>
-<BR>[Called By]<UL><LI><a href="#[1bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_ReadNoLock
-<LI><a href="#[1bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_Write
+<BR>[Called By]<UL><LI><a href="#[1bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_Write
 <LI><a href="#[1bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_ConfigUpBuffer
 <LI><a href="#[1b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_ConfigDownBuffer
+<LI><a href="#[1bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_ReadNoLock
 </UL>
 
 <P><STRONG><a name="[1c1]"></a>_GetAvailWriteSpace</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, segger_rtt.o(i._GetAvailWriteSpace))
@@ -6735,9 +6937,9 @@ Local Symbols
 <P><STRONG><a name="[27d]"></a>gd25qxxxGetDevCtx</STRONG> (Thumb, 86 bytes, Stack size 8 bytes, gd25qxxx.o(i.gd25qxxxGetDevCtx))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = gd25qxxxGetDevCtx &rArr; gd25qxxxLoadDefCfg
 </UL>
-<BR>[Calls]<UL><LI><a href="#[288]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxLoadDefCfg
+<BR>[Calls]<UL><LI><a href="#[289]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxClrInfo
+<LI><a href="#[288]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxLoadDefCfg
 <LI><a href="#[287]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxIsValidDevMap
-<LI><a href="#[289]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxClrInfo
 </UL>
 <BR>[Called By]<UL><LI><a href="#[298]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxWrite
 <LI><a href="#[295]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gd25qxxxRead
@@ -7162,10 +7364,10 @@ Local Symbols
 <P><STRONG><a name="[31a]"></a>tm1651GetIicIf</STRONG> (Thumb, 54 bytes, Stack size 16 bytes, tm1651.o(i.tm1651GetIicIf))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = tm1651GetIicIf &rArr; tm1651GetPlatformIicInterface
 </UL>
-<BR>[Calls]<UL><LI><a href="#[31d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tm1651PlatformIsValidAssemble
-<LI><a href="#[31e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tm1651GetPlatformIicInterface
-<LI><a href="#[31b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tm1651IsValidCfg
+<BR>[Calls]<UL><LI><a href="#[31b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tm1651IsValidCfg
 <LI><a href="#[31c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tm1651GetDevMapByCtx
+<LI><a href="#[31d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tm1651PlatformIsValidAssemble
+<LI><a href="#[31e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tm1651GetPlatformIicInterface
 </UL>
 <BR>[Called By]<UL><LI><a href="#[31f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tm1651Init
 <LI><a href="#[311]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tm1651WriteFrame
@@ -7214,9 +7416,9 @@ Local Symbols
 <P><STRONG><a name="[311]"></a>tm1651WriteFrame</STRONG> (Thumb, 74 bytes, Stack size 32 bytes, tm1651.o(i.tm1651WriteFrame))
 <BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = tm1651WriteFrame &rArr; tm1651GetIicIf &rArr; tm1651GetPlatformIicInterface
 </UL>
-<BR>[Calls]<UL><LI><a href="#[320]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tm1651PlatformGetLinkId
-<LI><a href="#[31a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tm1651GetIicIf
+<BR>[Calls]<UL><LI><a href="#[31a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tm1651GetIicIf
 <LI><a href="#[31c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tm1651GetDevMapByCtx
+<LI><a href="#[320]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tm1651PlatformGetLinkId
 </UL>
 <BR>[Called By]<UL><LI><a href="#[317]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tm1651RefreshDisplay
 <LI><a href="#[310]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tm1651ApplyDisplayCtrl
